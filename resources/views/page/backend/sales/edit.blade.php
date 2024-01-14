@@ -38,12 +38,12 @@
                 </style>
                 <div class="col-lg-9 col-sm-12">
                 <div class="alert-success" style="display:none;">
-                    <span class="closebtn">&times;</span>  
+                    <span class="closebtn">&times;</span>
                     <strong>Success!</strong> Indicates a successful or positive action.
                 </div>
                 </div>
                 <div class="col-lg-3 col-sm-12">
-                
+
                 </div>
                 </div>
                 <div class="row">
@@ -62,7 +62,7 @@
                                             id="purchase{{ $sessions->id }}-tab" data-bs-toggle="tab"
                                             onclick="sessiontype({{ $sessions->id }})"
                                             data-bs-target="#purchase{{ $sessions->id }}" type="button"
-                                            aria-controls="purchase{{ $sessions->id }}" aria-selected="true" 
+                                            aria-controls="purchase{{ $sessions->id }}" aria-selected="true"
                                             role="tab">{{ $sessions->name }}</button>
                                     </li>
                                 @endforeach
@@ -102,12 +102,12 @@
                             @foreach ($category as $index => $categories)
                                 <div class="tab_content @if ($index == 0) active @endif"
                                     data-tab="fruits{{ $categories->id }}">
-                                    
+
                                     <div class="row prodcttsdiv" >
                                     @foreach ($produc_session_arr as $key => $produc_session_array)
                                                 @if ($produc_session_array['category_id'] == $categories->id)
 
-                                                
+
                                                     <div class="col-lg-3 col-sm-6 d-flex  ">
                                                         <div class="productset flex-fill" style="border: 1px solid #afbcc6;">
                                                             <div class="productsetimg" style="height:110px;">
@@ -140,8 +140,8 @@
                                                                             data-product_price="{{ $produc_session_array['productprice'] }}"
                                                                             id="addedproduct{{ $produc_session_array['id'] }}"
                                                                             style="background: #7367f0;font-size: 14px;font-weight: 700;color: #fff;"
-                                                                            value="Add to cart" />
-                                                                            <input type="button" value="Add to cart" style="display:none;" class="btn btn-scanner-set clickquantity{{ $produc_session_array['id'] }}  rise_quantity" onClick="increment_quantity({{ $produc_session_array['id'] }})"> </h6>
+                                                                            value="ADD" />
+                                                                            <input type="button" value="ADD" style="display:none;" class="btn btn-scanner-set clickquantity{{ $produc_session_array['id'] }}  rise_quantity" onClick="increment_quantity({{ $produc_session_array['id'] }})"> </h6>
                                                                     <input type="hidden" name="singlequantity" id="singlequantity{{ $produc_session_array['product_id'] }}" class="form-control" value="1" />
                                                                 </div>
                                                             </div>
@@ -153,10 +153,10 @@
                                                 @endif
                                             @endforeach
                                         </div>
-                                    
-                                    
 
-                                    
+
+
+
                                 </div>
                             @endforeach
                         </div>
@@ -165,7 +165,7 @@
                     <div class="col-lg-4 col-sm-12 ">
                         <div class="order-list">
                             <div class="orderid">
-                                <h4>Order List  #{{$latestbillno}}</h4> 
+                                <h4>Order List  #{{$latestbillno}}</h4>
                                 <h5>Date : {{$SaleData->date}}</h5>
                             </div>
                             <div class="orderid">
@@ -193,10 +193,10 @@
                                                     </div>
                                                     <div class="input-group" style="margin-right: 5px;">
                                                         <div class="input-group-text">
-                                                            <input class="form-check-input" type="radio" value="Take Away" id ="sales_type" name="sales_type"
-                                                                aria-label="Radio button for following text input" {{ $SaleData->sales_type == 'Take Away' ? 'checked' : '' }}>
+                                                            <input class="form-check-input" type="radio" value="Delivery" id ="sales_type" name="sales_type"
+                                                                aria-label="Radio button for following text input" {{ $SaleData->sales_type == 'Delivery' ? 'checked' : '' }}>
                                                         </div>
-                                                        <input type="text" class="form-control" value="Take Away" disabled
+                                                        <input type="text" class="form-control" value="Delivery" disabled
                                                             aria-label="Text input with radio button">
                                                     </div>
                                                 </div>
@@ -260,7 +260,7 @@
                                              </div>
                                           </div>
                                        </li>
-                                       
+
                                        <input type="hidden" name="total_price[]" class="total_price{{$SaleProducts_data['product_session_id']}}" value="{{$SaleProducts_data['total_price']}}"/>
                                        <input type="hidden" name="product_session_id[]" class="product_session_id" value="{{$SaleProducts_data['product_session_id']}}"/>
                                        <li><span class="totalprice{{$SaleProducts_data['product_session_id']}}">{{$SaleProducts_data['total_price']}}</span></li>
@@ -400,7 +400,7 @@
                                                 <td>₹ {{ $DineInoutputs['grandtotal'] }}</td>
                                             </tr>
                                             @endforeach
-                                           
+
                                         </tbody>
                                     </table>
                                 </div>

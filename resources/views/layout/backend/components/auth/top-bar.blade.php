@@ -33,7 +33,7 @@
                             @php
                             $lastword = Request::url();
                             $current_url = "http://127.0.0.1:8000/zworktechnology/sales/create";
-                            $live_url = "https://annapooranifoods.com/zworktechnology/sales/create";
+                            $live_url = "https://bill.sreemadapalli.in/zworktechnology/sales/create";
 
                             @endphp
 

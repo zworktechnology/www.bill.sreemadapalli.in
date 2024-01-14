@@ -28,13 +28,13 @@ class SaleController extends Controller
 {
     public function index()
     {
-        
+
         $today = Carbon::now()->format('Y-m-d');
         $dineindata = Sale::where('date', '=', $today)->where('sales_type', '=', 'Dine In')->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
         $saledinein_data = [];
         $terms = [];
         foreach ($dineindata as $key => $datas) {
-            
+
             if($datas->customer_id != ""){
                 $customer = Customer::findOrFail($datas->customer_id);
                 $customername = $customer->name;
@@ -80,11 +80,11 @@ class SaleController extends Controller
 
 
 
-        $takeawaydata = Sale::where('date', '=', $today)->where('sales_type', '=', 'Take Away')->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
+        $takeawaydata = Sale::where('date', '=', $today)->where('sales_type', '=', 'Delivery')->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
         $saletakeway_data = [];
         $terms = [];
         foreach ($takeawaydata as $key => $datas) {
-            
+
             if($datas->customer_id != ""){
                 $customer = Customer::findOrFail($datas->customer_id);
                 $customername = $customer->name;
@@ -135,7 +135,7 @@ class SaleController extends Controller
         $saledelivery_data = [];
         $terms = [];
         foreach ($deliverydata as $key => $datas) {
-            
+
             if($datas->customer_id != ""){
                 $customer = Customer::findOrFail($datas->customer_id);
                 $customername = $customer->name;
@@ -191,7 +191,7 @@ class SaleController extends Controller
 
 
 
-        
+
         $session = Session::where('soft_delete', '!=', 1)->get();
         $category = Category::where('soft_delete', '!=', 1)->get();
         $Bank = Bank::where('soft_delete', '!=', 1)->get();
@@ -214,7 +214,7 @@ class SaleController extends Controller
             }
 
 
-        $total_takeaway = Sale::where('date', '=', $today)->where('sales_type', '=', 'Take Away')->where('soft_delete', '!=', 1)->sum('grandtotal');
+        $total_takeaway = Sale::where('date', '=', $today)->where('sales_type', '=', 'Delivery')->where('soft_delete', '!=', 1)->sum('grandtotal');
             if($total_takeaway != ""){
                 $total_take_away = $total_takeaway;
             }else {
@@ -239,12 +239,12 @@ class SaleController extends Controller
 
         $today = $request->get('from_date');
 
-        
+
         $dineindata = Sale::where('date', '=', $today)->where('sales_type', '=', 'Dine In')->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
         $saledinein_data = [];
         $terms = [];
         foreach ($dineindata as $key => $datas) {
-            
+
             if($datas->customer_id != ""){
                 $customer = Customer::findOrFail($datas->customer_id);
                 $customername = $customer->name;
@@ -290,11 +290,11 @@ class SaleController extends Controller
 
 
 
-        $takeawaydata = Sale::where('date', '=', $today)->where('sales_type', '=', 'Take Away')->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
+        $takeawaydata = Sale::where('date', '=', $today)->where('sales_type', '=', 'Delivery')->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
         $saletakeway_data = [];
         $terms = [];
         foreach ($takeawaydata as $key => $datas) {
-            
+
             if($datas->customer_id != ""){
                 $customer = Customer::findOrFail($datas->customer_id);
                 $customername = $customer->name;
@@ -345,7 +345,7 @@ class SaleController extends Controller
         $saledelivery_data = [];
         $terms = [];
         foreach ($deliverydata as $key => $datas) {
-            
+
             if($datas->customer_id != ""){
                 $customer = Customer::findOrFail($datas->customer_id);
                 $customername = $customer->name;
@@ -414,7 +414,7 @@ class SaleController extends Controller
             }
 
 
-            $total_takeaway = Sale::where('date', '=', $today)->where('sales_type', '=', 'Take Away')->where('soft_delete', '!=', 1)->sum('grandtotal');
+            $total_takeaway = Sale::where('date', '=', $today)->where('sales_type', '=', 'Delivery')->where('soft_delete', '!=', 1)->sum('grandtotal');
             if($total_takeaway != ""){
                 $total_take_away = $total_takeaway;
             }else {
@@ -429,9 +429,9 @@ class SaleController extends Controller
                 $totaldelivery = '0';
             }
 
-        
 
-        
+
+
         $session = Session::where('soft_delete', '!=', 1)->get();
         $category = Category::where('soft_delete', '!=', 1)->get();
         $Bank = Bank::where('soft_delete', '!=', 1)->get();
@@ -502,7 +502,7 @@ class SaleController extends Controller
             );
         }
 
-        $TakeAway = Sale::where('sales_type', '=', 'Take Away')->where('soft_delete', '!=', 1)->latest()->take(10)->get();
+        $TakeAway = Sale::where('sales_type', '=', 'Delivery')->where('soft_delete', '!=', 1)->latest()->take(10)->get();
         $TakeAwayInoutput = [];
         foreach ($TakeAway as $key => $TakeAway_arr) {
 
@@ -532,7 +532,7 @@ class SaleController extends Controller
         }
 
 
-        
+
         return view('page.backend.sales.create', compact('session', 'category', 'product_array', 'today', 'timenow', 'Bank', 'latestbillno', 'customer_rray', 'DineInoutput', 'TakeAwayInoutput', 'DeliveryInoutput', 'cat_Productsession', 'produc_session_arr'));
     }
 
@@ -554,8 +554,8 @@ class SaleController extends Controller
                     'Category' => $Productsessions->category_name,
                     'id' => $Productsessions->id,
                 ];
-            
-        
+
+
             echo json_encode($output);
     }
 
@@ -576,29 +576,29 @@ class SaleController extends Controller
                     'Category' => $Productsessions->category_name,
                     'id' => $Productsessions->id,
                 ];
-            
-        
+
+
             echo json_encode($output);
     }
 
     public function storeSalesData(Request $request)
     {
 
-       
-       
+
+
 
             $grqndtotal = $request->totalamount;
             if($grqndtotal != ""){
                 $randomkey = Str::random(5);
-    
-    
+
+
                 $Latest_Sale = Sale::where('soft_delete', '!=', 1)->latest('id')->first();
                 if($Latest_Sale != ''){
                     $latestbillno = $Latest_Sale->bill_no + 1;
                 }else {
                     $latestbillno = 1;
                 }
-        
+
                 $data = new Sale;
                 $data->unique_key = $randomkey;
                 $data->bill_no = $latestbillno;
@@ -616,11 +616,11 @@ class SaleController extends Controller
                 $data->deliveryboy_id = $request->deliveryboy_id;
                 $data->session_id = $request->session_ids;
                 $data->save();
-        
-        
+
+
                 $sales_id = $data->id;
                 $next_billno = $request->billno + 1;
-        
+
                 foreach (($request->product_ids) as $key => $product_id) {
                     $SaleProduct = new SaleProduct;
                     $SaleProduct->sales_id = $sales_id;
@@ -631,58 +631,58 @@ class SaleController extends Controller
                     $SaleProduct->product_session_id = $request->product_session_id[$key];
                     $SaleProduct->save();
                 }
-        
-        
+
+
                 $customerid = $request->customer_id;
                 if($customerid != ""){
-        
-                    
-        
+
+
+
                     $saleamountData = Payment::where('customer_id', '=', $customerid)->first();
                     if($saleamountData != ""){
-        
+
                         $old_grossamount = $saleamountData->saleamount;
                         $old_paid = $saleamountData->salepaid;
-        
+
                         $gross_amount = $request->grandtotal;
-        
+
                         $new_grossamount = $old_grossamount + $gross_amount;
                         $new_paid = $old_paid;
                         $new_balance = $new_grossamount - $new_paid;
-        
+
                         DB::table('payments')->where('customer_id', $customerid)->update([
                             'saleamount' => $new_grossamount,  'salepaid' => $new_paid, 'salebalance' => $new_balance
                         ]);
-        
+
                     }else {
                         if($customerid != ""){
                             $gross_amount = $request->grandtotal;
-        
+
                             $Paymentata = new Payment();
-            
+
                             $Paymentata->customer_id = $customerid;
                             $Paymentata->saleamount = $request->grandtotal;
                             $Paymentata->salepaid = 0;
                             $Paymentata->salebalance = $request->grandtotal;
                             $Paymentata->save();
                         }
-                        
+
                     }
                     //dd($customerid);
-        
+
                 }
-    
+
                 return response()->json(['next_billno' => $next_billno, 'msg' => 'Bill Added', 'last_id' => $sales_id]);
             }else {
                 return response()->json(['alert' => 'Please Enter the data']);
             }
 
-      
-        
-        
-        
-            
-            
+
+
+
+
+
+
         //$SaleData->save();
 
         //return redirect('form')->with('status', 'Ajax Form Data Has Been validated and store into database');
@@ -711,9 +711,9 @@ class SaleController extends Controller
 
                     $old_grossamount = $saleamountData->saleamount;
                     $old_paid = $saleamountData->salepaid;
-        
+
                     $oldentry_grossamount = $OldSaleData->grandtotal;
-        
+
                     $gross_amount = $request->grandtotal;
 
 
@@ -727,7 +727,7 @@ class SaleController extends Controller
                     DB::table('payments')->where('customer_id', $customer_id)->update([
                         'saleamount' => $new_gross_amount,  'salepaid' => $old_paid, 'salebalance' => $new_balance
                     ]);
-        
+
                 }
 
             }else {
@@ -735,10 +735,10 @@ class SaleController extends Controller
             }
 
 
-           
-            
 
-            
+
+
+
             $OldSaleData->date = $request->date;
             $OldSaleData->time = $request->time;
             $OldSaleData->sales_type = $request->sales_type;
@@ -752,9 +752,9 @@ class SaleController extends Controller
             $OldSaleData->payment_method = $request->paymentmethod;
             $OldSaleData->deliveryboy_id = $request->deliveryboy_id;
             $OldSaleData->session_id = $request->session_ids;
-            $OldSaleData->update(); 
-            
-            
+            $OldSaleData->update();
+
+
             $getinsertedP_Products = SaleProduct::where('sales_id', '=', $saleid)->get();
             $Purchaseproducts = array();
             foreach ($getinsertedP_Products as $key => $getinserted_P_Products) {
@@ -800,7 +800,7 @@ class SaleController extends Controller
                     $SaleProduct->save();
                 }
 
-                
+
             }
 
 
@@ -836,7 +836,7 @@ class SaleController extends Controller
         }
 
 
-        
+
 
         $session = Session::where('soft_delete', '!=', 1)->get();
         $category = Category::where('soft_delete', '!=', 1)->get();
@@ -883,13 +883,13 @@ class SaleController extends Controller
                 'id' => $Productsession_arr->id,
                 'session_id' => $Productsession_arr->session_id,
                 // 'product_session_id' => $prodctsessionid
-                
+
             );
         }
 
-        
+
             $latestbillno = $SaleData->bill_no;
-       
+
 
         $DineIn = Sale::where('sales_type', '=', 'Dine In')->where('soft_delete', '!=', 1)->latest()->take(10)->get();
         $DineInoutput = [];
@@ -903,7 +903,7 @@ class SaleController extends Controller
             );
         }
 
-        $TakeAway = Sale::where('sales_type', '=', 'Take Away')->where('soft_delete', '!=', 1)->latest()->take(10)->get();
+        $TakeAway = Sale::where('sales_type', '=', 'Delivery')->where('soft_delete', '!=', 1)->latest()->take(10)->get();
         $TakeAwayInoutput = [];
         foreach ($TakeAway as $key => $TakeAway_arr) {
 
@@ -978,15 +978,15 @@ class SaleController extends Controller
             }
 
             $data->delete();
-    
+
         }else {
             $data->soft_delete = 1;
 
             $data->update();
         }
 
-        
-        
+
+
 
         return redirect()->route('sales.index')->with('warning', 'Deleted !');
     }
@@ -1039,7 +1039,7 @@ class SaleController extends Controller
 
 
 
-    
+
     public function autocomplete(Request $request)
     {
         if($request->get('query'))
@@ -1069,7 +1069,7 @@ class SaleController extends Controller
         $productoutput = [];
         //$productids = [];
         //$prdoct_array = [];
-        
+
             $Getproducts = Productsession::where('soft_delete', '!=', 1)->where('session_id', '=', $sessionid)->distinct('product_id')->get();
             foreach ($Getproducts as $key => $Getproducts_arr) {
 
@@ -1094,10 +1094,10 @@ class SaleController extends Controller
                     'session_id' => $Getproducts_arr->session_id,
                     'id' => $Getproducts_arr->id,
                 ];
-            
+
             }
 
-            
+
             //$prdoct_array =  array_replace_recursive($productids, $productoutput);
             echo json_encode($productoutput);
     }
@@ -1152,7 +1152,7 @@ class SaleController extends Controller
                     'active' => $active,
                 ];
             }
-        
+
             echo json_encode($output);
     }
 
@@ -1174,7 +1174,7 @@ class SaleController extends Controller
 
     public function delivery_index()
     {
-        
+
         $today = Carbon::now()->format('Y-m-d');
 
 
@@ -1234,7 +1234,7 @@ class SaleController extends Controller
 
 
 
-                    
+
 
 
                     $Sale_Delivery_Data[] = array(
@@ -1320,7 +1320,7 @@ class SaleController extends Controller
                 'total_breakfast' => $total_breakfast,
                 'total_lunch' => $total_lunch,
                 'total_dinner' => $total_dinner,
-                
+
             );
         }
 
@@ -1429,7 +1429,7 @@ class SaleController extends Controller
 
 
 
-                    
+
 
 
                     $Sale_Delivery_Data[] = array(
@@ -1487,7 +1487,7 @@ class SaleController extends Controller
 
     public function store(Request $request)
     {
-       
+
         $date = $request->get('date');
         $session_id = $request->get('session_id');
         $customer_id = $request->get('customer_id');
@@ -1497,7 +1497,7 @@ class SaleController extends Controller
 
             $Deliverysale = new Deliverysale();
             $dsrandom_no =  rand(100,999);
-        
+
             $Deliverysale->unique_key = $dsrandom_no;
             $Deliverysale->date = $request->get('date');
             $Deliverysale->time = $request->get('time');
@@ -1516,10 +1516,10 @@ class SaleController extends Controller
             return redirect()->route('deliverysales.delivery_index')->with('warning', 'the Sale delivery  already registered..Please edit!');
         }
 
-        
-        
+
+
     }
-        
+
 
 
 
@@ -1529,7 +1529,7 @@ class SaleController extends Controller
     public function delivery_edit($unique_key, Request $request)
     {
         $DeliverysaleData = Deliverysale::where('unique_key', '=', $unique_key)->first();
-        
+
         $DeliverysaleData->date = $request->get('date');
         $DeliverysaleData->time = $request->get('time');
         $DeliverysaleData->deliveryboyid = $request->get('deliveryboyid');
@@ -1541,7 +1541,7 @@ class SaleController extends Controller
         $DeliverysaleData->update();
 
         return redirect()->route('deliverysales.delivery_index')->with('message', 'Updated !');
-        
+
 
     }
 
@@ -1550,17 +1550,17 @@ class SaleController extends Controller
     {
         $data = Deliverysale::where('unique_key', '=', $unique_key)->first();
 
-       
-    
-       
+
+
+
             $data->soft_delete = 1;
 
             $data->update();
-        
-        
+
+
 
         return redirect()->route('deliverysales.delivery_index')->with('warning', 'Deleted !');
     }
 
-    
+
 }

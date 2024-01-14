@@ -17,7 +17,7 @@
                                        <select class="form-control" name="sales_type" id="sales_type">
                                           <option value="none">Status</option>
                                           <option value="Dine In">Dine In</option>
-                                          <option value="Take Away">Take Away</option>
+                                          <option value="Delivery">Delivery</option>
                                           <option value="Delivery">Delivery</option>
                                        </select>
                                  </div>
@@ -72,7 +72,7 @@
         <br/>
         <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
                 <li class="nav-item"><a class="nav-link active" href="#solid-tab1" data-bs-toggle="tab">Dine In</a></li>
-                <li class="nav-item"><a class="nav-link" href="#solid-tab2" data-bs-toggle="tab">Take Away</a></li>
+                <li class="nav-item"><a class="nav-link" href="#solid-tab2" data-bs-toggle="tab">Delivery</a></li>
                 <li class="nav-item" hidden><a class="nav-link" href="#solid-tab3" data-bs-toggle="tab">Delivery</a></li>
             </ul>
             <div class="tab-content">
@@ -112,7 +112,7 @@
 
                                                         </li>
                                                         <li>
-                                                        <a href="https://annapooranifoods.com/zworktechnology/sales/print/{{ $datas['id'] }}" class="badges btn btn-success" style="color:white">Print</a>
+                                                        <a href="https://bill.sreemadapalli.in/zworktechnology/sales/print/{{ $datas['id'] }}" class="badges btn btn-success" style="color:white">Print</a>
                                                         </li>
                                                         <li>
                                                             <a href="#delete{{ $datas['unique_key'] }}" data-bs-toggle="modal"
@@ -185,7 +185,7 @@
 
                                                             </li>
                                                             <li>
-                                                            <a href="https://annapooranifoods.com/zworktechnology/sales/print/{{ $datas['id'] }}" class="badges btn btn-success" style="color:white">Print</a>
+                                                            <a href="https://bill.sreemadapalli.in/zworktechnology/sales/print/{{ $datas['id'] }}" class="badges btn btn-success" style="color:white">Print</a>
                                                             </li>
                                                             <li>
                                                                 <a href="#delete{{ $datas['unique_key'] }}" data-bs-toggle="modal"
@@ -274,7 +274,7 @@
 
                                                                 </li>
                                                                 <li>
-                                                                <a href="https://annapooranifoods.com/zworktechnology/sales/print/{{ $datas['id'] }}" class="badges btn btn-success" style="color:white">Print</a>
+                                                                <a href="https://bill.sreemadapalli.in/zworktechnology/sales/print/{{ $datas['id'] }}" class="badges btn btn-success" style="color:white">Print</a>
                                                                 </li>
                                                                 <li>
                                                                     <a href="#delete{{ $datas['unique_key'] }}" data-bs-toggle="modal"

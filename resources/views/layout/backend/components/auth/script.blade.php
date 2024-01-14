@@ -157,7 +157,7 @@
             });
 
 
-           
+
                 //var productsession_id = $('.productsession_id').val();
                 //    $.ajax({
                 //        url: '/getcategories/',
@@ -193,7 +193,7 @@
 
 
 
-                
+
 
 
     });
@@ -320,15 +320,15 @@
                     });
 
 
-                   
+
                            // $("#select2PS").select2({
                             //    templateResult: formatOptions
                            // });
-                            
-                        
 
-                }); 
-               // function formatOptions (state) 
+
+
+                });
+               // function formatOptions (state)
               //  {
              //           if (!state.id) { return state.text; }
 
@@ -347,35 +347,35 @@
                 var cat_id = $('.category_type').first().data('cat_id');
                 var sessionid = $('.category_type').first().data('session_id');
 
-                
+
                 // if (window.location.href.indexOf("http://127.0.0.1:8000/zworktechnology/sales/edit") > -1) {
                 //     var url = $(location).attr('href');
                 //     var parts = url.split("/");
                 //     var last_part = parts[parts.length-1];
 
-                    
+
                 // }else if (window.location.href.indexOf("http://127.0.0.1:8000/zworktechnology/sales/create") > -1) {
                 //     var last_part = '';
 
                 // }
-                
 
-                if (window.location.href.indexOf("https://annapooranifoods.com/zworktechnology/sales/edit") > -1) {
+
+                if (window.location.href.indexOf("https://bill.sreemadapalli.in/zworktechnology/sales/edit") > -1) {
                     var url = $(location).attr('href');
                     var parts = url.split("/");
                     var last_part = parts[parts.length-1];
 
-                    
-                }else if (window.location.href.indexOf("https://annapooranifoods.com/zworktechnology/sales/create") > -1) {
+
+                }else if (window.location.href.indexOf("https://bill.sreemadapalli.in/zworktechnology/sales/create") > -1) {
                     var last_part = '';
                 }
 
 
 
-              
 
-              
-                
+
+
+
 
                             $.ajax({
                                 url: '/getselectedcat_products/',
@@ -390,10 +390,10 @@
                                 success: function(response) {
                                     console.log(response);
                                     $('.prodcttsdiv').html('');
-                                    
+
                                     var len = response.length;
                                     for (var i = 0; i < len; i++) {
-                                        var productsdiv = $('<div class="col-lg-3 col-sm-6 d-flex  ">' + 
+                                        var productsdiv = $('<div class="col-lg-2 col-sm-2 col-2 d-flex">' +
                                                                 '<div class="productset flex-fill" style="border: 1px solid #afbcc6;">' +
                                                                     '<div class="productsetimg" style="height:110px;">' +
                                                                         '<img src="'+ response[i].product_image +'" alt="img">' +
@@ -401,7 +401,7 @@
                                                                     '<div class="productsetcontent">' +
                                                                         '<h4>'+ response[i].productname +'</h4>' +
                                                                         '<div style="display: flex">' +
-                                                                            '<h6 class="pos-price">₹ '+ response[i].productprice +'.00</h6>' +
+                                                                            '<h6 class="pos-price">₹ '+ response[i].productprice +'</h6>' +
                                                                             '<h6>'+ response[i].checkbutton +'</h6>' +
                                                                         '</div>' +
                                                                     '</div>' +
@@ -431,10 +431,10 @@
                                             success: function(response) {
                                              console.log(response);
                                                 $('.prodcttsdiv').html('');
-                                                
+
                                                 var len = response.length;
                                                 for (var i = 0; i < len; i++) {
-                                                    var productsdiv = $('<div class="col-lg-3 col-sm-6 d-flex  ">' + 
+                                                    var productsdiv = $('<div class="col-lg-2 col-sm-2 col-2 d-flex">' +
                                                                             '<div class="productset flex-fill" style="border: 1px solid #afbcc6;">' +
                                                                                 '<div class="productsetimg" style="height:110px;">' +
                                                                                     '<img src="'+ response[i].product_image +'" alt="img">' +
@@ -442,7 +442,7 @@
                                                                                 '<div class="productsetcontent">' +
                                                                                     '<h4>'+ response[i].productname +'</h4>' +
                                                                                     '<div style="display: flex">' +
-                                                                                        '<h6 class="pos-price">₹ '+ response[i].productprice +'.00</h6>' +
+                                                                                        '<h6 class="pos-price">₹ '+ response[i].productprice +'</h6>' +
                                                                                         '<h6>'+ response[i].checkbutton +'</h6>' +
                                                                                     '</div>' +
                                                                                 '</div>' +
@@ -476,10 +476,10 @@
                                 success: function(response) {
                                     //console.log(response);
                                     $('.prodcttsdiv').html('');
-                                    
+
                                     var len = response.length;
                                     for (var i = 0; i < len; i++) {
-                                        var productsdiv = $('<div class="col-lg-3 col-sm-6 d-flex  ">' + 
+                                        var productsdiv = $('<div class="col-lg-2 col-sm-2 col-2 d-flex">' +
                                                                 '<div class="productset flex-fill" style="border: 1px solid #afbcc6;">' +
                                                                     '<div class="productsetimg" style="height:110px;">' +
                                                                         '<img src="'+ response[i].product_image +'" alt="img">' +
@@ -487,7 +487,7 @@
                                                                     '<div class="productsetcontent">' +
                                                                         '<h4>'+ response[i].productname +'</h4>' +
                                                                         '<div style="display: flex">' +
-                                                                            '<h6 class="pos-price">₹ '+ response[i].productprice +'.00</h6>' +
+                                                                            '<h6 class="pos-price">₹ '+ response[i].productprice +'</h6>' +
                                                                             '<h6>'+ response[i].checkbutton +'</h6>' +
                                                                         '</div>' +
                                                                     '</div>' +
@@ -517,10 +517,10 @@
                                 success: function(response) {
                                    // console.log(response);
                                     $('.prodcttsdiv').html('');
-                                    
+
                                     var len = response.length;
                                     for (var i = 0; i < len; i++) {
-                                        var productsdiv = $('<div class="col-lg-3 col-sm-6 d-flex  ">' + 
+                                        var productsdiv = $('<div class="col-lg-2 col-sm-2 col-2 d-flex">' +
                                                                 '<div class="productset flex-fill" style="border: 1px solid #afbcc6;">' +
                                                                     '<div class="productsetimg" style="height:110px;">' +
                                                                         '<img src="'+ response[i].product_image +'" alt="img">' +
@@ -528,7 +528,7 @@
                                                                     '<div class="productsetcontent">' +
                                                                         '<h4>'+ response[i].productname +'</h4>' +
                                                                         '<div style="display: flex">' +
-                                                                            '<h6 class="pos-price">₹ '+ response[i].productprice +'.00</h6>' +
+                                                                            '<h6 class="pos-price">₹ '+ response[i].productprice +'</h6>' +
                                                                             '<h6>'+ response[i].checkbutton +'</h6>' +
                                                                         '</div>' +
                                                                     '</div>' +
@@ -540,7 +540,7 @@
                             });
                 });
 
-          
+
 
                     $(document).ready(function() {
                         $.ajax({
@@ -579,7 +579,7 @@
                             }
                         });
 
-                    }); 
+                    });
 
 
     }
@@ -588,7 +588,7 @@
     var h = 1;
     $(document).on('click', '.selectproduct', function() {
 
-                
+
 
     var product_id = $(this).data('product_id');
     var productsession_id = $(this).data('productsession_id');
@@ -599,7 +599,7 @@
                 var selectproductid = $(this).data('product_id');
                 var session_id = $(this).data('session_id');
 
-               
+
 
                 $.ajax({
                     url: '/getselectedproducts/',
@@ -611,7 +611,7 @@
                     },
                     dataType: 'json',
                     success: function(response) {
-                        
+
                         var len = response.length;
                         occurs = {};
 
@@ -685,11 +685,11 @@
                                 $('.grand_total').text('₹ ' + tot_expense_amount);
                                 $('.grandtotal').val(tot_expense_amount);
                         });
-       
-   
+
+
 
     //console.log(product_id);
-       
+
 
 });
 
@@ -776,7 +776,7 @@ $(document).on('click', '.remove-tr', function() {
 
     //console.log(liProductid);
 
-    $('#addedproduct' + liProductid).attr('style', 'background-color:#7367f0;color: #fff;').val('Add to Cart').attr('disabled', false);
+    $('#addedproduct' + liProductid).attr('style', 'background-color:#7367f0;color: #fff;').val('ADD').attr('disabled', false);
     $('.clickquantity' + liProductid).attr('style', 'display:none');
     $(this).parents('ul').remove();
 
@@ -799,7 +799,7 @@ $(document).on('click', '.remove-tr', function() {
 });
 $(document).on('click', '.remove-ultr', function() {
     $('.product-table').empty('');
-    $('.selectproduct').attr('style', 'background-color:#7367f0;color: #fff;').val('Add to Cart').attr('disabled', false);
+    $('.selectproduct').attr('style', 'background-color:#7367f0;color: #fff;').val('ADD').attr('disabled', false);
     $('.clickquantity').attr('style', 'display:none');
 });
 
@@ -807,7 +807,7 @@ $(document).on('click', '.remove-ultr', function() {
 
 $(document).ready(function(){
 
-    
+
 $('#sales_store').submit(function(e){
     e.preventDefault();
 
@@ -903,15 +903,15 @@ $('#sales_store').submit(function(e){
                         }, 2000 );
 
                         var last_salesid = response.last_id;
-                        
-                    
-                      // window.location= "http://127.0.0.1:8000/zworktechnology/sales/print/" + last_salesid;
-                       window.location= "https://annapooranifoods.com/zworktechnology/sales/print/" + last_salesid;
+
+
+                    //   window.location= "http://127.0.0.1:8000/zworktechnology/sales/print/" + last_salesid;
+                       window.location= "https://bill.sreemadapalli.in/zworktechnology/sales/print/" + last_salesid;
 
                         $('button[type=submit], input[type=submit]').prop('disabled',false);
                         document.getElementById("sales_store").reset();
                         $('.product-table').empty('');
-                        $('.selectproduct').attr('style', 'background-color:#7367f0;color: #fff;').val('Add to Cart').attr('disabled', false);
+                        $('.selectproduct').attr('style', 'background-color:#7367f0;color: #fff;').val('ADD').attr('disabled', false);
                         $('.rise_quantity').attr('style', 'display:none');
                         $('.total_count').text('');
                         $('.subtotalamount').text('');
@@ -936,9 +936,9 @@ $('#sales_store').submit(function(e){
                     }
                     //alert('Bill Added').attr('style', 'background-color:yellow;');
 
-                       
 
-                   
+
+
                 }
             });
 });
@@ -1037,16 +1037,16 @@ $('#sales_update').submit(function(e){
                         }, 2000 );
 
                         var last_salesid = response.last_id;
-                        
-                    
-                       // window.location= "http://127.0.0.1:8000/zworktechnology/sales/";
-                        window.location= "https://annapooranifoods.com/zworktechnology/sales";
-                       
+
+
+                    //    window.location= "http://127.0.0.1:8000/zworktechnology/sales/";
+                        window.location= "https://bill.sreemadapalli.in/zworktechnology/sales";
+
 
 
                         document.getElementById("sales_update").reset();
                         $('.product-table').empty('');
-                        $('.selectproduct').attr('style', 'background-color:#7367f0;color: #fff;').val('Add to Cart').attr('disabled', false);
+                        $('.selectproduct').attr('style', 'background-color:#7367f0;color: #fff;').val('ADD').attr('disabled', false);
                         $('.rise_quantity').attr('style', 'display:none');
                         $('.total_count').text('');
                         $('.subtotalamount').text('');
@@ -1074,9 +1074,9 @@ $('#sales_update').submit(function(e){
                     }
                     //alert('Bill Added').attr('style', 'background-color:yellow;');
 
-                       
 
-                   
+
+
                 }
             });
 });
@@ -1100,10 +1100,10 @@ function printDiv(divName) {
 
 
 
-               
+
         $('.select2PS').on('change', function () {
                // $('.productlist').fadeOut();
-               
+
                 var productsessionid = $(this).find('option').filter(':selected').val()
                 console.log(productsessionid);
                 $('option:selected', this).remove();
@@ -1198,14 +1198,14 @@ function printDiv(divName) {
 
 
 
-                        
+
             });
 
 
 
 
 
-       
+
 
         $(document).on("keyup", '.sale_discount', function() {
                 var sale_discount = $(this).val();
@@ -1231,7 +1231,7 @@ function printDiv(divName) {
                         $('.cutomer_arr').hide();
                         $('.setvaluecash').show();
 
-                    }else if(_val == 'Take Away'){
+                    }else if(_val == 'Delivery'){
 
                         $('#customer_type').val('walkoutcustomer');
                         $('#customer_type').select2().trigger('change');
@@ -1388,9 +1388,9 @@ $(document).on('click', '.remove-purchasetr', function() {
             console.log(balance_amount);
             $('.balanceamount').val(balance_amount.toFixed(2));
         }
-        
 
-        
+
+
 
 
 });
@@ -1600,7 +1600,7 @@ $("#tax").on('change', function() {
 
 $("#discount_type").on('change', function() {
         var discount_type = this.value;
-        
+
         if(discount_type == 'fixed'){
 
             $('#discount').val('');
@@ -1701,7 +1701,7 @@ $("#discount_type").on('change', function() {
                 $(".paidamount").val('');
             }
     });
-   
+
 
 function purchasesubmitForm(btn) {
         // disable the button
@@ -1802,7 +1802,7 @@ function purchasesubmitForm(btn) {
             });
     });
 
-    
+
 
     $(document).on("keyup", '.purchasepaidamount', function() {
         var purchasepaidamount = $(this).val();
@@ -1859,7 +1859,7 @@ $(document).ready(function() {
                 '<button style="width: 35px;" class="text-white py-1 font-medium rounded-lg text-sm  text-center btn btn-danger remove-expensetr" type="button" >-</button></td>' +
                 '</tr>'
             );
-        
+
     });
 
 });
@@ -1876,8 +1876,8 @@ $(document).on('click', '.remove-expensetr', function() {
                                         $('.expensetotal_price').val(tota_expense.toFixed(2));
                                     });
 });
-           
- 
+
+
 
 $(document).on("keyup", "input[name*=expenseprice]", function() {
         var tota_expense = 0;
@@ -1938,7 +1938,7 @@ $(document).ready(function() {
                         //add_count.push(Object.keys(selectedValues).length);
                     }
                 });
-        
+
     });
 
 });
@@ -2054,7 +2054,7 @@ $(document).on('click', '.remove-outdoortr', function() {
         var totsl = Number(sub_total) + Number(tax_amount);
         $('.outdoor_grandtotal').val(totsl.toFixed(2));
         $('.outdoorgrandtotal').text('₹ ' + totsl.toFixed(2));
-       
+
     });
 
 
@@ -2218,7 +2218,7 @@ $(document).on('click', '.remove-outdoortr', function() {
     });
 
 
-    
+
     $(document).on('click', '.remove-produtseesiondiv', function() {
         $(this).parents('div.produtseesiondiv').remove();
     });

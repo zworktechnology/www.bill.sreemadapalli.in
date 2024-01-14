@@ -90,7 +90,7 @@
         list-style: none;
         padding: 0;
         margin: 0;
-        display: flex;
+        /* display: flex; */
         flex-wrap: wrap;
     }
 
@@ -219,25 +219,37 @@
             <div class="tm_pos_company_logo">
                 <img src="{{ asset('assets/backend/img/bill_logo.png') }}" alt="" width="150" height="150">
             </div>
-            <div class="tm_pos_company_address" style="font-weight:500;color:black;">39 3rd cross west, Puthur, Bharthi Nagar, Tiruchirappalli, Tamil Nadu 620017</div>
+            <div class="tm_pos_company_address" style="font-weight:500;color:black;">145, South Chitra St, Srirangam, Tiruchirappalli. | +91 90251 66000</div>
             <div class="tm_pos_company_mobile"></div>
         </div>
         <div class="tm_pos_invoice_body">
-            <div class="tm_pos_invoice_heading"><span style="font-weight:500;color:black;">Retail Receipt</span></div>
-            <ul class="tm_list tm_style1">
+            <div class="tm_pos_invoice_heading"><span style="font-weight:500;color:black;">Delivery Receipt</span></div>
+            <div style="display: flex;">
+            <ul class="tm_list tm_style1" style="width: 70%">
                 <li>
-                    <div class="tm_list_title">Bill No:</div>
+                    <div class="tm_list_title">Bill No :</div>
                     <div class="tm_list_desc" style="font-weight:500;color:black;"># {{ $billno }}</div>
                 </li>
-                <li class="text-right">
-                    <div class="tm_list_title">Bill Type:</div>
-                    <div class="tm_list_desc" style="font-weight:500;color:black;">{{ $sales_type }}</div>
+                <li>
+                    <div class="tm_list_title">Date :</div>
+                    <div class="tm_list_desc" style="font-weight:500;color:black;">{{ $date }}</div>
                 </li>
                 <li>
-                    <div class="tm_list_title">Date:</div>
+                    <div class="tm_list_title">P.No :</div>
+                    <div class="tm_list_desc" style="font-weight:500;color:black;">{{ $date }}</div>
+                </li>
+
+                <li>
+                    <div class="tm_list_title">Address :</div>
                     <div class="tm_list_desc" style="font-weight:500;color:black;">{{ $date }}</div>
                 </li>
             </ul>
+            <ul class="tm_list tm_style1"  style="width: 30%">
+                <li class="text-right" style="width: 100px;">
+                    <img src="{{ asset('assets/backend/img/qr.jpg') }}" alt="">
+                </li>
+            </ul>
+        </div>
             <table class="tm_pos_invoice_table">
                 <thead>
                     <tr>
@@ -263,11 +275,15 @@
             <div class="tm_bill_list">
 
                 <div class="tm_bill_list_in">
-                    <div class="tm_bill_title tm_bill_focus">Total payable:</div>
+                    <div class="tm_bill_title tm_bill_focus">Total :</div>
+                    <div class="tm_bill_value tm_bill_focus">{{ $total }}</div>
+                </div>
+                <div class="tm_bill_list_in">
+                    <div class="tm_bill_title tm_bill_focus">Balance :</div>
                     <div class="tm_bill_value tm_bill_focus">{{ $total }}</div>
                 </div>
             </div>
-            <div class="tm_pos_sample_text" style="font-weight:500;color:black;">...Thank You | Visit Again...</div>
+            <div class="tm_pos_sample_text" style="font-weight:500;color:black;">...Thanks for chossing Sree Madapalli...</div>
         </div>
     </div>
     <script>
