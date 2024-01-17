@@ -13,7 +13,7 @@
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">OutDoor</h6>
                     <ul>
-                        
+
                         <li class="{{ Route::is('outdoor_product.index', 'outdoor_product.store') ? 'active' : '' }}">
                             <a href="{{ route('outdoor_product.index') }}"><i data-feather="box"></i><span>Product</span></a>
                         </li>
@@ -43,9 +43,9 @@
                         <li class="{{ Route::is('salespayment.index') ? 'active' : '' }}">
                             <a href="{{ route('salespayment.index') }}"><i data-feather="shopping-cart"></i><span>Sales Payment</span></a>
                         </li>
-                        <li class="{{ Route::is('deliverysales.delivery_index', 'deliverysales.delivery_datefilter') ? 'active' : '' }}">
+                        {{-- <li class="{{ Route::is('deliverysales.delivery_index', 'deliverysales.delivery_datefilter') ? 'active' : '' }}">
                             <a href="{{ route('deliverysales.delivery_index') }}"><i data-feather="shopping-cart"></i><span>Delivery Sales</span></a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
                 <li class="submenu-open">
@@ -87,7 +87,7 @@
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Pay Off</h6>
                     <ul>
-                        
+
                         <li class="{{ Route::is('payoff.index', 'payoff.store', 'payoff.create', 'payoff.edit', 'payoff.datefilter') ? 'active' : '' }}">
                             <a href="{{ route('payoff.index') }}"><i data-feather="box"></i><span>Employee Payoff</span></a>
                         </li>
@@ -110,15 +110,15 @@
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Delivery</h6>
                     <ul>
-                        <li class="{{ Route::is('delivery.area.index', 'delivery.area.store') ? 'active' : '' }}">
+                        {{-- <li class="{{ Route::is('delivery.area.index', 'delivery.area.store') ? 'active' : '' }}">
                             <a href="{{ route('delivery.area.index') }}"><i data-feather="map"></i><span>Delivery Areas</span></a>
-                        </li>
+                        </li> --}}
                         <li class="{{ Route::is('delivery.boy.index', 'delivery.boy.store') ? 'active' : '' }}">
                             <a href="{{ route('delivery.boy.index') }}"><i data-feather="user"></i><span>Delivery Boys</span></a>
                         </li>
-                        <li class="{{ Route::is('delivery.plan.index', 'delivery.plan.store') ? 'active' : '' }}">
+                        {{-- <li class="{{ Route::is('delivery.plan.index', 'delivery.plan.store') ? 'active' : '' }}">
                             <a href="{{ route('delivery.plan.index') }}"><i data-feather="map"></i><span>Delivery Plan</span></a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
                 <li class="submenu-open">

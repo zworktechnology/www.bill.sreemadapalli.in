@@ -21,13 +21,13 @@
                     </div>
                     <div class="col-lg-12 col-sm-6 col-12">
                         <div class="form-group">
-                            <label>Address<span style="color: red;">*</span></label>
+                            <label>Address</label>
                             <input type="text" name="address" placeholder="Enter Address">
                         </div>
                     </div>
                     <div class="col-lg-12 col-sm-6 col-12">
                         <div class="form-group">
-                            <label>Old Balance<span style="color: red;">*</span></label>
+                            <label>Old Balance</label>
                             <input type="text" name="old_balance" placeholder="Enter Old Balance Amount">
                         </div>
                     </div>

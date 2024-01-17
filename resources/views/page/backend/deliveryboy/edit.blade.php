@@ -19,7 +19,7 @@
                             <input type="text" name="phone_number" placeholder="Enter phone number" required value="{{ $deliveryboydata->phone_number }}">
                         </div>
                     </div>
-                    <div class="col-lg-12 col-sm-6 col-12">
+                    {{-- <div class="col-lg-12 col-sm-6 col-12">
                         <div class="form-group">
                             <label>Delivery Area <span style="color: red;">*</span></label>
                             <select class="select" name="delivery_area_id" required>
@@ -30,7 +30,7 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="col-lg-12 col-sm-6 col-12">
                         <div class="form-group">
                             <label>Address</label>

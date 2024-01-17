@@ -21,7 +21,7 @@
                     </div>
                     <div class="col-lg-12 col-sm-6 col-12">
                         <div class="form-group">
-                            <label>Address<span style="color: red;">*</span></label>
+                            <label>Address</label>
                             <input type="text" name="address" placeholder="Enter Address" value="{{ $supplier_data['address'] }}">
                         </div>
                     </div>

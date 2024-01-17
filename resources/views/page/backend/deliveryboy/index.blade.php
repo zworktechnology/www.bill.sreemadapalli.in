@@ -21,7 +21,7 @@
                                 <th>Sl. No</th>
                                 <th>Name</th>
                                 <th>Phone Number</th>
-                                <th>Delivery Area</th>
+                                {{-- <th>Delivery Area</th> --}}
                                 <th>Per Shift Salary</th>
                                 <th>Action</th>
                             </tr>
@@ -32,7 +32,7 @@
                                     <td>{{ ++$keydata }}</td>
                                     <td>{{ $deliveryboydata->name }}</td>
                                     <td>{{ $deliveryboydata->phone_number }}</td>
-                                    <td>{{ $deliveryboydata->deliveryarea->name }}</td>
+                                    {{-- <td>{{ $deliveryboydata->deliveryarea->name }}</td> --}}
                                     <td>₹ {{ $deliveryboydata->pershiftsalary }}.00</td>
                                     <td>
                                         <ul class="list-unstyled hstack gap-1 mb-0">
