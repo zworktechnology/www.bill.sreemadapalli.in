@@ -3,7 +3,7 @@
 @section('content')
     <div class="page-wrapper ms-0">
         <div class="content">
-            <form name="sales_store" id="sales_store" method="POST" action="javascript:void(0)">
+            <form name="sales_store" id="sales_store" method="post" action="javascript:void(0)">
                 @csrf
                 <div class="row">
 
@@ -245,7 +245,28 @@
                                     </ul>
                                 </div>
 
-                               
+                                <div class="setvaluecash" hidden>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="select-split ">
+                                                <div class="select-group w-100">
+                                                    <div style="display: flex">
+                                                        @foreach ($Bank as $Banks)
+                                                        <div class="input-group" style="margin-right: 5px;">
+                                                            <div class="input-group-text">
+                                                                <input class="form-check-input" type="radio" value="{{ $Banks->name }}" id ="paymentmethod" name="paymentmethod"
+                                                                    aria-label="Radio button for following text input" required>
+                                                            </div>
+                                                            <input type="text" class="form-control" value="{{ $Banks->name }}" disabled
+                                                                aria-label="Text input with radio button">
+                                                        </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <input type="text" placeholder="Enter Discount" class="sale_discount" name="sale_discount" id="sale_discount"/>
                                 </div>
