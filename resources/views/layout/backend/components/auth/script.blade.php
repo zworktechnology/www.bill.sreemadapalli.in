@@ -343,7 +343,7 @@
                 //            return $state;
                 //}
 
-               // $('.category_type').first().addClass('active');
+                $('.category_type').first().addClass('active');
                 var cat_id = $('.category_type').first().data('cat_id');
                 var sessionid = $('.category_type').first().data('session_id');
 
