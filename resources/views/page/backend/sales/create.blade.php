@@ -255,7 +255,7 @@
                                                         <div class="input-group" style="margin-right: 5px;">
                                                             <div class="input-group-text">
                                                                 <input class="form-check-input" type="radio" value="{{ $Banks->name }}" id ="paymentmethod" name="paymentmethod"
-                                                                    aria-label="Radio button for following text input" required>
+                                                                    aria-label="Radio button for following text input" >
                                                             </div>
                                                             <input type="text" class="form-control" value="{{ $Banks->name }}" disabled
                                                                 aria-label="Text input with radio button">
