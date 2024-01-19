@@ -607,6 +607,11 @@ class SaleController extends Controller
                 $data->sales_type = $request->sales_type;
                 $data->customer_type = $request->customer_type;
                 $data->customer_id = $request->customer_id;
+                $data->sub_total = $request->subtotal;
+                $data->tax = $request->taxamount;
+                $data->total = $request->totalamount;
+                $data->sale_discount = $request->sale_discount;
+                $data->grandtotal = $request->grandtotal;
                 $data->save();
 
 
