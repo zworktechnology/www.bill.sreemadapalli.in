@@ -604,17 +604,6 @@ class SaleController extends Controller
                 $data->bill_no = $latestbillno;
                 $data->date = $request->date;
                 $data->time = $request->time;
-                $data->sales_type = $request->sales_type;
-                $data->customer_type = $request->customer_type;
-                $data->customer_id = $request->customer_id;
-                $data->sub_total = $request->subtotal;
-                $data->tax = $request->taxamount;
-                $data->total = $request->totalamount;
-                $data->sale_discount = $request->sale_discount;
-                $data->grandtotal = $request->grandtotal;
-                $data->payment_method = $request->paymentmethod;
-                $data->deliveryboy_id = $request->deliveryboy_id;
-                $data->session_id = $request->session_ids;
                 $data->save();
 
 
