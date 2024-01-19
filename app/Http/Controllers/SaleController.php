@@ -604,6 +604,9 @@ class SaleController extends Controller
                 $data->bill_no = $latestbillno;
                 $data->date = $request->date;
                 $data->time = $request->time;
+                $data->sales_type = $request->sales_type;
+                $data->customer_type = $request->customer_type;
+                $data->customer_id = $request->customer_id;
                 $data->save();
 
 
