@@ -15,10 +15,16 @@
                      @method('PUT')
                     @csrf
                     <div class="row">
-                        <div class="col-lg-12 col-sm-12 col-12">
+                        <div class="col-lg-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Customer </label>
                                 <input type="text" name="name" placeholder="Enter Customer name" readonly value="{{ $datas['customer']  }}">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Bill No </label>
+                                <input type="text" name="" placeholder="" readonly value="{{ $datas['bill_no']  }}">
                             </div>
                         </div>
                         <div class="col-lg-12 col-sm-12 col-12">
