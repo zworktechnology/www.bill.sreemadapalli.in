@@ -236,12 +236,12 @@
                 </li>
                 <li>
                     <div class="tm_list_title">P.No :</div>
-                    <div class="tm_list_desc" style="font-weight:500;color:black;">{{ $date }}</div>
+                    <div class="tm_list_desc" style="font-weight:500;color:black;">{{ $phoneno }}</div>
                 </li>
 
                 <li>
                     <div class="tm_list_title">Address :</div>
-                    <div class="tm_list_desc" style="font-weight:500;color:black;">{{ $date }}</div>
+                    <div class="tm_list_desc" style="font-weight:500;color:black;">{{ $address }}</div>
                 </li>
             </ul>
             <ul class="tm_list tm_style1"  style="width: 30%">
@@ -280,7 +280,11 @@
                 </div>
                 <div class="tm_bill_list_in">
                     <div class="tm_bill_title tm_bill_focus">Balance :</div>
-                    <div class="tm_bill_value tm_bill_focus">{{ $total }}</div>
+                    <div class="tm_bill_value tm_bill_focus">{{ $balanceamount }}</div>
+                </div>
+                <div class="tm_bill_list_in">
+                    <div class="tm_bill_title tm_bill_focus">Grand Total :</div>
+                    <div class="tm_bill_value tm_bill_focus">{{ $grandtotal }}</div>
                 </div>
             </div>
             <div class="tm_pos_sample_text" style="font-weight:500;color:black;">...Thanks for chossing Sree Madapalli...</div>

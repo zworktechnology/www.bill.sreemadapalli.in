@@ -1026,13 +1026,25 @@ class SaleController extends Controller
 
             );
         }
+        $customer = Customer::findOrFail($GetSale->customer_id);
+        $phoneno = $customer->phone_number;
+        $address = $customer->address;
 
         $billno = $GetSale->bill_no;
         $sales_type = $GetSale->sales_type;
         $date = $GetSale->date;
         $total = $GetSale->grandtotal;
 
-        return view('page.backend.sales.print', compact('output', 'billno', 'sales_type', 'date', 'total'));
+        $balance = Payment::where('customer_id', '=', $GetSale->customer_id)->first();
+        if($balance != ""){
+            $balanceamount = $balance->salebalance;
+        }else {
+            $balanceamount = '0';
+        }
+
+        $grandtotal = $total + $balanceamount;
+
+        return view('page.backend.sales.print', compact('output', 'billno', 'sales_type', 'date', 'total', 'phoneno', 'address', 'balanceamount', 'grandtotal'));
 
     }
 
