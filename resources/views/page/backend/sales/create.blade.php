@@ -3,7 +3,7 @@
 @section('content')
     <div class="page-wrapper ms-0">
         <div class="content">
-            <form name="sales_store" id="sales_store" method="post" action="javascript:void(0)">
+            <form name="sales_store" id="sales_store" method="POST" action="javascript:void(0)">
                 @csrf
                 <div class="row">
 
