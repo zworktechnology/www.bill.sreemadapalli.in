@@ -876,6 +876,7 @@ $('#sales_store').submit(function(e){
                     customer_id: customer_id,
                     subtotal: subtotal,
                     taxamount: taxamount,
+                    paymentmethod: paymentmethod,
                     totalamount: totalamount,
                     product_ids: product_ids,
                     product_quantity: product_quantity,

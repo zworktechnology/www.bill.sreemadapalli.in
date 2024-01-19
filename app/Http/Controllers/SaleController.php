@@ -612,6 +612,7 @@ class SaleController extends Controller
                 $data->total = $request->totalamount;
                 $data->sale_discount = $request->sale_discount;
                 $data->grandtotal = $request->grandtotal;
+                $data->payment_method = $request->paymentmethod;
                 $data->deliveryboy_id = $request->deliveryboy_id;
                 $data->session_id = $request->session_ids;
                 $data->save();
