@@ -348,27 +348,27 @@
                 var sessionid = $('.category_type').first().data('session_id');
 
 
-                // if (window.location.href.indexOf("http://127.0.0.1:8000/zworktechnology/sales/edit") > -1) {
-                //     var url = $(location).attr('href');
-                //     var parts = url.split("/");
-                //     var last_part = parts[parts.length-1];
-
-
-                // }else if (window.location.href.indexOf("http://127.0.0.1:8000/zworktechnology/sales/create") > -1) {
-                //     var last_part = '';
-
-                // }
-
-
-                if (window.location.href.indexOf("https://bill.sreemadapalli.in/zworktechnology/sales/edit") > -1) {
+                if (window.location.href.indexOf("http://127.0.0.1:8000/zworktechnology/sales/edit") > -1) {
                     var url = $(location).attr('href');
                     var parts = url.split("/");
                     var last_part = parts[parts.length-1];
 
 
-                }else if (window.location.href.indexOf("https://bill.sreemadapalli.in/zworktechnology/sales/create") > -1) {
+                }else if (window.location.href.indexOf("http://127.0.0.1:8000/zworktechnology/sales/create") > -1) {
                     var last_part = '';
+
                 }
+
+
+                // if (window.location.href.indexOf("https://bill.sreemadapalli.in/zworktechnology/sales/edit") > -1) {
+                //     var url = $(location).attr('href');
+                //     var parts = url.split("/");
+                //     var last_part = parts[parts.length-1];
+
+
+                // }else if (window.location.href.indexOf("https://bill.sreemadapalli.in/zworktechnology/sales/create") > -1) {
+                //     var last_part = '';
+                // }
 
 
 
@@ -905,7 +905,7 @@ $('#sales_store').submit(function(e){
                         var last_salesid = response.last_id;
 
 
-                    //   window.location= "http://127.0.0.1:8000/zworktechnology/sales/print/" + last_salesid;
+                      // window.location= "http://127.0.0.1:8000/zworktechnology/sales/print/" + last_salesid;
                        window.location= "https://bill.sreemadapalli.in/zworktechnology/sales/print/" + last_salesid;
 
                         $('button[type=submit], input[type=submit]').prop('disabled',false);
