@@ -30,6 +30,7 @@
                         <div class="col-lg-12 col-sm-12 col-12">
                             <div class="form-group">
                                 <label>Payment Method </label>
+                                <div class="row"  style="margin-right: 5px;">
                                           @foreach ($Bank as $Banks)
                                              <div class="col-lg-2">
                                                 <div class="input-group-text">
@@ -41,6 +42,7 @@
                                                 </div>
                                              </div>
                                           @endforeach
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-12 col-sm-12 col-12">
