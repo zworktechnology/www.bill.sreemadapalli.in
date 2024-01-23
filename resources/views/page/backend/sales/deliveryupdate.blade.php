@@ -37,7 +37,7 @@
                                                    <input class="form-check-input" type="radio" value="{{ $Banks->name }}" id ="payment_method" name="payment_method"
                                                    aria-label="Radio button for following text input">
                                                 </div>
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-8">
                                                     <input type="text" class="form-control" value="{{ $Banks->name }}" disabled aria-label="Text input with radio button">
                                                 </div>
                                              </div>
