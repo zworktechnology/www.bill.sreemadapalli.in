@@ -32,7 +32,7 @@
                                 <label>Payment Method </label>
                                     <div style="display: flex">
                                           @foreach ($Bank as $Banks)
-                                             <div class="input-group" style="margin-right: 5px;">
+                                             <div class="col-lg-4" style="margin-right: 5px;">
                                                 <div class="input-group-text">
                                                    <input class="form-check-input" type="radio" value="{{ $Banks->name }}" id ="payment_method" name="payment_method"
                                                    aria-label="Radio button for following text input">
