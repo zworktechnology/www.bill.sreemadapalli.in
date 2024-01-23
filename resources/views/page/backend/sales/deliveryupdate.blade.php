@@ -31,12 +31,14 @@
                             <div class="form-group">
                                 <label>Payment Method </label>
                                           @foreach ($Bank as $Banks)
-                                             <div class="col-lg-4" style="margin-right: 5px;">
+                                             <div class="col-lg-2">
                                                 <div class="input-group-text">
                                                    <input class="form-check-input" type="radio" value="{{ $Banks->name }}" id ="payment_method" name="payment_method"
                                                    aria-label="Radio button for following text input">
                                                 </div>
-                                                <input type="text" class="form-control" value="{{ $Banks->name }}" disabled aria-label="Text input with radio button">
+                                                <div class="col-lg-4">
+                                                    <input type="text" class="form-control" value="{{ $Banks->name }}" disabled aria-label="Text input with radio button">
+                                                </div>
                                              </div>
                                           @endforeach
                             </div>
