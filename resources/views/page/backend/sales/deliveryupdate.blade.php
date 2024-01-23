@@ -30,7 +30,6 @@
                         <div class="col-lg-12 col-sm-12 col-12">
                             <div class="form-group">
                                 <label>Payment Method </label>
-                                    <div style="display: flex">
                                           @foreach ($Bank as $Banks)
                                              <div class="col-lg-4" style="margin-right: 5px;">
                                                 <div class="input-group-text">
@@ -40,7 +39,6 @@
                                                 <input type="text" class="form-control" value="{{ $Banks->name }}" disabled aria-label="Text input with radio button">
                                              </div>
                                           @endforeach
-                                    </div>
                             </div>
                         </div>
                         <div class="col-lg-12 col-sm-12 col-12">
