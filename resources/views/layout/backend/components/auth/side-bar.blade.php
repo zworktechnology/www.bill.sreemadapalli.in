@@ -10,42 +10,20 @@
                         </li>
                     </ul>
                 </li>
-                <li class="submenu-open">
-                    <h6 class="submenu-hdr">OutDoor</h6>
-                    <ul>
 
-                        <li class="{{ Route::is('outdoor_product.index', 'outdoor_product.store') ? 'active' : '' }}">
-                            <a href="{{ route('outdoor_product.index') }}"><i data-feather="box"></i><span>Product</span></a>
-                        </li>
-                        <li class="{{ Route::is('outdoor.index', 'outdoor.store', 'outdoor.datefilter', 'outdoor.create') ? 'active' : '' }}">
-                            <a href="{{ route('outdoor.index') }}"><i data-feather="credit-card"></i><span>OutDoor</span></a>
-                        </li>
-                    </ul>
-                </li>
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Sales</h6>
                     <ul>
-                        <li class="{{ Route::is('session.index', 'session.store') ? 'active' : '' }}">
-                            <a href="{{ route('session.index') }}"><i data-feather="credit-card"></i><span>Session</span></a>
-                        </li>
-                        <li class="{{ Route::is('category.index', 'category.store') ? 'active' : '' }}">
-                            <a href="{{ route('category.index') }}"><i data-feather="credit-card"></i><span>Category</span></a>
-                        </li>
-                        <li class="{{ Route::is('product.index', 'product.store') ? 'active' : '' }}">
-                            <a href="{{ route('product.index') }}"><i data-feather="box"></i><span>Product</span></a>
-                        </li>
-                        <li class="{{ Route::is('productsession.index', 'productsession.store') ? 'active' : '' }}">
-                            <a href="{{ route('productsession.index') }}"><i data-feather="box"></i><span>Product Session</span></a>
-                        </li>
                         <li class="{{ Route::is('sales.index', 'sales.datefilter') ? 'active' : '' }}">
                             <a href="{{ route('sales.index') }}"><i data-feather="shopping-cart"></i><span>Sales</span></a>
                         </li>
                         <li class="{{ Route::is('salespayment.index') ? 'active' : '' }}">
                             <a href="{{ route('salespayment.index') }}"><i data-feather="shopping-cart"></i><span>Sales Payment</span></a>
                         </li>
-                        {{-- <li class="{{ Route::is('deliverysales.delivery_index', 'deliverysales.delivery_datefilter') ? 'active' : '' }}">
+
+                        <li class="{{ Route::is('deliverysales.delivery_index', 'deliverysales.delivery_datefilter') ? 'active' : '' }}">
                             <a href="{{ route('deliverysales.delivery_index') }}"><i data-feather="shopping-cart"></i><span>Delivery Sales</span></a>
-                        </li> --}}
+                        </li>
                     </ul>
                 </li>
                 <li class="submenu-open">
@@ -62,6 +40,35 @@
                         </li>
                         <li class="{{ Route::is('purchasepayment.index') ? 'active' : '' }}">
                             <a href="{{ route('purchasepayment.index') }}"><i data-feather="shopping-cart"></i><span>Purchase Payment</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="submenu-open">
+                    <h6 class="submenu-hdr">Inventory</h6>
+                    <ul>
+                        <li class="{{ Route::is('session.index', 'session.store') ? 'active' : '' }}">
+                            <a href="{{ route('session.index') }}"><i data-feather="credit-card"></i><span>Session</span></a>
+                        </li>
+                        <li class="{{ Route::is('category.index', 'category.store') ? 'active' : '' }}">
+                            <a href="{{ route('category.index') }}"><i data-feather="credit-card"></i><span>Category</span></a>
+                        </li>
+                        <li class="{{ Route::is('product.index', 'product.store') ? 'active' : '' }}">
+                            <a href="{{ route('product.index') }}"><i data-feather="box"></i><span>Product</span></a>
+                        </li>
+                        <li class="{{ Route::is('productsession.index', 'productsession.store') ? 'active' : '' }}">
+                            <a href="{{ route('productsession.index') }}"><i data-feather="box"></i><span>Product Session</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="submenu-open">
+                    <h6 class="submenu-hdr">Outdoor Catering</h6>
+                    <ul>
+
+                        <li class="{{ Route::is('outdoor_product.index', 'outdoor_product.store') ? 'active' : '' }}">
+                            <a href="{{ route('outdoor_product.index') }}"><i data-feather="box"></i><span>Product</span></a>
+                        </li>
+                        <li class="{{ Route::is('outdoor.index', 'outdoor.store', 'outdoor.datefilter', 'outdoor.create') ? 'active' : '' }}">
+                            <a href="{{ route('outdoor.index') }}"><i data-feather="credit-card"></i><span>OutDoor</span></a>
                         </li>
                     </ul>
                 </li>
