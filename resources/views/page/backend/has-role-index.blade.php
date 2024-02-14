@@ -37,7 +37,7 @@
          <div class="col-lg-4 col-sm-6 col-12">
             <div class="dash-widget" style="border: 1px solid #fff;background: #c8eccc;">
                <div class="dash-widgetcontent">
-                  <h5>₹ <span class="counters" data-count=""></span>{{$tot_purchaseAmount}}</h5>
+                  <h5>₹ </span>{{$tot_purchaseAmount}}</h5>
                   <h6>Total Purchase Amount</h6>
                </div>
             </div>
@@ -45,7 +45,7 @@
          <div class="col-lg-4 col-sm-6 col-12">
             <div class="dash-widget dash1" style="border: 1px solid #fff;background: #e1d7fa;">
                <div class="dash-widgetcontent">
-                  <h5>₹ <span class="counters" data-count=""></span>{{$tot_saleAmount}}</h5>
+                  <h5>₹ {{$tot_saleAmount}}</h5>
                   <h6>Total Sales Amount</h6>
                </div>
             </div>
@@ -53,7 +53,7 @@
          <div class="col-lg-4 col-sm-6 col-12">
             <div class="dash-widget dash2" style="border: 1px solid #fff;background: #eefad7;">
                <div class="dash-widgetcontent">
-                  <h5>₹ <span class="counters" data-count=""></span>{{$tot_expenseAmount}}</h5>
+                  <h5>₹ {{$tot_expenseAmount}}</h5>
                   <h6>Total Expense Amount</h6>
                </div>
             </div>
