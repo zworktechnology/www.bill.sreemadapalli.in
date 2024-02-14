@@ -209,8 +209,13 @@
                                                     @endforeach
                                                 </select>
                                             </div>
+
+                                            
                                         </div>
                                     </div>
+                                    <div class="form-group lastdatepurchasediv" style="display:none;">
+                                                <input type="text"  class="last_datepurchase" name="last_datepurchase" id="last_datepurchase"/>
+                                            </div>
                                 </div>
                             </div>
                             <div class="card-body pt-0">

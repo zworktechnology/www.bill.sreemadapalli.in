@@ -23,8 +23,7 @@ class ExpenseController extends Controller
         $expense_data = [];
         $terms = [];
         foreach ($data as $key => $datas) {
-            $bank = Bank::findOrFail($datas->bank_id);
-
+           
 
             $Expensedata = Expensedata::where('expense_id', '=', $datas->id)->get();
             foreach ($Expensedata as $key => $Expensedatas_arr) {
@@ -37,6 +36,15 @@ class ExpenseController extends Controller
                 );
             }
 
+            if($datas->bank_id != ""){
+                $bank = Bank::findOrFail($datas->bank_id);
+                $bankname = $bank->name;
+                $bank_id = $datas->bank_id;
+            }else {
+                $bankname = '';
+                $bank_id = '';
+            }
+
 
             $expense_data[] = array(
                 'unique_key' => $datas->unique_key,
@@ -44,8 +52,8 @@ class ExpenseController extends Controller
                 'time' => $datas->time,
                 'terms' => $terms,
                 'total_price' => $datas->total_price,
-                'bank_id' => $datas->bank_id,
-                'bank' => $bank->name,
+                'bank_id' => $bank_id,
+                'bank' => $bankname,
                 'id' => $datas->id,
             );
 
@@ -62,8 +70,6 @@ class ExpenseController extends Controller
         $expense_data = [];
         $terms = [];
         foreach ($data as $key => $datas) {
-            $bank = Bank::findOrFail($datas->bank_id);
-
 
             $Expensedata = Expensedata::where('expense_id', '=', $datas->id)->get();
             foreach ($Expensedata as $key => $Expensedatas_arr) {
@@ -77,14 +83,24 @@ class ExpenseController extends Controller
             }
 
 
+            if($datas->bank_id != ""){
+                $bank = Bank::findOrFail($datas->bank_id);
+                $bankname = $bank->name;
+                $bank_id = $datas->bank_id;
+            }else {
+                $bankname = '';
+                $bank_id = '';
+            }
+
+
             $expense_data[] = array(
                 'unique_key' => $datas->unique_key,
                 'date' => $datas->date,
                 'time' => $datas->time,
                 'terms' => $terms,
                 'total_price' => $datas->total_price,
-                'bank_id' => $datas->bank_id,
-                'bank' => $bank->name,
+                'bank_id' => $bank_id,
+                'bank' => $bankname,
                 'id' => $datas->id,
             );
 

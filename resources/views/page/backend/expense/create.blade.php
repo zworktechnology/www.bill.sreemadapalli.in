@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Bank<span
                                         style="color: red;">*</span> </label>
-                                <select class="form-control js-example-basic-single select" name="bank_id" id="bank_id" required>
+                                <select class="form-control js-example-basic-single select" name="bank_id" id="bank_id" >
                                     <option value="" disabled selected hiddden>Select Bank</option>
                                     @foreach ($Bank as $Banks)
                                         <option value="{{ $Banks->id }}">{{ $Banks->name }}</option>

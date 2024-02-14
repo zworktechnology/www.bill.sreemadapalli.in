@@ -35,34 +35,25 @@
 
 
          <div class="col-lg-4 col-sm-6 col-12">
-            <div class="dash-widget" style="border: 1px solid #751818ba;">
-               <div class="dash-widgetimg">
-                  <span><img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/dash1.svg" alt="img"></span>
-               </div>
+            <div class="dash-widget" style="border: 1px solid #fff;background: #c8eccc;">
                <div class="dash-widgetcontent">
-                  <h5>₹ <span class="counters" data-count="{{$tot_purchaseAmount}}"></span></h5>
+                  <h5>₹ <span class="counters" data-count=""></span>{{$tot_purchaseAmount}}</h5>
                   <h6>Total Purchase Amount</h6>
                </div>
             </div>
          </div>
          <div class="col-lg-4 col-sm-6 col-12">
-            <div class="dash-widget dash1" style="border: 1px solid #751818ba;">
-               <div class="dash-widgetimg">
-                  <span><img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/dash2.svg" alt="img"></span>
-               </div>
+            <div class="dash-widget dash1" style="border: 1px solid #fff;background: #e1d7fa;">
                <div class="dash-widgetcontent">
-                  <h5>₹ <span class="counters" data-count="{{$tot_saleAmount}}"></span></h5>
+                  <h5>₹ <span class="counters" data-count=""></span>{{$tot_saleAmount}}</h5>
                   <h6>Total Sales Amount</h6>
                </div>
             </div>
          </div>
          <div class="col-lg-4 col-sm-6 col-12">
-            <div class="dash-widget dash2" style="border: 1px solid #751818ba;">
-               <div class="dash-widgetimg">
-                  <span><img src="https://dreamspos.dreamguystech.com/laravel/template/public/assets/img/icons/dash3.svg" alt="img"></span>
-               </div>
+            <div class="dash-widget dash2" style="border: 1px solid #fff;background: #eefad7;">
                <div class="dash-widgetcontent">
-                  <h5>₹ <span class="counters" data-count="{{$tot_expenseAmount}}"></span></h5>
+                  <h5>₹ <span class="counters" data-count=""></span>{{$tot_expenseAmount}}</h5>
                   <h6>Total Expense Amount</h6>
                </div>
             </div>
@@ -133,7 +124,34 @@
       </div>
 
 
-  
+         <div class="row">
+            <div class="col-lg-6 col-sm-12 col-12 d-flex">
+               <div class="card flex-fill">
+
+                  <div class="card-body">
+                     <div class="table-responsive ">
+                        <table class="table  ">
+                           <tbody>
+                              <tr>
+                                 <td>Opening Account</td>
+                                 <td><a href="{{ route('openaccount.index') }}">{{$Openaccountdata}}</a></td>
+                              </tr>
+                              <tr>
+                                 <td>Closing Account</td>
+                                 <td><a href="{{ route('closeaccount.index') }}">{{$Closeaccountdata}}</a></td>
+                              </tr>
+                              <tr>
+                                 <td>Denomination</td>
+                                 <td><a href="{{ route('dinomination.index') }}">{{$Denominationdata}}</a></td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+
+               </div>
+            </div>
+         </div>
 
 
 
@@ -145,8 +163,8 @@
                   </div>
 
                   <div class="card-body">
-                     <div class="table-responsive dataview">
-                        <table class="table datatable ">
+                     <div class="table-responsive ">
+                        <table class="table  ">
                            <thead>
                               <tr>
                               <th>S.No</th>
@@ -176,8 +194,8 @@
                   </div>
 
                   <div class="card-body">
-                     <div class="table-responsive dataview">
-                        <table class="table datatable ">
+                     <div class="table-responsive ">
+                        <table class="table  ">
                            <thead>
                               <tr>
                               <th>S.No</th>
@@ -204,54 +222,9 @@
 
 
 
+         
 
 
-         <div class="row">
-            <div class="col-lg-12 col-sm-12 col-12 d-flex">
-               <div class="card flex-fill">
-                  <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                     <h5 class="card-title mb-0">Profit / Loss</h5>
-                  </div>
-
-                  <div class="card-body">
-                     <div class="table-responsive dataview">
-                        <table class="table datatable ">
-                           <thead>
-                              <tr>
-                              <th>S.No</th>
-                              <th>Opening Balance</th>
-                              <th>Close Amount</th>
-                              <th>Sales</th>
-                              <th>Profit / Loss</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                              @if ($Closeaccountdata)
-                           @foreach ($Closeaccountdata as $keydata => $Closeaccountdatas)
-                              <tr>
-                                 <td>{{ ++$keydata }}</td>
-                                 <td class="">{{ $Closeaccountdatas->opening_balance}}</td>
-                                 <td>₹ {{ $Closeaccountdatas->close_amount}}</td>
-                                 <td>{{ $Closeaccountdatas->sales}}</td>
-                                 @if ($Closeaccountdatas->close_amount > $Closeaccountdatas->sales)
-                                             @php $profit = $Closeaccountdatas->close_amount - $Closeaccountdatas->sales; @endphp
-                                             <td>+{{ $profit }}</td>
-                                          @elseif ($Closeaccountdatas->close_amount < $Closeaccountdatas->sales)
-                                             @php $loss = $Closeaccountdatas->sales - $Closeaccountdatas->close_amount; @endphp
-                                             <td>-{{ $loss }}</td>
-                                          @else
-                                          <td></td>
-                                          @endif
-                              </tr>
-                              @endforeach
-                              @endif
-                           </tbody>
-                        </table>
-                     </div>
-                  </div>
-
-               </div>
-            </div>
 
 
 

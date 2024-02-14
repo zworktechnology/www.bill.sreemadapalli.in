@@ -21,9 +21,6 @@
                                 <th>Sl. No</th>
                                 <th>Name</th>
                                 <th>Phone No</th>
-                                <th>Address</th>
-                                <th>Account Balance</th>
-                                <th>Pending Amount</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -33,18 +30,6 @@
                                     <td>{{ ++$keydata }}</td>
                                     <td>{{ $supplier_data['name'] }}</td>
                                     <td>{{ $supplier_data['phone_number']  }}</td>
-                                    <td>{{ $supplier_data['address']  }}</td>
-                                        @if ($supplier_data['account_balance'] != "")
-                                        <td style="color: white;background: green;">₹ {{ $supplier_data['account_balance']  }}.00</td>
-                                        @else
-                                        <td></td>
-                                        @endif
-
-                                        @if ($supplier_data['pending_amount'] != "")
-                                        <td style="color: white;background: red;">₹ {{ $supplier_data['pending_amount']  }}.00</td>
-                                        @else
-                                        <td></td>
-                                        @endif
                                     <td>
                                         <ul class="list-unstyled hstack gap-1 mb-0">
                                             <li>

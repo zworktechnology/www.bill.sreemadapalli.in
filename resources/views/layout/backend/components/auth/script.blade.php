@@ -397,11 +397,11 @@
                                                                 '<div class="productset flex-fill" style="border: 1px solid #afbcc6;">' +
                                                                     '<div class="productsetimg" style="height:110px;">' +
                                                                         '<img src="'+ response[i].product_image +'" alt="img">' +
+                                                                '<h6 class="pos-price">₹ '+ response[i].productprice +'</h6>' +
                                                                     '</div>' +
                                                                     '<div class="productsetcontent">' +
                                                                         '<h4>'+ response[i].productname +'</h4>' +
                                                                         '<div style="display: flex">' +
-                                                                            '<h6 class="pos-price">₹ '+ response[i].productprice +'</h6>' +
                                                                             '<h6>'+ response[i].checkbutton +'</h6>' +
                                                                         '</div>' +
                                                                     '</div>' +
@@ -438,11 +438,11 @@
                                                                             '<div class="productset flex-fill" style="border: 1px solid #afbcc6;">' +
                                                                                 '<div class="productsetimg" style="height:110px;">' +
                                                                                     '<img src="'+ response[i].product_image +'" alt="img">' +
+                                                                                    '<h6 class="pos-price">₹ '+ response[i].productprice +'</h6>' +
                                                                                 '</div>' +
                                                                                 '<div class="productsetcontent">' +
                                                                                     '<h4>'+ response[i].productname +'</h4>' +
                                                                                     '<div style="display: flex">' +
-                                                                                        '<h6 class="pos-price">₹ '+ response[i].productprice +'</h6>' +
                                                                                         '<h6>'+ response[i].checkbutton +'</h6>' +
                                                                                     '</div>' +
                                                                                 '</div>' +
@@ -483,11 +483,11 @@
                                                                 '<div class="productset flex-fill" style="border: 1px solid #afbcc6;">' +
                                                                     '<div class="productsetimg" style="height:110px;">' +
                                                                         '<img src="'+ response[i].product_image +'" alt="img">' +
+                                                                        '<h6 class="pos-price">₹ '+ response[i].productprice +'</h6>' +
                                                                     '</div>' +
                                                                     '<div class="productsetcontent">' +
                                                                         '<h4>'+ response[i].productname +'</h4>' +
                                                                         '<div style="display: flex">' +
-                                                                            '<h6 class="pos-price">₹ '+ response[i].productprice +'</h6>' +
                                                                             '<h6>'+ response[i].checkbutton +'</h6>' +
                                                                         '</div>' +
                                                                     '</div>' +
@@ -524,11 +524,11 @@
                                                                 '<div class="productset flex-fill" style="border: 1px solid #afbcc6;">' +
                                                                     '<div class="productsetimg" style="height:110px;">' +
                                                                         '<img src="'+ response[i].product_image +'" alt="img">' +
+                                                                        '<h6 class="pos-price">₹ '+ response[i].productprice +'</h6>' +
                                                                     '</div>' +
                                                                     '<div class="productsetcontent">' +
                                                                         '<h4>'+ response[i].productname +'</h4>' +
                                                                         '<div style="display: flex">' +
-                                                                            '<h6 class="pos-price">₹ '+ response[i].productprice +'</h6>' +
                                                                             '<h6>'+ response[i].checkbutton +'</h6>' +
                                                                         '</div>' +
                                                                     '</div>' +
@@ -595,7 +595,7 @@
 
 
                 $('.addedproduct' + productsession_id).attr('style', 'display:none');
-                $('.clickquantity' + productsession_id).attr('style', 'display:block');
+                $('.clickquantity' + productsession_id).attr('style', 'display:none');
                 var selectproductid = $(this).data('product_id');
                 var session_id = $(this).data('session_id');
 
@@ -905,8 +905,8 @@ $('#sales_store').submit(function(e){
                         var last_salesid = response.last_id;
 
 
-                      // window.location= "http://127.0.0.1:8000/zworktechnology/sales/print/" + last_salesid;
-                       window.location= "https://bill.sreemadapalli.in/zworktechnology/sales/print/" + last_salesid;
+                       window.location= "http://127.0.0.1:8000/zworktechnology/sales/print/" + last_salesid;
+                      // window.location= "https://bill.sreemadapalli.in/zworktechnology/sales/print/" + last_salesid;
 
                         $('button[type=submit], input[type=submit]').prop('disabled',false);
                         document.getElementById("sales_store").reset();
@@ -918,7 +918,7 @@ $('#sales_store').submit(function(e){
                         $('#subtotal').val('');
                         $('#customer_type').val('walkincustomer');
                         $('#customer_type').select2().trigger('change');
-                        $('#customer_id').val('');
+                        $('#customer_id').select2().trigger('change');
                         $('#taxamount').val('');
                         $('input[name=paymentmethod]:checked').val('');
                         $('#totalamount').val('');
@@ -1742,8 +1742,9 @@ function purchasesubmitForm(btn) {
                 var customerid = this.value;
                 //alert(branch_id);
                 $('.salepayment_paidamt').val('');
+                $('.lastdatepurchasediv').hide();
                     $.ajax({
-                        url: '/getoldbalanceforPayment/',
+                        url: '/getlastdateofpurchase/',
                         type: 'get',
                         data: {
                                 customerid: customerid
@@ -1752,16 +1753,22 @@ function purchasesubmitForm(btn) {
                         success: function(response) {
                             //
                             console.log(response);
-                            var len = response.length;
-                            $('.alreadypaidamount').show();
-                            for (var i = 0; i < len; i++) {
-                                $(".salepayment_paidamt").val(response[i].payment_pending);
-
-                                var sales_totamount = $('.sales_totamount').val();
+                            if(response){
+                                var len = response.length;
+                                $('.lastdatepurchasediv').show();
+                                for (var i = 0; i < len; i++) {
+                                    $(".last_datepurchase").val(response[i].date);
+                                }
+                            }else {
+                                $('.lastdatepurchasediv').hide();
                             }
+                            
                         }
                     });
             });
+
+
+
     });
 
     $(document).on("keyup", '.salepaymentpaidamt', function() {

@@ -1114,34 +1114,49 @@ class SaleController extends Controller
     }
 
 
-    public function getoldbalanceforPayment()
+    public function getlastdateofpurchase()
     {
-
         $customerid = request()->get('customerid');
 
-
-
-        $last_idrow = Payment::where('customer_id', '=', $customerid)->first();
-        if($last_idrow != ""){
-
-            if($last_idrow->salebalance != NULL){
-
+        $GetlastDate = Sale::where('soft_delete', '!=', 1)->where('customer_id', '=', $customerid)->latest('id')->first();
+        if($GetlastDate != ""){
                 $output[] = array(
-                    'payment_pending' => $last_idrow->salebalance,
+                    'date' => date('d-m-Y', strtotime($GetlastDate->date)),
                 );
-            }else {
-                $output[] = array(
-                    'payment_pending' => 0,
-                );
-
-            }
-        }else {
-            $output[] = array(
-                'payment_pending' => 0,
-            );
         }
+
         echo json_encode($output);
     }
+
+
+    // public function getoldbalanceforPayment()
+    // {
+
+    //     $customerid = request()->get('customerid');
+
+
+
+    //     $last_idrow = Payment::where('customer_id', '=', $customerid)->first();
+    //     if($last_idrow != ""){
+
+    //         if($last_idrow->salebalance != NULL){
+
+    //             $output[] = array(
+    //                 'payment_pending' => $last_idrow->salebalance,
+    //             );
+    //         }else {
+    //             $output[] = array(
+    //                 'payment_pending' => 0,
+    //             );
+
+    //         }
+    //     }else {
+    //         $output[] = array(
+    //             'payment_pending' => 0,
+    //         );
+    //     }
+    //     echo json_encode($output);
+    // }
 
 
     public function getselectedsessioncat()
