@@ -59,10 +59,12 @@ $(document).ready(function () {
       sDom: 'fBtlpi',
       pagingType: 'numbers',
       ordering: true,
+      pageLength: 50,
+      lengthMenu: [ 50, 100, 150, 200, "ALL"],
       language: {
         search: ' ',
         sLengthMenu: '_MENU_',
-        searchPlaceholder: 'Search...',
+        searchPlaceholder: 'Search with data...',
         info: '_START_ - _END_ of _TOTAL_ items',
       },
       initComplete: (settings, json) => {
@@ -78,10 +80,12 @@ $(document).ready(function () {
       sDom: 'fBtlpi',
       pagingType: 'numbers',
       ordering: true,
+      pageLength: 50,
+      lengthMenu: [ 50, 100, 150, 200, "ALL"],
       language: {
         search: ' ',
         sLengthMenu: '_MENU_',
-        searchPlaceholder: 'Search...',
+        searchPlaceholder: 'Search with data...',
         info: '_START_ - _END_ of _TOTAL_ items',
       },
       initComplete: (settings, json) => {
@@ -97,10 +101,12 @@ $(document).ready(function () {
       sDom: 'fBtlpi',
       pagingType: 'numbers',
       ordering: true,
+      pageLength: 50,
+      lengthMenu: [ 50, 100, 150, 200, "ALL"],
       language: {
         search: ' ',
         sLengthMenu: '_MENU_',
-        searchPlaceholder: 'Search...',
+        searchPlaceholder: 'Search with data...',
         info: '_START_ - _END_ of _TOTAL_ items',
       },
       initComplete: (settings, json) => {

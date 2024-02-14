@@ -4,80 +4,115 @@
     <div class="content">
         <div class="page-header">
             <div class="page-title">
-                <h4>Pending Customer</h4>
+                <h4>Customer</h4>
+                <p style="color:lightgray">( Pending Customers Details )</p>
             </div>
             <div class="page-btn">
-
-                <div style="display: flex;">
-                        <a href="{{ route('customer.viewall') }}" class="btn" style="margin-right: 10px;background: #e3d459;">ViewAll</a>
-                        
-                        <button type="button" class="btn btn-primary waves-effect waves-light btn-added" data-bs-toggle="modal"
-                            data-bs-target=".customer-modal-xl">Add New</button>
-
-                        
-                </div>
-
-                
+                <a href="{{ route('customer.viewall') }}">
+                <button class="btn btn-primary waves-effect waves-light btn-added">View All</button>
+                </a>
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table  datanew">
-                        <thead>
-                            <tr>
-                                <th>Sl. No</th>
-                                <th>Name</th>
-                                <th>Phone No</th>
-                                <th> Balance</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($customerdata as $keydata => $custmer_data)
-                                <tr>
-                                    <td>{{ ++$keydata }}</td>
-                                    <td>{{ $custmer_data['name'] }}</td>
-                                    <td>{{ $custmer_data['phone_number']  }}</td>
-                                    
-                                        <td style="color: red;">₹ {{ $custmer_data['pending_amount']  }}.00</td>
+        <div style="display: flex">
+            <div class="col-9">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table  datanew">
+                                <thead>
+                                    <tr>
+                                        <th>Sl. No</th>
+                                        <th>Name or Address</th>
+                                        <th>Phone No</th>
+                                        <th>Pending Amount</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($customerdata as $keydata => $custmer_data)
+                                        <tr>
+                                            <td>{{ ++$keydata }}</td>
+                                            <td>{{ $custmer_data['name'] }}</td>
+                                            <td>{{ $custmer_data['phone_number'] }}</td>
 
-                                      
-                                    
-                                    <td>
-                                        <ul class="list-unstyled hstack gap-1 mb-0">
-                                            <li>
-                                                <a href="#edit{{ $custmer_data['unique_key'] }}" data-bs-toggle="modal"
-                                                    data-id="{{ $custmer_data['unique_key'] }}"
-                                                    data-bs-target=".customeredit-modal-xl{{ $custmer_data['unique_key'] }}"
-                                                    class="badges bg-lightgrey" style="color: white">Edit</a>
-                                            </li>
-                                            <li>
-                                                <a href="#delete{{ $custmer_data['unique_key'] }}" data-bs-toggle="modal"
-                                                    data-id="{{$custmer_data['unique_key'] }}"
-                                                    data-bs-target=".customerdelete-modal-xl{{ $custmer_data['unique_key'] }}"
-                                                    class="badges bg-lightyellow" style="color: white">Delete</a>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
+                                            @if ($custmer_data['pending_amount'] != '')
+                                                <td style="color: red;">₹ {{ $custmer_data['pending_amount'] }}.00</td>
+                                            @else
+                                                <td></td>
+                                            @endif
 
-                                <div class="modal fade customeredit-modal-xl{{ $custmer_data['unique_key'] }}"
-                                    tabindex="-1" role="dialog" data-bs-backdrop="static"
-                                    aria-labelledby="editLargeModalLabel{{ $custmer_data['unique_key'] }}"
-                                    aria-hidden="true">
-                                    @include('page.backend.customer.edit')
+                                            <td>
+                                                <ul class="list-unstyled hstack gap-1 mb-0">
+                                                    <li>
+                                                        <a href="#edit{{ $custmer_data['unique_key'] }}"
+                                                            data-bs-toggle="modal"
+                                                            data-id="{{ $custmer_data['unique_key'] }}"
+                                                            data-bs-target=".customeredit-modal-xl{{ $custmer_data['unique_key'] }}"
+                                                            class="badges bg-lightgrey" style="color: white">Edit</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#delete{{ $custmer_data['unique_key'] }}"
+                                                            data-bs-toggle="modal"
+                                                            data-id="{{ $custmer_data['unique_key'] }}"
+                                                            data-bs-target=".customerdelete-modal-xl{{ $custmer_data['unique_key'] }}"
+                                                            class="badges bg-lightyellow" style="color: white">Delete</a>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+
+                                        <div class="modal fade customeredit-modal-xl{{ $custmer_data['unique_key'] }}"
+                                            tabindex="-1" role="dialog" data-bs-backdrop="static"
+                                            aria-labelledby="editLargeModalLabel{{ $custmer_data['unique_key'] }}"
+                                            aria-hidden="true">
+                                            @include('page.backend.customer.edit')
+                                        </div>
+                                        <div class="modal fade customerdelete-modal-xl{{ $custmer_data['unique_key'] }}"
+                                            tabindex="-1" role="dialog"data-bs-backdrop="static"
+                                            aria-labelledby="deleteLargeModalLabel{{ $custmer_data['unique_key'] }}"
+                                            aria-hidden="true">
+                                            @include('page.backend.customer.delete')
+                                        </div>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3" style="margin-left: 25px;">
+                <div class="card">
+                    <div class="card-body">
+                        <form autocomplete="off" method="POST" action="{{ route('customer.store') }}">
+                            @csrf
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Name or Address <span style="color: red;">*</span></label>
+                                        <input type="text" name="name" placeholder="Enter Customer name or Address" required>
+                                    </div>
                                 </div>
-                                <div class="modal fade customerdelete-modal-xl{{ $custmer_data['unique_key'] }}"
-                                    tabindex="-1" role="dialog"data-bs-backdrop="static"
-                                    aria-labelledby="deleteLargeModalLabel{{ $custmer_data['unique_key'] }}"
-                                    aria-hidden="true">
-                                    @include('page.backend.customer.delete')
+                                <div class="col-lg-12 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Phone Number <span style="color: red;">*</span></label>
+                                        <input type="text" name="phone_number" class="customer_contactno"
+                                            placeholder="Enter Phone Number"
+                                            required>
+                                    </div>
                                 </div>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                <div class="col-lg-12 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Old Balance <span style="color: red;">*</span></label>
+                                        <input type="text" name="old_balance" placeholder="Enter Old Balance Amount">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 button-align">
+                                    <button type="submit" class="btn btn-submit me-2">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -88,3 +123,4 @@
         </div>
     </div>
 @endsection
+
