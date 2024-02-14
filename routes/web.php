@@ -120,6 +120,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/customer/delete/{unique_key}', [CustomerController::class, 'delete'])->name('customer.delete');
         // CHECK DUPLICATE
         Route::middleware(['auth:sanctum', 'verified'])->post('/zworktechnology/customer/checkduplicate', [CustomerController::class, 'checkduplicate'])->name('customer.checkduplicate');
+        // VIEW ALL
+        Route::middleware(['auth:sanctum', 'verified'])->get('/zworktechnology/customer/viewall', [CustomerController::class, 'viewall'])->name('customer.viewall');
     });
     // EMPLOYEE CONTROLLER
     Route::middleware(['auth:sanctum', 'verified'])->group(function () {
@@ -500,7 +502,7 @@ Route::get('getProducts/', [PurchaseController::class, 'getProducts']);
 Route::get('getsalelatest/', [SaleController::class, 'getsalelatest']);
 Route::get('/getselectedsessioncat', [SaleController::class, 'getselectedsessioncat']);
 
-Route::get('/getoldbalanceforPayment', [SaleController::class, 'getoldbalanceforPayment']);
+Route::get('/getlastdateofpurchase', [SaleController::class, 'getlastdateofpurchase']);
 Route::get('/getbalanceforpurchasePayment', [PurchaseController::class, 'getbalanceforpurchasePayment']);
 Route::get('getoutdoorProducts/', [OutdoorproductController::class, 'getoutdoorProducts']);
 Route::get('/gettotpresentdays', [EmpattendanceController::class, 'gettotpresentdays']);

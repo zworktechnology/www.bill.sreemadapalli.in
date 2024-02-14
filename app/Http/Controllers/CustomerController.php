@@ -18,6 +18,56 @@ class CustomerController extends Controller
         $customerdata = [];
         foreach ($data as $key => $datas) {
 
+            // $PaymentsData = Payment::where('customer_id', '=', $datas->id)->first();
+            // if($PaymentsData != ""){
+            //     if($PaymentsData->salepaid > $PaymentsData->saleamount){
+            //         $account_balance = $PaymentsData->salepaid - $PaymentsData->saleamount;
+            //         $pending_amount = '';
+            //     }else if($PaymentsData->saleamount > $PaymentsData->salepaid){
+            //         $pending_amount = $PaymentsData->saleamount - $PaymentsData->salepaid;
+            //         $account_balance = '';
+            //     }else {
+            //         $pending_amount = '';
+            //     $account_balance = '';
+            //     }
+            // }else {
+            //     $pending_amount = '';
+            //     $account_balance = '';
+            // }
+
+            $PaymentsData = Payment::where('customer_id', '=', $datas->id)->first();
+            if($PaymentsData != ""){
+                if($PaymentsData->saleamount > $PaymentsData->salepaid){
+
+                    $pending_amount = $PaymentsData->saleamount - $PaymentsData->salepaid;
+
+
+                    $customerdata[] = array(
+                        'id' => $datas->id,
+                        'unique_key' => $datas->unique_key,
+                        'name' => $datas->name,
+                        'phone_number' => $datas->phone_number,
+                        'address' => $datas->address,
+                        'pending_amount' => $pending_amount,
+                    );
+
+
+                }
+            }
+
+
+            
+        }
+
+        return view('page.backend.customer.index', compact('customerdata'));
+    }
+
+    public function viewall() {
+        $data = Customer::where('soft_delete', '!=', 1)->get();
+
+        $customerdata = [];
+        foreach ($data as $key => $datas) {
+
             $PaymentsData = Payment::where('customer_id', '=', $datas->id)->first();
             if($PaymentsData != ""){
                 if($PaymentsData->salepaid > $PaymentsData->saleamount){
@@ -26,6 +76,9 @@ class CustomerController extends Controller
                 }else if($PaymentsData->saleamount > $PaymentsData->salepaid){
                     $pending_amount = $PaymentsData->saleamount - $PaymentsData->salepaid;
                     $account_balance = '';
+                }else {
+                    $pending_amount = '';
+                $account_balance = '';
                 }
             }else {
                 $pending_amount = '';
@@ -38,12 +91,13 @@ class CustomerController extends Controller
                 'name' => $datas->name,
                 'phone_number' => $datas->phone_number,
                 'address' => $datas->address,
-                'account_balance' => $account_balance,
                 'pending_amount' => $pending_amount,
+                'account_balance' => $account_balance,
             );
+               
         }
 
-        return view('page.backend.customer.index', compact('customerdata'));
+        return view('page.backend.customer.viewall', compact('customerdata'));
     }
 
 

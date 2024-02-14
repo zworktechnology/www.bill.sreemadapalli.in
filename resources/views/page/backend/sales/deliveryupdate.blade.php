@@ -30,7 +30,7 @@
                         <div class="col-lg-12 col-sm-12 col-12">
                             <div class="form-group">
                                 <label>Payment Method </label>
-                                    <div style="">
+                                    <div style="display:flex;">
                                           @foreach ($Bank as $Banks)
                                              <div class="input-group" style="margin-right: 5px;">
                                                 <div class="input-group-text">

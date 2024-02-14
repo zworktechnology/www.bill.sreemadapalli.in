@@ -4,12 +4,12 @@
     <div class="content">
         <div class="page-header">
             <div class="page-title">
-                <h4>Pending Customer</h4>
+                <h4>Customer</h4>
             </div>
             <div class="page-btn">
 
                 <div style="display: flex;">
-                        <a href="{{ route('customer.viewall') }}" class="btn" style="margin-right: 10px;background: #e3d459;">ViewAll</a>
+                        <a href="{{ route('customer.index') }}" class="btn" style="margin-right: 10px;background: #e3d459;">Pending</a>
                         
                         <button type="button" class="btn btn-primary waves-effect waves-light btn-added" data-bs-toggle="modal"
                             data-bs-target=".customer-modal-xl">Add New</button>
@@ -40,8 +40,14 @@
                                     <td>{{ ++$keydata }}</td>
                                     <td>{{ $custmer_data['name'] }}</td>
                                     <td>{{ $custmer_data['phone_number']  }}</td>
-                                    
+
+                                       @if ($custmer_data['account_balance'] != "")
+                                        <td style="color: green;">₹ {{ $custmer_data['account_balance']  }}.00</td>
+                                        @elseif ($custmer_data['pending_amount'] != "")
                                         <td style="color: red;">₹ {{ $custmer_data['pending_amount']  }}.00</td>
+                                        @else
+                                        <td></td>
+                                        @endif
 
                                       
                                     

@@ -12,6 +12,8 @@ use App\Models\Expense;
 use App\Models\Bank;
 use App\Models\Session;
 use App\Models\Closeaccount;
+use App\Models\Openaccount;
+use App\Models\Denomination;
 
 
 use App\Models\Employee;
@@ -195,14 +197,13 @@ class HomeController extends Controller
 
             $sessionarr = Session::where('soft_delete', '!=', 1)->get();
 
+            $Openaccountdata = Openaccount::where('date', '=', $today)->sum('amount');
+            $Denominationdata = Denomination::where('date', '=', $today)->sum('total_amount');
+            $Closeaccountdata = Closeaccount::where('date', '=', $today)->sum('close_amount');
+            
 
-
-
-
-
-            $Closeaccountdata = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->get();
-
-        return view('home', compact('today', 'tot_purchaseAmount', 'tot_saleAmount', 'tot_expenseAmount', 'salepaymentmode_table', 'total_Employee', 'total_Deliveryboy', 'total_Customer', 'total_Supplier', 'allemployee_attendance', 'alldeliveryboy_attendance', 'sessionarr', 'alldeliveryboy', 'Closeaccountdata'));
+        return view('home', compact('today', 'tot_purchaseAmount', 'tot_saleAmount', 'tot_expenseAmount', 'salepaymentmode_table', 'total_Employee', 'total_Deliveryboy',
+         'total_Customer', 'total_Supplier', 'allemployee_attendance', 'alldeliveryboy_attendance', 'sessionarr', 'alldeliveryboy', 'Openaccountdata', 'Denominationdata', 'Closeaccountdata'));
     }
 
 
@@ -362,7 +363,12 @@ class HomeController extends Controller
             }
 
             $sessionarr = Session::where('soft_delete', '!=', 1)->get();
-            $Closeaccountdata = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->get();
-        return view('home', compact('today', 'tot_purchaseAmount', 'tot_saleAmount', 'tot_expenseAmount', 'salepaymentmode_table', 'total_Employee', 'total_Deliveryboy', 'total_Customer', 'total_Supplier', 'allemployee_attendance', 'alldeliveryboy_attendance', 'sessionarr', 'alldeliveryboy', 'Closeaccountdata'));
+
+            $Openaccountdata = Openaccount::where('date', '=', $today)->sum('amount');
+            $Denominationdata = Denomination::where('date', '=', $today)->sum('total_amount');
+            $Closeaccountdata = Closeaccount::where('date', '=', $today)->sum('close_amount');
+
+        return view('home', compact('today', 'tot_purchaseAmount', 'tot_saleAmount', 'tot_expenseAmount', 'salepaymentmode_table', 'total_Employee', 'total_Deliveryboy',
+         'total_Customer', 'total_Supplier', 'allemployee_attendance', 'alldeliveryboy_attendance', 'sessionarr', 'alldeliveryboy', 'Openaccountdata', 'Denominationdata', 'Closeaccountdata'));
     }
 }
