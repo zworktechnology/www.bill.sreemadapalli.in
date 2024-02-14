@@ -44,76 +44,9 @@
 
 
 
-               <div class="invoice-box " style="max-width: 1600px;width:100%;padding: 0;font-size: 14px;line-height: 24px;color: #555;">
-                  
-                     <div class="row">
-                        <div class="col-lg-1"></div>
-                        <div class="col-lg-10 col-10  col-sm-11">
-                           <div class="row">
-
-
-                                       <div class="col-lg-3 col-sm-3 col-12 border">
-                                          <span class="" style="vertical-align: inherit;vertical-align: inherit;font-size: 14px;color:#000;font-weight: 700;line-height: 35px; ">Product</span>
-                                       </div>
-                                       <div class="col-lg-3 col-sm-3 col-12 border">
-                                          <span class="" style="vertical-align: inherit;vertical-align: inherit;font-size: 14px;color:#000;font-weight: 700;line-height: 35px; ">Quantity</span>
-                                       </div>
-                                       <div class="col-lg-3 col-sm-3 col-12 border">
-                                          <span class="" style="vertical-align: inherit;vertical-align: inherit;font-size: 14px;color:#000;font-weight: 700;line-height: 35px; ">Price / Count</span>
-                                       </div>
-                                       <div class="col-lg-3 col-sm-3 col-12 border">
-                                          <span class="" style="vertical-align: inherit;vertical-align: inherit;font-size: 14px;color:#000;font-weight: 700;line-height: 35px; ">Amount</span>
-                                       </div>
-                           </div>
-                           <div class="row ">
-                                 @foreach ($datas['terms'] as $index => $term_arr)
-                                    @if ($term_arr['purchase_id'] == $datas['id'])
-                                       <div class="col-lg-3 col-sm-3 col-12 border">
-                                          <span class=""style="vertical-align: inherit;vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;line-height: 35px; ">{{ $term_arr['product_name'] }}</span>
-                                       </div>
-                                       <div class="col-lg-3 col-sm-3 col-12 border">
-                                          <span class=""style="vertical-align: inherit;vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;line-height: 35px; ">{{ $term_arr['quantity'] }}</span>
-                                       </div>
-                                       <div class="col-lg-3 col-sm-3 col-12 border">
-                                          <span class=""style="vertical-align: inherit;vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;line-height: 35px; ">{{ $term_arr['price'] }}</span>
-                                       </div>
-                                       <div class="col-lg-3 col-sm-3 col-12 border">
-                                          <span class=""style="vertical-align: inherit;vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;line-height: 35px; ">{{ $term_arr['total_price'] }}</span>
-                                       </div>
-                                    @endif
-                                 @endforeach
-                           </div>
-                        </div>
-                        <div class="col-lg-1 col-1 col-sm-12"></div>
-
-                     </div>
-
-               </div>
 
                <div class="row">
-                  <div class="col-lg-6  py-2">
-                     <div class="total-order w-100 max-widthauto mb-4">
-                        <ul>
-                           <li class="total">
-                              <h4>Sub Total</h4>
-                              <h5 class="">₹ <span  class="">{{ $datas['sub_total'] }}</span></h5>
-                           </li>
-                           <li class="total">
-                              <h4>Tax Amount </h4>
-                              <h5>₹ <span  class="">{{ $datas['tax_amount'] }} ({{ $datas['tax'] }}%)</span></h5>
-                           </li>
-                           <li class="total">
-                              <h4>Total </h4>
-                              <h5>₹ <span  class="">{{ $datas['total'] }}</span></h5>
-                           </li>
-                           <li class="total">
-                              <h4>Discount Price</h4>
-                              <h5>₹ <span  class="">{{ $datas['discount_price'] }}</span></h5>
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
-                  <div class="col-lg-6  py-2">
+                  <div class="col-lg-6 ">
                      <div class="total-order w-100 max-widthauto mb-4">
                         <ul>
                            <li class="total">

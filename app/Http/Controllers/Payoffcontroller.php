@@ -93,8 +93,67 @@ class Payoffcontroller extends Controller
         //$shiftatend = Empattendancedata::where('employee_id', '=', $employee_id)->first();
 
         $current_year = Carbon::now()->format('Y');
+
+
+            $atendance_output = [];
+        
+            $Employee = Employee::where('soft_delete', '!=', 1)->get();
+            foreach ($Employee as $key => $Employees_arr) {
+
+                $GetPresents = Empattendancedata::where('employee_id', '=', $Employees_arr->id)->where('date', '=', $today)->where('attendance', '=', 'Present')->get();
+                
+                $perday_Salary = $Employees_arr->perdaysalary;
+
+                $paidsalary = Payoff::where('employee_id', '=', $Employees_arr->id)->where('date', '=', $today)->first();
+                if($paidsalary != ""){
+
+                    if($paidsalary->paid_salary > 0){
+                        $paid_salary = $paidsalary->paid_salary;
+                    }else {
+                        $paid_salary = 0;
+                    }
+                }else {
+                    $paid_salary = 0;
+                }
+                $balanceAmount = $perday_Salary - $paid_salary;
+
+                if($paid_salary == 0){
+                    $placeholder = 'Enter Amount';
+                    $readonly = '';
+                    $noteplaceholder = 'Enter Note';
+                }else {
+                    if($balanceAmount == 0){
+                        $readonly = 'readonly';
+                        $placeholder = '';
+                        $noteplaceholder = '';
+                    }else {
+                        $readonly = '';
+                        $placeholder = 'Enter Amount';
+                        $noteplaceholder = 'Enter Note';
+                        
+                    }
+                }
+                
+
+               
+               // $days = cal_days_in_month( 0, $salary_month, $year);
+                $atendance_output[] = array(
+                    'total_days' => '',
+                    'total_presentdays' => '',
+                    'total_salary' => '',
+                    'perdaysalary' => $Employees_arr->perdaysalary,
+                    'Employee' => $Employees_arr->name,
+                    'id' => $Employees_arr->id,
+                    'paid_salary' => $paid_salary,
+                    'balanceAmount' => $balanceAmount,
+                    'readonly' => $readonly,
+                    'placeholder' => $placeholder,
+                    'noteplaceholder' => $noteplaceholder,
+                );
+            
+            }
        
-        return view('page.backend.payoff.create', compact('employee', 'today', 'timenow', 'maxDays', 'years_arr', 'current_year'));
+        return view('page.backend.payoff.create', compact('employee', 'today', 'timenow', 'maxDays', 'years_arr', 'current_year', 'atendance_output'));
     }
 
 

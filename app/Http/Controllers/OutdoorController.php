@@ -37,9 +37,8 @@ class OutdoorController extends Controller
 
             $Outdoordata = Outdoordata::where('outdoor_id', '=', $datas->id)->get();
             foreach ($Outdoordata as $key => $Outdoordata_arr) {
-                $Outdoorproduct = Outdoorproduct::findOrFail($Outdoordata_arr->product);
                 $terms[] = array(
-                    'product' => $Outdoorproduct->name,
+                    'product' => $Outdoordata_arr->outdoor_product,
                     'quantity' => $Outdoordata_arr->quantity,
                     'price_per_quantity' => $Outdoordata_arr->price_per_quantity,
                     'price' => $Outdoordata_arr->price,
@@ -105,9 +104,9 @@ class OutdoorController extends Controller
 
             $Outdoordata = Outdoordata::where('outdoor_id', '=', $datas->id)->get();
             foreach ($Outdoordata as $key => $Outdoordata_arr) {
-                $Outdoorproduct = Outdoorproduct::findOrFail($Outdoordata_arr->product);
+
                 $terms[] = array(
-                    'product' => $Outdoorproduct->name,
+                    'product' => $Outdoordata_arr->outdoor_product,
                     'quantity' => $Outdoordata_arr->quantity,
                     'price_per_quantity' => $Outdoordata_arr->price_per_quantity,
                     'price' => $Outdoordata_arr->price,
@@ -197,22 +196,22 @@ class OutdoorController extends Controller
             $data->outdoortax_amount = $request->get('outdoortax_amount');
             $data->total = $request->get('outdoor_grandtotal');
 
-            if($request->get('payment_amount') != ""){
-                $data->payment_amount = $request->get('payment_amount');
-                $balanceamt = $request->get('outdoor_grandtotal') - $request->get('payment_amount');
-                $data->balanceamount = $balanceamt;
-                if($balanceamt == 0){
-                    $data->delivery_status = 1;
-                }else {
-                    $data->delivery_status = 0;
-                }
-            }else {
-                $data->payment_amount = 0;
-                $data->balanceamount = $request->get('outdoor_grandtotal');
-                $data->delivery_status = 0;
-            }
+            // if($request->get('payment_amount') != ""){
+            //     $data->payment_amount = $request->get('payment_amount');
+            //     $balanceamt = $request->get('outdoor_grandtotal') - $request->get('payment_amount');
+            //     $data->balanceamount = $balanceamt;
+            //     if($balanceamt == 0){
+            //         $data->delivery_status = 1;
+            //     }else {
+            //         $data->delivery_status = 0;
+            //     }
+            // }else {
+            //     $data->payment_amount = 0;
+            //     $data->balanceamount = $request->get('outdoor_grandtotal');
+            //     $data->delivery_status = 0;
+            // }
             
-           
+            $data->delivery_status = 0;
             
             $data->bank_id = $request->get('bank_id');
             $data->save();
@@ -220,11 +219,11 @@ class OutdoorController extends Controller
             $insertedId = $data->id;
     
     
-            foreach ($request->get('outdoorproduct_id') as $key => $outdoorproduct_id) {
+            foreach ($request->get('outdoor_product') as $key => $outdoor_product) {
     
                     $Outdoordata = new Outdoordata;
                     $Outdoordata->outdoor_id = $insertedId;
-                    $Outdoordata->product = $outdoorproduct_id;
+                    $Outdoordata->outdoor_product = $outdoor_product;
                     $Outdoordata->quantity = $request->outdoorquantity[$key];
                     $Outdoordata->price_per_quantity = $request->outdoorpriceperquantity[$key];
                     $Outdoordata->price = $request->outdoorprice[$key];
@@ -282,13 +281,15 @@ class OutdoorController extends Controller
         $Outdoor->payment_amount = $request->get('outdoor_totalpaid');
 
 
-        $outdoor_grandtotal = $request->get('outdoor_grandtotal');
-        $payment_amount = $Outdoor->payment_amount;
-        $balance = $outdoor_grandtotal - $payment_amount;
-        $Outdoor->balanceamount = $balance;
-        if($Outdoor->balanceamount == 0){
-            $Outdoor->delivery_status = 1;
-        }
+        // $outdoor_grandtotal = $request->get('outdoor_grandtotal');
+        // $payment_amount = $Outdoor->payment_amount;
+        // $balance = $outdoor_grandtotal - $payment_amount;
+        // $Outdoor->balanceamount = $balance;
+        // if($Outdoor->balanceamount == 0){
+        //     $Outdoor->delivery_status = 1;
+        // }
+
+        $data->delivery_status = 0;
 
         $Outdoor->update();
 
@@ -340,22 +341,22 @@ class OutdoorController extends Controller
 
                 $ids = $outdoor_detail_id;
                 $Outdoorid = $Outdoor_id;
-                $product = $request->outdoorproduct_id[$key];
+                $outdoor_product = $request->outdoor_product[$key];
                 $quantity = $request->outdoorquantity[$key];
                 $price_per_quantity = $request->outdoorpriceperquantity[$key];
                 $price = $request->outdoorprice[$key];
                 $outdoornote = $request->outdoornote[$key];
 
                 DB::table('outdoordatas')->where('id', $ids)->update([
-                    'outdoor_id' => $Outdoorid,  'product' => $product,  'quantity' => $quantity,  'price_per_quantity' => $price_per_quantity,  'price' => $price,  'outdoornote' => $outdoornote
+                    'outdoor_id' => $Outdoorid,  'outdoor_product' => $outdoor_product,  'quantity' => $quantity,  'price_per_quantity' => $price_per_quantity,  'price' => $price,  'outdoornote' => $outdoornote
                 ]);
 
             } else if ($outdoor_detail_id == '') {
-                if ($request->product[$key] > 0) {
+                if ($request->outdoor_product[$key] > 0) {
 
                     $Outdoordata = new Outdoordata;
                     $Outdoordata->outdoor_id = $Outdoor_id;
-                    $Outdoordata->product = $request->outdoorproduct_id[$key];
+                    $Outdoordata->outdoor_product = $request->outdoor_product[$key];
                     $Outdoordata->quantity = $request->outdoorquantity[$key];
                     $Outdoordata->price_per_quantity = $request->outdoorpriceperquantity[$key];
                     $Outdoordata->price = $request->outdoorprice[$key];

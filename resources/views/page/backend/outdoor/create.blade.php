@@ -110,15 +110,7 @@
                                 <tbody class="outdoor_fields">
                                     <tr>
                                        <td><input type="hidden"id="outdoor_detail_id"name="outdoor_detail_id[]" value=""/>
-                                          <select class="form-control js-example-basic-single outdoorproduct_id select" name="outdoorproduct_id[]"
-                                                id="outdoorproduct_id1"required>
-                                                <option value="" selected hidden class="text-muted">Select Product
-                                                </option>
-                                                @foreach ($outdoorproduct as $outdoorproducts)
-                                                    <option value="{{ $outdoorproducts->id }}">{{ $outdoorproducts->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
+                                       <input type="text" class="form-control outdoor_product" id="outdoor_product" name="outdoor_product[]" placeholder="Product Name" value="" required />
                                        </td>
                                        <td><textarea type="text" name="outdoornote[]" class="form-control" placeholder="Enter note" ></textarea></td>
                                        <td><input type="text" class="form-control outdoorquantity" id="outdoorquantity" name="outdoorquantity[]" placeholder="quantity" value="" required /></td>

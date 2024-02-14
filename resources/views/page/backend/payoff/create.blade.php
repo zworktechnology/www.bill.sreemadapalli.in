@@ -29,11 +29,11 @@
                                 <input type="date" name="date" placeholder="" value="{{ $today }}" required>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-3 col-12">
+                        <div class="col-lg-3 col-sm-3 col-12" hidden>
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Year<span
                                         style="color: red;">*</span></label>
-                                <select class="form-control salary_year select" name="salary_year" id="salary_year" required>
+                                <select class="form-control salary_year select" name="salary_year" id="salary_year" >
                                     <option value="" selected hidden class="text-muted">Select </option>
                                     @foreach ($years_arr as $years_array)
                                     <option value="{{ $years_array }} "@if ($years_array == $current_year) selected='selected' @endif>{{ $years_array }}</option>
@@ -41,11 +41,11 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-3 col-12">
+                        <div class="col-lg-3 col-sm-3 col-12" hidden>
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Month<span
                                         style="color: red;">*</span></label>
-                                 <select class="form-control js-example-basic-single salary_month select" name="salary_month" id="salary_month"required>
+                                 <select class="form-control js-example-basic-single salary_month select" name="salary_month" id="salary_month">
                                     <option value="" selected hidden class="text-muted">Select Month </option>
                                     <option value="01">January</option>
                                     <option value="02">February</option>
@@ -72,19 +72,27 @@
                     <div class="row">
                         <div class="table-responsive col-lg-12 col-sm-12 col-12">
                             <table class="table">
-                                <thead id="headsalary_detailrow" style="display:none">
+                                <thead id="headsalary_detailrow">
                                     <tr style="background: #f8f9fa;">
-                                        <th style="font-size:15px; width:12%;">Employee</th>
-                                        <th style="font-size:15px; width:7%;">Days</th>
-                                        <th style="font-size:15px; width:7%;">Day / Salary</th>
-                                        <th style="font-size:15px; width:10%;">Total Salary</th>
+                                        <th style="font-size:15px; width:20%;">Employee</th>
+                                        <th style="font-size:15px; width:10%;">Day / Salary</th>
                                         <th style="font-size:15px; width:10%;">Paid</th>
-                                        <th style="font-size:15px; width:10%;">Balance</th>
-                                        <th style="font-size:15px; width:16%;">Salary</th>
+                                        <th style="font-size:15px; width:12%;">Balance</th>
+                                        <th style="font-size:15px; width:20%;">Amount</th>
                                         <th style="font-size:15px; width:28%;">Note</th>
                                     </tr>
                                 </thead>
                                 <tbody id="salary_detailrow">
+                                @foreach ($atendance_output as $keydata => $atendance_outputs)
+                                    <tr>
+                                            <td>{{ $atendance_outputs['Employee']  }}</td>
+                                            <td>{{ $atendance_outputs['perdaysalary']  }}</td>
+                                            <td>{{ $atendance_outputs['paid_salary']  }}</td>
+                                            <td>{{ $atendance_outputs['balanceAmount']  }}</td>
+                                            <td><input type="text" class="form-control amountgiven" id="amountgiven" name="amountgiven[]"  style="background: #f8f9fa;"/></td>
+                                            <td><input type="text" class="form-control payoffnotes" id="payoffnotes" name="payoffnotes[]"/></td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

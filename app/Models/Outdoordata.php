@@ -11,7 +11,7 @@ class Outdoordata extends Model
 
     protected $fillable = [
         'outdoor_id',
-        'product',
+        'outdoor_product',
         'quantity',
         'price_per_quantity',
         'price',

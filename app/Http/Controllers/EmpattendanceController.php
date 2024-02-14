@@ -389,7 +389,7 @@ class EmpattendanceController extends Controller
         $today = Carbon::now()->format('Y-m-d');
         $year = request()->get('salary_year');
 
-        $atendance_output = [];
+            $atendance_output = [];
         
             $Employee = Employee::where('soft_delete', '!=', 1)->get();
             foreach ($Employee as $key => $Employees_arr) {

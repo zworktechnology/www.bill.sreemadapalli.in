@@ -24,14 +24,6 @@ return new class extends Migration
 
             $table->unsignedBigInteger('supplier_id');
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
-
-            $table->string('sub_total')->nullable();
-            $table->string('tax')->nullable();
-            $table->string('total')->nullable();
-            $table->string('tax_amount')->nullable();
-            $table->string('discount_price')->nullable();
-            $table->string('discount_type')->nullable();
-            $table->string('discount')->nullable();
             $table->string('grandtotal')->nullable();
             $table->string('paidamount')->nullable();
             $table->string('balanceamount')->nullable();

@@ -29,13 +29,10 @@
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Purchase</h6>
                     <ul>
-                        <li class="{{ Route::is('purchase_product.index', 'purchase_product.store') ? 'active' : '' }}">
-                            <a href="{{ route('purchase_product.index') }}"><i data-feather="credit-card"></i><span>Product</span></a>
-                        </li>
                         <li class="{{ Route::is('supplier.index', 'supplier.store') ? 'active' : '' }}">
                             <a href="{{ route('supplier.index') }}"><i data-feather="credit-card"></i><span>Supplier</span></a>
                         </li>
-                        <li class="{{ Route::is('purchase.index', 'purchase.store', 'purchase.edit', 'purchase.datefilter') ? 'active' : '' }}">
+                        <li class="{{ Route::is('purchase.index', 'purchase.store', 'purchase.edit', 'purchase.datefilter', 'purchase.create') ? 'active' : '' }}">
                             <a href="{{ route('purchase.index') }}"><i data-feather="credit-card"></i><span>Purchase</span></a>
                         </li>
                         <li class="{{ Route::is('purchasepayment.index') ? 'active' : '' }}">
@@ -63,10 +60,6 @@
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Outdoor Catering</h6>
                     <ul>
-
-                        <li class="{{ Route::is('outdoor_product.index', 'outdoor_product.store') ? 'active' : '' }}">
-                            <a href="{{ route('outdoor_product.index') }}"><i data-feather="box"></i><span>Product</span></a>
-                        </li>
                         <li class="{{ Route::is('outdoor.index', 'outdoor.store', 'outdoor.datefilter', 'outdoor.create') ? 'active' : '' }}">
                             <a href="{{ route('outdoor.index') }}"><i data-feather="credit-card"></i><span>OutDoor</span></a>
                         </li>
