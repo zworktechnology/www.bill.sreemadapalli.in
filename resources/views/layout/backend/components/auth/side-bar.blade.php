@@ -102,7 +102,7 @@
                         <li class="{{ Route::is('bank.index', 'bank.store') ? 'active' : '' }}">
                             <a href="{{ route('bank.index') }}"><i data-feather="credit-card"></i><span>Payment Mode</span></a>
                         </li>
-                        <li class="{{ Route::is('customer.index', 'customer.store', 'customer.edit', 'customer.delete', 'customer.checkduplicate') ? 'active' : '' }}">
+                        <li class="{{ Route::is('customer.index', 'customer.store', 'customer.edit', 'customer.delete', 'customer.checkduplicate', 'customer.viewall') ? 'active' : '' }}">
                             <a href="{{ route('customer.index') }}"><i data-feather="user"></i><span>Customers</span></a>
                         </li>
                     </ul>
