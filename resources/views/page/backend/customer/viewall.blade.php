@@ -87,13 +87,13 @@
                         <form autocomplete="off" method="POST" action="{{ route('customer.store') }}">
                             @csrf
                             <div class="row">
-                                <div class="col-lg-12 col-sm-6 col-12">
+                                <div class="col-lg-12 col-sm-12 col-12">
                                     <div class="form-group">
                                         <label>Name or Address <span style="color: red;">*</span></label>
                                         <input type="text" name="name" placeholder="Enter Customer name or Address" required>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 col-sm-6 col-12">
+                                <div class="col-lg-12 col-sm-12 col-12">
                                     <div class="form-group">
                                         <label>Phone Number <span style="color: red;">*</span></label>
                                         <input type="text" name="phone_number" class="customer_contactno"
@@ -101,7 +101,7 @@
                                             required>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 col-sm-6 col-12">
+                                <div class="col-lg-12 col-sm-12 col-12">
                                     <div class="form-group">
                                         <label>Old Balance <span style="color: red;">*</span></label>
                                         <input type="text" name="old_balance" placeholder="Enter Old Balance Amount">
