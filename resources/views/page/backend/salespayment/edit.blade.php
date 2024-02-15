@@ -21,24 +21,13 @@
                     <div class="col-lg-6 col-sm-6 col-6">
                         <div class="form-group">
                             <label>Date <span style="color: red;">*</span></label>
-                            <input type="date" name="date" placeholder="" value="{{ $salepayment_datas['saledate'] }}" required>
+                            <input type="date" name="date" placeholder="" value="{{ $salepayment_datas['date'] }}" required>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6 col-6">
                         <div class="form-group">
                             <label>Payable Amount</label>
                             <input type="text" name="paid_amount" id="paid_amount" class="salepaymentpaidamt" value="{{ $salepayment_datas['paid_amount'] }}" placeholder="Enter Payable Amount">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-sm-6 col-6">
-                        <div class="form-group">
-                           <label>Delivery Plan <span style="color: red;">*</span></label>
-                              <select class="form-control  select js-example-basic-single deliveryplan_id" name="deliveryplan_id" id="deliveryplanid">
-                                    <option value="" disabled selected hiddden>Select Delivery Plan</option>
-                                    @foreach ($deliveryplan as $deliveryplans)
-                                        <option value="{{ $deliveryplans->id }}"@if ($deliveryplans->id === $salepayment_datas['deliveryplan_id']) selected='selected' @endif>{{ $deliveryplans->name }}</option>
-                                    @endforeach 
-                                </select>
                         </div>
                     </div>
                     <hr>

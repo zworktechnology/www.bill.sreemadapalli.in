@@ -23,7 +23,7 @@ class PurchaseController extends Controller
     public function index()
     {
         $today = Carbon::now()->format('Y-m-d');
-        $data = Purchase::where('date', '=', $today)->where('soft_delete', '!=', 1)->get();
+        $data = Purchase::where('date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
         $purchase_data = [];
         $terms = [];
         foreach ($data as $key => $datas) {
@@ -61,7 +61,7 @@ class PurchaseController extends Controller
     public function datefilter(Request $request) {
         $today = $request->get('from_date');
 
-        $data = Purchase::where('date', '=', $today)->where('soft_delete', '!=', 1)->get();
+        $data = Purchase::where('date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
         $purchase_data = [];
         $terms = [];
         foreach ($data as $key => $datas) {

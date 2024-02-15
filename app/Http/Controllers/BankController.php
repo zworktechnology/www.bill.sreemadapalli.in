@@ -11,7 +11,7 @@ class BankController extends Controller
 {
     public function index()
     {
-        $data = Bank::where('soft_delete', '!=', 1)->get();
+        $data = Bank::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
 
         return view('page.backend.bank.index', compact('data'));
     }

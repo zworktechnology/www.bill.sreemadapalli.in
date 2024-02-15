@@ -21,7 +21,7 @@ class DeliverypayoffController extends Controller
    {
        
        $today = Carbon::now()->format('Y-m-d');
-       $data = Deliveryboypayoff::where('month', '=', date('m', strtotime($today)))->where('year', '=', date('Y', strtotime($today)))->where('soft_delete', '!=', 1)->get();
+       $data = Deliveryboypayoff::where('month', '=', date('m', strtotime($today)))->where('year', '=', date('Y', strtotime($today)))->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
        $payoffdata = [];
        foreach ($data as $key => $datas) {
 

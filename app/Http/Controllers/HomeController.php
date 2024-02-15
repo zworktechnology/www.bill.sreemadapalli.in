@@ -116,7 +116,7 @@ class HomeController extends Controller
 
 
 
-            $allemployee = Employee::where('soft_delete', '!=', 1)->get();
+            $allemployee = Employee::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
             $allemployee_attendance = [];
             foreach ($allemployee as $key => $allemployees) {
 
@@ -152,7 +152,7 @@ class HomeController extends Controller
 
 
 
-            $alldeliveryboy = Deliveryboy::where('soft_delete', '!=', 1)->get();
+            $alldeliveryboy = Deliveryboy::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
             $alldeliveryboy_attendance = [];
             foreach ($alldeliveryboy as $key => $alldeliveryboys) {
 
@@ -284,7 +284,7 @@ class HomeController extends Controller
 
 
 
-            $allemployee = Employee::where('soft_delete', '!=', 1)->get();
+            $allemployee = Employee::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
             $allemployee_attendance = [];
             foreach ($allemployee as $key => $allemployees) {
 
@@ -319,7 +319,7 @@ class HomeController extends Controller
 
 
 
-            $alldeliveryboy = Deliveryboy::where('soft_delete', '!=', 1)->get();
+            $alldeliveryboy = Deliveryboy::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
             $alldeliveryboy_attendance = [];
             foreach ($alldeliveryboy as $key => $alldeliveryboys) {
 

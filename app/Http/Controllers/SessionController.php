@@ -12,7 +12,7 @@ class SessionController extends Controller
 {
     public function index()
     {
-        $data = Session::where('soft_delete', '!=', 1)->get();
+        $data = Session::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
         return view('page.backend.session.index', compact('data'));
     }
 

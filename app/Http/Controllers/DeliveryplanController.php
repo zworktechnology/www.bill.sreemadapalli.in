@@ -11,7 +11,7 @@ class DeliveryplanController extends Controller
 {
     public function index()
     {
-        $data = Deliveryplan::where('soft_delete', '!=', 1)->get();
+        $data = Deliveryplan::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
 
         return view('page.backend.deliveryplan.index', compact('data'));
     }

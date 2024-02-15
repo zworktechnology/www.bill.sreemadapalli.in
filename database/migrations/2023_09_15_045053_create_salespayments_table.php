@@ -25,8 +25,8 @@ return new class extends Migration
             $table->string('time')->nullable();
             $table->string('paid_amount')->nullable();
 
-            $table->unsignedBigInteger('deliveryplan_id')->nullable();
-            $table->foreign('deliveryplan_id')->references('id')->on('deliveryplans')->onDelete('cascade');
+            // $table->unsignedBigInteger('deliveryplan_id')->nullable();
+            // $table->foreign('deliveryplan_id')->references('id')->on('deliveryplans')->onDelete('cascade');
 
             $table->timestamps();
         });

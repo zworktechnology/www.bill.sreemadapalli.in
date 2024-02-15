@@ -15,6 +15,6 @@ class Salespayment extends Model
         'date',
         'time',
         'paid_amount',
-        'deliveryplan_id'
+        // 'deliveryplan_id'
     ];
 }

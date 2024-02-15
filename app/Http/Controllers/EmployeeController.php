@@ -12,7 +12,7 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        $data = Employee::where('soft_delete', '!=', 1)->get();
+        $data = Employee::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
         return view('page.backend.employee.index', compact('data'));
     }
 

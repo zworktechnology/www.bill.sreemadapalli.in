@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('total_salaryamount')->nullable();
             $table->string('paid_salary')->nullable();
             $table->string('amountgiven')->nullable();
+            $table->string('payoffnotes')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });

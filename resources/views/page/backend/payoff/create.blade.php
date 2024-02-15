@@ -29,7 +29,7 @@
                                 <input type="date" name="date" placeholder="" value="{{ $today }}" required>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-3 col-12" hidden>
+                        <div class="col-lg-3 col-sm-3 col-12" >
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Year<span
                                         style="color: red;">*</span></label>
@@ -43,22 +43,12 @@
                         </div>
                         <div class="col-lg-3 col-sm-3 col-12" hidden>
                             <div class="form-group">
-                                <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Month<span
+                                <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Type<span
                                         style="color: red;">*</span></label>
-                                 <select class="form-control js-example-basic-single salary_month select" name="salary_month" id="salary_month">
-                                    <option value="" selected hidden class="text-muted">Select Month </option>
-                                    <option value="01">January</option>
-                                    <option value="02">February</option>
-                                    <option value="03">March</option>
-                                    <option value="04">April</option>
-                                    <option value="05">May</option>
-                                    <option value="06">June</option>
-                                    <option value="07">July</option>
-                                    <option value="08">August</option>
-                                    <option value="09">September</option>
-                                    <option value="10">October</option>
-                                    <option value="11">November</option>
-                                    <option value="12">December</option>
+                                 <select class="form-control js-example-basic-single salary_type select" name="salary_type" id="salary_type">
+                                    <option value="" selected hidden class="text-muted">Select</option>
+                                    <option value="daily_salary">Daily Salary</option>
+                                    <option value="Advance">Advance</option>
                                  </select>
                             </div>
                         </div>
@@ -75,21 +65,39 @@
                                 <thead id="headsalary_detailrow">
                                     <tr style="background: #f8f9fa;">
                                         <th style="font-size:15px; width:20%;">Employee</th>
-                                        <th style="font-size:15px; width:10%;">Day / Salary</th>
-                                        <th style="font-size:15px; width:10%;">Paid</th>
+                                        <th style="font-size:15px; width:10%;">Status</th>
+                                        <th style="font-size:15px; width:10%;">Per Day Salary</th>
+                                        <th style="font-size:15px; width:15%;">Paid</th>
                                         <th style="font-size:15px; width:12%;">Balance</th>
-                                        <th style="font-size:15px; width:20%;">Amount</th>
-                                        <th style="font-size:15px; width:28%;">Note</th>
+                                        <th style="font-size:15px; width:15%;">Amount</th>
+                                        <th style="font-size:15px; width:20%;">Note</th>
                                     </tr>
                                 </thead>
                                 <tbody id="salary_detailrow">
                                 @foreach ($atendance_output as $keydata => $atendance_outputs)
                                     <tr>
-                                            <td>{{ $atendance_outputs['Employee']  }}</td>
-                                            <td>{{ $atendance_outputs['perdaysalary']  }}</td>
-                                            <td>{{ $atendance_outputs['paid_salary']  }}</td>
-                                            <td>{{ $atendance_outputs['balanceAmount']  }}</td>
-                                            <td><input type="text" class="form-control amountgiven" id="amountgiven" name="amountgiven[]"  style="background: #f8f9fa;"/></td>
+                                            <td>{{ $atendance_outputs['Employee']  }}
+                                                <input type="hidden" class="form-control employee_id" id="employee_id" name="employee_id[]" value="{{ $atendance_outputs['id']  }}"/>
+                                            </td>
+                                            @if ($atendance_outputs['Attendance_status'] == 'Present')
+                                            <td style="color:green;font-weight:700">{{ $atendance_outputs['Attendance_status']  }}</td>
+                                            @else
+                                            <td>{{ $atendance_outputs['Attendance_status']  }}</td>
+                                            @endif
+
+                                            <td>{{ $atendance_outputs['perdaysalary']  }}
+                                                <input type="hidden" class="form-control perdaysalary" id="perdaysalary" name="perdaysalary[]" value="{{ $atendance_outputs['perdaysalary']  }}"/></td>
+
+                                            <td>{{ $atendance_outputs['paid_salary']  }}
+                                                <input type="hidden" class="form-control salarypaidamount" id="salarypaidamount" name="salarypaidamount[]" value=""/></td>
+
+                                            <td>{{ $atendance_outputs['balanceAmount']  }}
+                                                <input type="hidden" class="form-control salarybalanceamount" id="salarybalanceamount" name="salarybalanceamount[]"
+                                                 value=""  style="background: #f8f9fa;"/></td>
+
+                                            <td><input type="text" class="form-control salaryamountgiven" id="salaryamountgiven" name="salaryamountgiven[]"
+                                                  style="background: #f8f9fa;"/></td>
+
                                             <td><input type="text" class="form-control payoffnotes" id="payoffnotes" name="payoffnotes[]"/></td>
                                     </tr>
                                     @endforeach
