@@ -13,7 +13,7 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        $data = Customer::where('soft_delete', '!=', 1)->get();
+        $data = Customer::where('soft_delete', '!=', 1)->orderBy('name', 'asc')->get();
 
         $customerdata = [];
         foreach ($data as $key => $datas) {
@@ -56,14 +56,14 @@ class CustomerController extends Controller
             }
 
 
-            
+
         }
 
         return view('page.backend.customer.index', compact('customerdata'));
     }
 
     public function viewall() {
-        $data = Customer::where('soft_delete', '!=', 1)->get();
+        $data = Customer::where('soft_delete', '!=', 1)->orderBy('name', 'asc')->get();
 
         $customerdata = [];
         foreach ($data as $key => $datas) {
@@ -94,7 +94,7 @@ class CustomerController extends Controller
                 'pending_amount' => $pending_amount,
                 'account_balance' => $account_balance,
             );
-               
+
         }
 
         return view('page.backend.customer.viewall', compact('customerdata'));
@@ -117,13 +117,13 @@ class CustomerController extends Controller
 
 
         if($request->get('old_balance') != ""){
-            
+
             $customerid = $data->id;
             $PaymentBalanceDAta = Payment::where('customer_id', '=', $customerid)->first();
             if($PaymentBalanceDAta == ""){
                 $balance_amount = $request->get('old_balance');
                 $paymentbalacedata = new Payment();
-    
+
                 $paymentbalacedata->customer_id = $customerid;
                 $paymentbalacedata->saleamount = $balance_amount;
                 $paymentbalacedata->salepaid = 0;
@@ -171,7 +171,7 @@ class CustomerController extends Controller
         {
             $query = request()->get('query');
             $customerData = Customer::where('phone_number', '=', $query)->first();
-            
+
             $userData['data'] = $customerData;
             echo json_encode($userData);
         }
