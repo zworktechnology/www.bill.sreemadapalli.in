@@ -22,7 +22,7 @@
                             <table class="table  datanew">
                                 <thead>
                                     <tr>
-                                        <th>Sl. No</th>
+                                        {{-- <th>Sl. No</th> --}}
                                         <th>Details</th>
                                         <th>Pending Amount</th>
                                         <th>Action</th>
@@ -31,7 +31,7 @@
                                 <tbody>
                                     @foreach ($customerdata as $keydata => $custmer_data)
                                         <tr>
-                                            <td>{{ ++$keydata }}</td>
+                                            {{-- <td>{{ ++$keydata }}</td> --}}
                                             <td>{{ $custmer_data['name'] }}<br>{{ $custmer_data['phone_number'] }}</td>
 
                                             @if ($custmer_data['pending_amount'] != '')
