@@ -15,7 +15,7 @@
         </div>
 
         <div style="display: flex">
-            <div class="col-9">
+            <div class="col-8">
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
@@ -23,8 +23,7 @@
                                 <thead>
                                     <tr>
                                         <th>Sl. No</th>
-                                        <th>Name or Address</th>
-                                        <th>Phone No</th>
+                                        <th>Details</th>
                                         <th>Pending Amount</th>
                                         <th>Action</th>
                                     </tr>
@@ -33,8 +32,7 @@
                                     @foreach ($customerdata as $keydata => $custmer_data)
                                         <tr>
                                             <td>{{ ++$keydata }}</td>
-                                            <td>{{ $custmer_data['name'] }}</td>
-                                            <td>{{ $custmer_data['phone_number'] }}</td>
+                                            <td>{{ $custmer_data['name'] }}<br>{{ $custmer_data['phone_number'] }}</td>
 
                                             @if ($custmer_data['pending_amount'] != '')
                                                 <td style="color: red;">₹ {{ $custmer_data['pending_amount'] }}.00</td>
@@ -81,7 +79,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3" style="margin-left: 25px;">
+            <div class="col-4" style="margin-left: 25px;">
                 <div class="card">
                     <div class="card-body">
                         <form autocomplete="off" method="POST" action="{{ route('customer.store') }}">
