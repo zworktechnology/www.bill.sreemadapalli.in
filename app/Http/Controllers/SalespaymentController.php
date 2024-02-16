@@ -26,7 +26,7 @@ class SalespaymentController extends Controller
     {
         
         $today = Carbon::now()->format('Y-m-d');
-        $data = Salespayment::where('date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
+        $data = Salespayment::where('date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
         $salepayment_data = [];
         foreach ($data as $key => $datas) {
 
@@ -55,7 +55,7 @@ class SalespaymentController extends Controller
 
     public function datefilter(Request $request) {
         $today = $request->get('from_date');
-        $data = Salespayment::where('date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
+        $data = Salespayment::where('date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
         $salepayment_data = [];
         foreach ($data as $key => $datas) {
 

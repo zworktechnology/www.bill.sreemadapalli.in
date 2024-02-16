@@ -13,7 +13,7 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        $data = Customer::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
+        $data = Customer::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
         $customerdata = [];
         foreach ($data as $key => $datas)
         {

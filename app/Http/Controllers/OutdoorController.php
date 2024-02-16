@@ -26,7 +26,7 @@ class OutdoorController extends Controller
 
         $today = Carbon::now()->format('Y-m-d');
 
-        $data = Outdoor::where('booking_date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
+        $data = Outdoor::where('booking_date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
 
         $outdoor_data = [];
         $terms = [];

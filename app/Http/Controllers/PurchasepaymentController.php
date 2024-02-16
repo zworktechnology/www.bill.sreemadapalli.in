@@ -25,7 +25,7 @@ class PurchasepaymentController extends Controller
     {
         
         $today = Carbon::now()->format('Y-m-d');
-        $data = Purchasepayment::where('date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
+        $data = Purchasepayment::where('date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
         $purchasepayment_data = [];
         foreach ($data as $key => $datas) {
 
@@ -52,7 +52,7 @@ class PurchasepaymentController extends Controller
     public function datefilter(Request $request) {
 
         $today = $request->get('from_date');
-        $data = Purchasepayment::where('date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
+        $data = Purchasepayment::where('date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
         $purchasepayment_data = [];
         foreach ($data as $key => $datas) {
 

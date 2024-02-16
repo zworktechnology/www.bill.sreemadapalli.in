@@ -23,7 +23,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $data = Product::where('soft_delete', '!=', 1)->orderBy('id', 'DESC')->take(100)->get();
+        $data = Product::where('soft_delete', '!=', 1)->orderBy('id', 'DESC')->get();
         $Productdata = [];
         foreach ($data as $key => $datas) {
             $Categoryid = Category::findOrFail($datas->category_id);
