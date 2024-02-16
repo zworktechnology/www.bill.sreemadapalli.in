@@ -80,7 +80,7 @@
                             </div>
                         </div>
 
-                      
+
                         <div class="col-lg-12 col-sm-3 col-12">
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Note</label>
@@ -88,7 +88,7 @@
                             </div>
                         </div>
 
-                      
+
                   </div>
 
                     <br /><br/>
@@ -123,7 +123,7 @@
                                              <button style="width: 35px;" class="py-1 text-white font-medium rounded-lg text-sm  text-center btn btn-danger remove-outdoortr" type="button" >-</button>
                                         </td>
                                     </tr>
-                                    
+
                                 </tbody>
                             </table>
                         </div>
@@ -190,7 +190,7 @@
 
 
                      <div class="row">
-                        <div class="col-lg-12 col-sm-12 col-12">
+                        <div class="col-lg-4 col-sm-4 col-4">
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Payment Term<span
                                         style="color: red;">*</span></label>
@@ -202,14 +202,14 @@
                                        </select>
                             </div>
                         </div>
-                        <div class="col-lg-12 col-sm-12 col-12">
+                        <div class="col-lg-4 col-sm-4 col-4">
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Payable Amount<span
                                         style="color: red;">*</span></label>
                                 <input type="text" name="payment_amount" class="outdoor_payment_amount" placeholder="Enter Payable Amount"  style="background: #d1e9d0;">
                             </div>
                         </div>
-                        <div class="col-lg-12 col-sm-12 col-12">
+                        <div class="col-lg-4 col-sm-4 col-4">
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Balance Amount<span
                                         style="color: red;">*</span></label>
@@ -218,10 +218,10 @@
                         </div>
                      </div>
 
-               
 
 
-                   
+
+
 
 
 

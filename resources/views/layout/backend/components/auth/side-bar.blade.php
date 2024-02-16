@@ -40,7 +40,21 @@
                     </ul>
                 </li>
                 <li class="submenu-open">
-                    <h6 class="submenu-hdr">Inventory</h6>
+                    <h6 class="submenu-hdr">Accounts</h6>
+                    <ul>
+                        <li class="{{ Route::is('openaccount.index', 'openaccount.store') ? 'active' : '' }}">
+                            <a href="{{ route('openaccount.index') }}"><i data-feather="credit-card"></i><span>Open Account</span></a>
+                        </li>
+                        <li class="{{ Route::is('dinomination.index', 'dinomination.store', 'dinomination.datefilter') ? 'active' : '' }}">
+                            <a href="{{ route('dinomination.index') }}"><i data-feather="credit-card"></i><span>Denomination</span></a>
+                        </li>
+                        <li class="{{ Route::is('closeaccount.index', 'closeaccount.store') ? 'active' : '' }}">
+                            <a href="{{ route('closeaccount.index') }}"><i data-feather="credit-card"></i><span>Close Acccount</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="submenu-open">
+                    <h6 class="submenu-hdr">Product</h6>
                     <ul>
                         <li class="{{ Route::is('session.index', 'session.store') ? 'active' : '' }}">
                             <a href="{{ route('session.index') }}"><i data-feather="credit-card"></i><span>Session</span></a>
@@ -57,39 +71,20 @@
                     </ul>
                 </li>
                 <li class="submenu-open">
-                    <h6 class="submenu-hdr">Outdoor Catering</h6>
-                    <ul>
-                        <li class="{{ Route::is('outdoor.index', 'outdoor.store', 'outdoor.datefilter', 'outdoor.create') ? 'active' : '' }}">
-                            <a href="{{ route('outdoor.index') }}"><i data-feather="credit-card"></i><span>OutDoor</span></a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="submenu-open">
-                    <h6 class="submenu-hdr">Attendance</h6>
-                    <ul>
-                        <li class="{{ Route::is('emp_attendance.index', 'emp_attendance.store', 'emp_attendance.datefilter', 'emp_attendance.create', 'emp_attendance.datefilter') ? 'active' : '' }}">
-                            <a href="{{ route('emp_attendance.index') }}"><i data-feather="credit-card"></i><span>Employee Attendance</span></a>
-                        </li>
-                        <li class="{{ Route::is('delivery_attendance.index', 'delivery_attendance.store', 'delivery_attendance.datefilter', 'delivery_attendance.create', 'delivery_attendance.datefilter') ? 'active' : '' }}">
-                            <a href="{{ route('delivery_attendance.index') }}"><i data-feather="credit-card"></i><span>Delivery Attendance</span></a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="submenu-open">
-                    <h6 class="submenu-hdr">Expense</h6>
+                    <h6 class="submenu-hdr">Attendance & Inventory</h6>
                     <ul>
                         <li class="{{ Route::is('expense.index', 'expense.store', 'expense.datefilter', 'expense.create') ? 'active' : '' }}">
                             <a href="{{ route('expense.index') }}"><i data-feather="credit-card"></i><span>Expense</span></a>
                         </li>
-                    </ul>
-                </li>
-                <li class="submenu-open">
-                    <h6 class="submenu-hdr">Pay Off</h6>
-                    <ul>
-
-                        <!-- <li class="{{ Route::is('payoff.index', 'payoff.store', 'payoff.create', 'payoff.edit', 'payoff.datefilter') ? 'active' : '' }}">
+                        <li class="{{ Route::is('emp_attendance.index', 'emp_attendance.store', 'emp_attendance.datefilter', 'emp_attendance.create', 'emp_attendance.datefilter') ? 'active' : '' }}">
+                            <a href="{{ route('emp_attendance.index') }}"><i data-feather="credit-card"></i><span>Employee Attendance</span></a>
+                        </li>
+                        <li class="{{ Route::is('payoff.index', 'payoff.store', 'payoff.create', 'payoff.edit', 'payoff.datefilter') ? 'active' : '' }}">
                             <a href="{{ route('payoff.index') }}"><i data-feather="box"></i><span>Employee Payoff</span></a>
-                        </li> -->
+                        </li>
+                        <li class="{{ Route::is('delivery_attendance.index', 'delivery_attendance.store', 'delivery_attendance.datefilter', 'delivery_attendance.create', 'delivery_attendance.datefilter') ? 'active' : '' }}">
+                            <a href="{{ route('delivery_attendance.index') }}"><i data-feather="credit-card"></i><span>Delivery Attendance</span></a>
+                        </li>
                         <li class="{{ Route::is('deliveryboyspayoff.index', 'deliveryboyspayoff.store', 'deliveryboyspayoff.create', 'deliveryboyspayoff.edit', 'deliveryboyspayoff.datefilter') ? 'active' : '' }}">
                             <a href="{{ route('deliveryboyspayoff.index') }}"><i data-feather="box"></i><span>Deliveryboys Payoff</span></a>
                         </li>
@@ -101,44 +96,14 @@
                         <li class="{{ Route::is('bank.index', 'bank.store') ? 'active' : '' }}">
                             <a href="{{ route('bank.index') }}"><i data-feather="credit-card"></i><span>Payment Mode</span></a>
                         </li>
-                    </ul>
-                </li>
-                <li class="submenu-open">
-                    <h6 class="submenu-hdr">Delivery</h6>
-                    <ul>
-                        {{-- <li class="{{ Route::is('delivery.area.index', 'delivery.area.store') ? 'active' : '' }}">
-                            <a href="{{ route('delivery.area.index') }}"><i data-feather="map"></i><span>Delivery Areas</span></a>
-                        </li> --}}
-                        <li class="{{ Route::is('delivery.boy.index', 'delivery.boy.store') ? 'active' : '' }}">
-                            <a href="{{ route('delivery.boy.index') }}"><i data-feather="user"></i><span>Delivery Boys</span></a>
-                        </li>
-                        {{-- <li class="{{ Route::is('delivery.plan.index', 'delivery.plan.store') ? 'active' : '' }}">
-                            <a href="{{ route('delivery.plan.index') }}"><i data-feather="map"></i><span>Delivery Plan</span></a>
-                        </li> --}}
-                    </ul>
-                </li>
-                <li class="submenu-open">
-                    <h6 class="submenu-hdr">User Management</h6>
-                    <ul>
-                        <li class="{{ Route::is('employee.index', 'employee.store', 'employee.edit', 'employee.delete', 'employee.checkduplicate') ? 'active' : '' }}">
-                            <a href="{{ route('employee.index') }}"><i data-feather="user"></i><span>Employee</span></a>
-                        </li>
                         <li class="{{ Route::is('manager.invite.index', 'manager.invite.store') ? 'active' : '' }}">
                             <a href="{{ route('manager.invite.index') }}"><i data-feather="user-check"></i><span>Manager</span></a>
                         </li>
-                    </ul>
-                </li>
-                <li class="submenu-open">
-                    <h6 class="submenu-hdr">Accounts</h6>
-                    <ul>
-                        <li class="{{ Route::is('openaccount.index', 'openaccount.store') ? 'active' : '' }}">
-                            <a href="{{ route('openaccount.index') }}"><i data-feather="credit-card"></i><span>Open Account</span></a>
+                        <li class="{{ Route::is('employee.index', 'employee.store', 'employee.edit', 'employee.delete', 'employee.checkduplicate') ? 'active' : '' }}">
+                            <a href="{{ route('employee.index') }}"><i data-feather="user"></i><span>Employee</span></a>
                         </li>
-                        <li class="{{ Route::is('dinomination.index', 'dinomination.store', 'dinomination.datefilter') ? 'active' : '' }}">
-                            <a href="{{ route('dinomination.index') }}"><i data-feather="credit-card"></i><span>Denomination</span></a>
-                        </li>
-                        <li class="{{ Route::is('closeaccount.index', 'closeaccount.store') ? 'active' : '' }}">
-                            <a href="{{ route('closeaccount.index') }}"><i data-feather="credit-card"></i><span>Close Acccount</span></a>
+                        <li class="{{ Route::is('delivery.boy.index', 'delivery.boy.store') ? 'active' : '' }}">
+                            <a href="{{ route('delivery.boy.index') }}"><i data-feather="user"></i><span>Delivery Boys</span></a>
                         </li>
                     </ul>
                 </li>

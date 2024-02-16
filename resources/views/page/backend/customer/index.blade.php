@@ -32,9 +32,9 @@
                                     @foreach ($customerdata as $keydata => $custmer_data)
                                         <tr>
                                             {{-- <td>{{ ++$keydata }}</td> --}}
-                                            <td>{{ $custmer_data['name'] }}<br>{{ $custmer_data['phone_number'] }}</td>
+                                            <td>{{ $custmer_data['name'] }} {{ $custmer_data['address'] }}<br>{{ $custmer_data['phone_number'] }}</td>
 
-                                           
+
 
 
                                             @if ($custmer_data['pending_amount'] != '')

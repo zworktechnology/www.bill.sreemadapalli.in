@@ -17,18 +17,16 @@
                         <table class="table  datanew">
                             <thead>
                                 <tr>
-                                    <th>Sl. No</th>
-                                    <th>Name</th>
-                                    <th>Phone No</th>
+                                    <th>Details</th>
+                                    <th>Accounts Value</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($supplierdata as $keydata => $supplier_data)
                                     <tr>
-                                        <td>{{ ++$keydata }}</td>
-                                        <td>{{ $supplier_data['name'] }}</td>
-                                        <td>{{ $supplier_data['phone_number']  }}</td>
+                                        <td>{{ $supplier_data['name'] }} <br> {{ $supplier_data['phone_number']  }}</td>
+                                        <td></td>
                                         <td>
                                             <ul class="list-unstyled hstack gap-1 mb-0">
                                                 <li>
@@ -106,6 +104,6 @@
         </div>
         </div>
 
-        
+
     </div>
 @endsection
