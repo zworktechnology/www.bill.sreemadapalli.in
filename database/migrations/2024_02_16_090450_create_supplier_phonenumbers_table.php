@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('suppliers', function (Blueprint $table) {
+        Schema::create('supplier_phonenumbers', function (Blueprint $table) {
             $table->id();
-            $table->string('unique_key')->unique();
             $table->boolean('soft_delete')->default(0);
-            $table->string('name');
+
+            $table->unsignedBigInteger('supplier_id');
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
+            
             $table->string('phone_number')->nullable();
-            $table->string('address')->nullable();
-            $table->string('old_balance')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('suppliers');
+        Schema::dropIfExists('supplier_phonenumbers');
     }
 };

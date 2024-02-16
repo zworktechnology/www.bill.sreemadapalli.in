@@ -24,7 +24,7 @@
                                     <tr>
                                         {{-- <th>Sl. No</th> --}}
                                         <th>Details</th>
-                                        <th>Pending Amount</th>
+                                        <th>Pending Amount / Account Balance</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -36,7 +36,11 @@
 
                                             @if ($custmer_data['pending_amount'] != '')
                                                 <td style="color: red;">₹ {{ $custmer_data['pending_amount'] }}</td>
-                                            @else
+                                            @elseif ($custmer_data['account_balance'] != '')
+                                                <td  style="color: green;">
+                                                ₹ {{ $custmer_data['account_balance'] }}
+                                                </td>
+                                                @else
                                                 <td></td>
                                             @endif
 

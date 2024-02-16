@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 use App\Models\Supplier;
 use App\Models\Payment;
 
@@ -32,6 +33,8 @@ class SupplierController extends Controller
                 $account_balance = '';
             }
 
+          
+
             $supplierdata[] = array(
                 'id' => $datas->id,
                 'unique_key' => $datas->unique_key,
@@ -59,11 +62,11 @@ class SupplierController extends Controller
         $data->old_balance = $request->get('old_balance');
 
         $data->save();
-
+        $supplierid = $data->id;
 
         if($request->get('old_balance') != ""){
             
-            $supplierid = $data->id;
+            
             $PaymentBalanceDAta = Payment::where('supplier_id', '=', $supplierid)->first();
             if($PaymentBalanceDAta == ""){
                 $balance_amount = $request->get('old_balance');
@@ -76,6 +79,8 @@ class SupplierController extends Controller
                 $paymentbalacedata->save();
             }
         }
+
+       
 
         
 
@@ -94,6 +99,8 @@ class SupplierController extends Controller
         $SupplierData->address = $request->get('address');
 
         $SupplierData->update();
+
+
 
         return redirect()->route('supplier.index')->with('info', 'Updated !');
     }

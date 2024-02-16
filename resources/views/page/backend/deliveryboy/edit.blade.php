@@ -16,7 +16,7 @@
                     <div class="col-lg-12 col-sm-6 col-12">
                         <div class="form-group">
                             <label>Phone Number <span style="color: red;">*</span></label>
-                            <input type="text" name="phone_number" placeholder="Enter phone number" required value="{{ $deliveryboydata->phone_number }}">
+                            <textarea name="phone_number" placeholder="Enter Phone Number" required>{{ $deliveryboydata->phone_number }}</textarea>
                         </div>
                     </div>
                     {{-- <div class="col-lg-12 col-sm-6 col-12">

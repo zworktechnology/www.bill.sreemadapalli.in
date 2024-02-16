@@ -229,7 +229,6 @@ class OutdoorController extends Controller
                     $Outdoordata->price = $request->outdoorprice[$key];
                     $Outdoordata->outdoornote = $request->outdoornote[$key];
                     $Outdoordata->save();
-    
             }
 
 
