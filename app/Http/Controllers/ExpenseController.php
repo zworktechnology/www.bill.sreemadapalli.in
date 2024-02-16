@@ -18,7 +18,7 @@ class ExpenseController extends Controller
 
         $today = Carbon::now()->format('Y-m-d');
 
-        $data = Expense::where('date', '=', $today)->where('soft_delete', '!=', 1)->get();
+        $data = Expense::where('date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
 
         $expense_data = [];
         $terms = [];

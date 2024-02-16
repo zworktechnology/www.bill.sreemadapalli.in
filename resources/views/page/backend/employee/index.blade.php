@@ -33,7 +33,7 @@
                                     <td>{{ $employee_data->name }}</td>
                                     <td>{{ $employee_data->phone_number  }}</td>
                                     <td>{{ $employee_data->address  }}</td>
-                                    <td>₹ {{ $employee_data->perdaysalary  }}.00</td>
+                                    <td>₹ {{ $employee_data->perdaysalary  }}</td>
                                     <td>
                                         <ul class="list-unstyled hstack gap-1 mb-0">
                                             <li>

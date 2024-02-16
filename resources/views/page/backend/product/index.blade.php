@@ -39,7 +39,7 @@
                                         @elseif ($Productdatas['image'] != "")
                                         <td><img src="{{ asset('assets/product/' .$Productdatas['image']) }}" alt="" width="50" height="50"></td>
                                         @endif
-                                    <td>{{ $Productdatas['price']  }}.00</td>
+                                    <td>{{ $Productdatas['price']  }}</td>
                                     <td>
                                         <ul class="list-unstyled hstack gap-1 mb-0">
                                             <li>

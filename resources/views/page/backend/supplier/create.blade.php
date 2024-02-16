@@ -16,7 +16,16 @@
                     <div class="col-lg-12 col-sm-6 col-12">
                         <div class="form-group">
                             <label>Phone Number<span style="color: red;">*</span></label>
-                            <input type="text" name="phone_number" class="supplier_contactno" onkeyup="suppliercheck(); return false;"  placeholder="Enter Phone Number" required>
+                            <div class="supplier_phnodiv row">
+                                <div class="col-lg-10">
+                                    <input type="text" name="phone_number" class="supplier_contactno" onkeyup="suppliercheck(); return false;"  placeholder="Enter Phone Number" required>
+                                </div>
+                                <div class="col-lg-2">
+                                    <button style="width: 35px;"class="py-1 text-white font-medium rounded-lg text-sm  text-center btn btn-primary addsupplierphno"
+                                                    type="button" id="" value="Add">+</button>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                     <div class="col-lg-12 col-sm-6 col-12">

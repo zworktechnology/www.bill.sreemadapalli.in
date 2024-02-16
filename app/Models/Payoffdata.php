@@ -19,6 +19,6 @@ class Payoffdata extends Model
         'salaryamount',
         'total_given',
         'payable_amount',
-        'payoffnotes'
+        'reduced_dates'
     ];
 }

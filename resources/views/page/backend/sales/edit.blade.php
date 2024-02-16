@@ -118,7 +118,7 @@
                                                             <div class="productsetcontent">
                                                                 <h4>{{ $produc_session_array['productname'] }}</h4>
                                                                 <div style="display: flex">
-                                                                    <h6 class="pos-price">₹ {{ $produc_session_array['productprice'] }}.00</h6>
+                                                                    <h6 class="pos-price">₹ {{ $produc_session_array['productprice'] }}</h6>
                                                                     <div class="increment-decrement"
                                                                         style="margin-left:31%;margin-bottom:10px;" hidden>
                                                                         <div class="input-groups">

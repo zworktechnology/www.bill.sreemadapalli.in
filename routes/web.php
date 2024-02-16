@@ -507,3 +507,4 @@ Route::get('/getbalanceforpurchasePayment', [PurchaseController::class, 'getbala
 Route::get('getoutdoorProducts/', [OutdoorproductController::class, 'getoutdoorProducts']);
 Route::get('/gettotpresentdays', [EmpattendanceController::class, 'gettotpresentdays']);
 Route::get('/getdeliveryboy_totpresentdays', [DeliveryattendanceController::class, 'getdeliveryboy_totpresentdays']);
+Route::get('/getoldbalanceforPayment', [SaleController::class, 'getoldbalanceforPayment']);

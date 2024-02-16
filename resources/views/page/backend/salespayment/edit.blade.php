@@ -21,7 +21,7 @@
                     <div class="col-lg-12 col-sm-12 col-12">
                         <div class="form-group">
                             <label>Date <span style="color: red;">*</span></label>
-                            <input type="date" name="date" placeholder="" value="{{ $salepayment_datas['saledate'] }}" required>
+                            <input type="date" name="date" placeholder="" value="{{ $salepayment_datas['date'] }}" required>
                         </div>
                     </div>
                     <div class="col-lg-12 col-sm-12 col-12">

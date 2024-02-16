@@ -30,7 +30,7 @@ class SaleController extends Controller
     {
 
         $today = Carbon::now()->format('Y-m-d');
-        $dineindata = Sale::where('date', '=', $today)->where('sales_type', '=', 'Dine In')->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
+        $dineindata = Sale::where('date', '=', $today)->where('sales_type', '=', 'Dine In')->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
         $saledinein_data = [];
         $terms = [];
         foreach ($dineindata as $key => $datas) {
@@ -80,7 +80,7 @@ class SaleController extends Controller
 
 
 
-        $takeawaydata = Sale::where('date', '=', $today)->where('sales_type', '=', 'Delivery')->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
+        $takeawaydata = Sale::where('date', '=', $today)->where('sales_type', '=', 'Delivery')->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
         $saletakeway_data = [];
         $terms = [];
         foreach ($takeawaydata as $key => $datas) {
@@ -131,7 +131,7 @@ class SaleController extends Controller
 
 
 
-        $deliverydata = Sale::where('date', '=', $today)->where('sales_type', '=', 'Delivery')->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
+        $deliverydata = Sale::where('date', '=', $today)->where('sales_type', '=', 'Delivery')->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
         $saledelivery_data = [];
         $terms = [];
         foreach ($deliverydata as $key => $datas) {
@@ -240,7 +240,7 @@ class SaleController extends Controller
         $today = $request->get('from_date');
 
 
-        $dineindata = Sale::where('date', '=', $today)->where('sales_type', '=', 'Dine In')->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
+        $dineindata = Sale::where('date', '=', $today)->where('sales_type', '=', 'Dine In')->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
         $saledinein_data = [];
         $terms = [];
         foreach ($dineindata as $key => $datas) {
@@ -290,7 +290,7 @@ class SaleController extends Controller
 
 
 
-        $takeawaydata = Sale::where('date', '=', $today)->where('sales_type', '=', 'Delivery')->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
+        $takeawaydata = Sale::where('date', '=', $today)->where('sales_type', '=', 'Delivery')->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
         $saletakeway_data = [];
         $terms = [];
         foreach ($takeawaydata as $key => $datas) {
@@ -341,7 +341,7 @@ class SaleController extends Controller
 
 
 
-        $deliverydata = Sale::where('date', '=', $today)->where('sales_type', '=', 'Delivery')->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
+        $deliverydata = Sale::where('date', '=', $today)->where('sales_type', '=', 'Delivery')->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
         $saledelivery_data = [];
         $terms = [];
         foreach ($deliverydata as $key => $datas) {
@@ -1129,34 +1129,34 @@ class SaleController extends Controller
     }
 
 
-    // public function getoldbalanceforPayment()
-    // {
+    public function getoldbalanceforPayment()
+    {
 
-    //     $customerid = request()->get('customerid');
+        $customerid = request()->get('customerid');
 
 
 
-    //     $last_idrow = Payment::where('customer_id', '=', $customerid)->first();
-    //     if($last_idrow != ""){
+        $last_idrow = Payment::where('customer_id', '=', $customerid)->first();
+        if($last_idrow != ""){
 
-    //         if($last_idrow->salebalance != NULL){
+            if($last_idrow->salebalance != NULL){
 
-    //             $output[] = array(
-    //                 'payment_pending' => $last_idrow->salebalance,
-    //             );
-    //         }else {
-    //             $output[] = array(
-    //                 'payment_pending' => 0,
-    //             );
+                $output[] = array(
+                    'payment_pending' => $last_idrow->salebalance,
+                );
+            }else {
+                $output[] = array(
+                    'payment_pending' => 0,
+                );
 
-    //         }
-    //     }else {
-    //         $output[] = array(
-    //             'payment_pending' => 0,
-    //         );
-    //     }
-    //     echo json_encode($output);
-    // }
+            }
+        }else {
+            $output[] = array(
+                'payment_pending' => 0,
+            );
+        }
+        echo json_encode($output);
+    }
 
 
     public function getselectedsessioncat()

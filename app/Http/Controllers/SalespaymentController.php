@@ -26,17 +26,12 @@ class SalespaymentController extends Controller
     {
         
         $today = Carbon::now()->format('Y-m-d');
-        $data = Salespayment::where('date', '=', $today)->where('soft_delete', '!=', 1)->get();
+        $data = Salespayment::where('date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
         $salepayment_data = [];
         foreach ($data as $key => $datas) {
 
                 $customer = Customer::findOrFail($datas->customer_id);
-                if($datas->deliveryplan_id != ""){
-                    $deliveryplan = Deliveryplan::findOrFail($datas->deliveryplan_id);
-                    $delivery_plan = $deliveryplan->name;
-                }else {
-                    $delivery_plan = '';
-                }
+              
 
             $salepayment_data[] = array(
                 'customer' => $customer->name,
@@ -45,8 +40,6 @@ class SalespaymentController extends Controller
                 'date' => date('d-m-Y', strtotime($datas->date)),
                 'time' => $datas->time,
                 'paid_amount' => $datas->paid_amount,
-                'deliveryplan_id' => $datas->deliveryplan_id,
-                'deliveryplan' => $delivery_plan,
                 'id' => $datas->id,
                 'unique_key' => $datas->unique_key,
             );
@@ -62,12 +55,11 @@ class SalespaymentController extends Controller
 
     public function datefilter(Request $request) {
         $today = $request->get('from_date');
-        $data = Salespayment::where('date', '=', $today)->where('soft_delete', '!=', 1)->get();
+        $data = Salespayment::where('date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
         $salepayment_data = [];
         foreach ($data as $key => $datas) {
 
                 $customer = Customer::findOrFail($datas->customer_id);
-                $deliveryplan = Deliveryplan::findOrFail($datas->deliveryplan_id);
 
             $salepayment_data[] = array(
                 'customer' => $customer->name,
@@ -75,8 +67,6 @@ class SalespaymentController extends Controller
                 'date' => date('d-m-Y', strtotime($datas->date)),
                 'time' => $datas->time,
                 'paid_amount' => $datas->paid_amount,
-                'deliveryplan_id' => $datas->deliveryplan_id,
-                'deliveryplan' => $deliveryplan->name,
                 'id' => $datas->id,
                 'unique_key' => $datas->unique_key,
             );
@@ -102,7 +92,6 @@ class SalespaymentController extends Controller
         $data->date = $request->get('date');
         $data->time = $request->get('time');
         $data->paid_amount = $request->get('paid_amount');
-        $data->deliveryplan_id = $request->get('deliveryplan_id');
         $data->save();
 
         $customerid = $request->get('customer_id');
@@ -173,7 +162,6 @@ class SalespaymentController extends Controller
         $Salespayment->customer_id = $request->get('customer_id');
         $Salespayment->date = $request->get('date');
         $Salespayment->paid_amount = $request->get('paid_amount');
-        $Salespayment->deliveryplan_id = $request->get('deliveryplan_id');
         $Salespayment->update();
 
         

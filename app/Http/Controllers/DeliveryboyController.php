@@ -12,7 +12,7 @@ class DeliveryboyController extends Controller
 {
     public function index()
     {
-        $data = Deliveryboy::where('soft_delete', '!=', 1)->get();
+        $data = Deliveryboy::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
         $deliveryarea = Deliveryarea::where('soft_delete', '!=', 1)->get();
 
         return view('page.backend.deliveryboy.index', compact('data', 'deliveryarea'));
@@ -29,7 +29,7 @@ class DeliveryboyController extends Controller
         $data->phone_number = $request->get('phone_number');
         $data->address = $request->get('address');
         $data->delivery_area_id = $request->get('delivery_area_id');
-        $data->pershiftsalary = $request->get('pershiftsalary');
+       // $data->pershiftsalary = $request->get('pershiftsalary');
         $data->unique_key = $randomkey;
 
         $data->save();
@@ -45,7 +45,7 @@ class DeliveryboyController extends Controller
         $plandata->phone_number = $request->get('phone_number');
         $plandata->address = $request->get('address');
         $plandata->delivery_area_id = $request->get('delivery_area_id');
-        $plandata->pershiftsalary = $request->get('pershiftsalary');
+        //$plandata->pershiftsalary = $request->get('pershiftsalary');
 
         $plandata->update();
 

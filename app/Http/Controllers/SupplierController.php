@@ -13,7 +13,7 @@ class SupplierController extends Controller
 {
     public function index()
     {
-        $data = Supplier::where('soft_delete', '!=', 1)->get();
+        $data = Supplier::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
 
         $supplierdata = [];
         foreach ($data as $key => $datas) {

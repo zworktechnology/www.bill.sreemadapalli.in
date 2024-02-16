@@ -87,9 +87,9 @@
                     <h6 class="submenu-hdr">Pay Off</h6>
                     <ul>
 
-                        <li class="{{ Route::is('payoff.index', 'payoff.store', 'payoff.create', 'payoff.edit', 'payoff.datefilter') ? 'active' : '' }}">
+                        <!-- <li class="{{ Route::is('payoff.index', 'payoff.store', 'payoff.create', 'payoff.edit', 'payoff.datefilter') ? 'active' : '' }}">
                             <a href="{{ route('payoff.index') }}"><i data-feather="box"></i><span>Employee Payoff</span></a>
-                        </li>
+                        </li> -->
                         <li class="{{ Route::is('deliveryboyspayoff.index', 'deliveryboyspayoff.store', 'deliveryboyspayoff.create', 'deliveryboyspayoff.edit', 'deliveryboyspayoff.datefilter') ? 'active' : '' }}">
                             <a href="{{ route('deliveryboyspayoff.index') }}"><i data-feather="box"></i><span>Deliveryboys Payoff</span></a>
                         </li>

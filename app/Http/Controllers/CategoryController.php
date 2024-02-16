@@ -15,7 +15,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $data = Category::where('soft_delete', '!=', 1)->orderBy('id', 'DESC')->get();
+        $data = Category::where('soft_delete', '!=', 1)->orderBy('id', 'DESC')->take(100)->get();
         $catdata = [];
         $productterms = [];
         foreach ($data as $key => $datas) {

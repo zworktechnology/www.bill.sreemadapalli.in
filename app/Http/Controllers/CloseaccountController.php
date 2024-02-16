@@ -23,7 +23,7 @@ class CloseaccountController extends Controller
     public function index()
     {
         $today = Carbon::now()->format('Y-m-d');
-        $data = Closeaccount::where('soft_delete', '!=', 1)->get();
+        $data = Closeaccount::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'desc')->get();
 
 
         $openaccountamount = Openaccount::where('soft_delete', '!=', 1)->where('date', '=', $today)->sum('amount');

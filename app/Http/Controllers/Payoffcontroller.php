@@ -19,7 +19,7 @@ class Payoffcontroller extends Controller
     {
         
         $today = Carbon::now()->format('Y-m-d');
-        $data = Payoff::where('month', '=', date('m', strtotime($today)))->where('year', '=', date('Y', strtotime($today)))->where('soft_delete', '!=', 1)->get();
+        $data = Payoff::where('month', '=', date('m', strtotime($today)))->where('year', '=', date('Y', strtotime($today)))->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
         $payoffdata = [];
         foreach ($data as $key => $datas) {
 
@@ -100,56 +100,61 @@ class Payoffcontroller extends Controller
             $Employee = Employee::where('soft_delete', '!=', 1)->get();
             foreach ($Employee as $key => $Employees_arr) {
 
-                $GetPresents = Empattendancedata::where('employee_id', '=', $Employees_arr->id)->where('date', '=', $today)->where('attendance', '=', 'Present')->get();
-                
                 $perday_Salary = $Employees_arr->perdaysalary;
 
-                $paidsalary = Payoff::where('employee_id', '=', $Employees_arr->id)->where('date', '=', $today)->first();
-                if($paidsalary != ""){
+                $GetPresentornot = Empattendancedata::where('employee_id', '=', $Employees_arr->id)->where('date', '=', $today)->where('attendance', '=', 'Present')->first();
+                if($GetPresentornot != ""){
 
-                    if($paidsalary->paid_salary > 0){
-                        $paid_salary = $paidsalary->paid_salary;
-                    }else {
-                        $paid_salary = 0;
-                    }
-                }else {
-                    $paid_salary = 0;
-                }
-                $balanceAmount = $perday_Salary - $paid_salary;
+                    $Attendance_status = 'Present';
+                   
+                    
+               
+              
 
-                if($paid_salary == 0){
-                    $placeholder = 'Enter Amount';
-                    $readonly = '';
-                    $noteplaceholder = 'Enter Note';
-                }else {
-                    if($balanceAmount == 0){
-                        $readonly = 'readonly';
-                        $placeholder = '';
-                        $noteplaceholder = '';
-                    }else {
-                        $readonly = '';
-                        $placeholder = 'Enter Amount';
-                        $noteplaceholder = 'Enter Note';
-                        
-                    }
-                }
+                    // $paidsalary = Payoff::where('employee_id', '=', $Employees_arr->id)->where('date', '=', $today)->first();
+                    // if($paidsalary != ""){
+
+                    //     if($paidsalary->paid_salary == $perday_Salary){
+                    //         $paid_salary = $paidsalary->paid_salary;
+                    //     }else if($paidsalary->paid_salary > $perday_Salary){
+                    //         $paid_salary = $paidsalary->paid_salary;
+                    //     }
+                    // }else {
+                    //     $paid_salary = 0;
+                    // }
+                    // $balanceAmount = $perday_Salary - $paid_salary;
+
+                    // if($paid_salary == 0){
+                    //     $placeholder = 'Enter Amount';
+                    //     $readonly = '';
+                    //     $noteplaceholder = 'Enter Note';
+                    // }else {
+                    //     if($balanceAmount == 0){
+                    //         $readonly = 'readonly';
+                    //         $placeholder = '';
+                    //         $noteplaceholder = '';
+                    //     }else {
+                    //         $readonly = '';
+                    //         $placeholder = 'Enter Amount';
+                    //         $noteplaceholder = 'Enter Note';
+                            
+                    //     }
+                    // }
                 
 
                
-               // $days = cal_days_in_month( 0, $salary_month, $year);
-                $atendance_output[] = array(
-                    'total_days' => '',
-                    'total_presentdays' => '',
-                    'total_salary' => '',
-                    'perdaysalary' => $Employees_arr->perdaysalary,
-                    'Employee' => $Employees_arr->name,
-                    'id' => $Employees_arr->id,
-                    'paid_salary' => $paid_salary,
-                    'balanceAmount' => $balanceAmount,
-                    'readonly' => $readonly,
-                    'placeholder' => $placeholder,
-                    'noteplaceholder' => $noteplaceholder,
-                );
+                    // $days = cal_days_in_month( 0, $salary_month, $year);
+                    $atendance_output[] = array(
+                        'Attendance_status' => $Attendance_status,
+                        'total_presentdays' => '',
+                        'total_salary' => '',
+                        'perdaysalary' => $Employees_arr->perdaysalary,
+                        'Employee' => $Employees_arr->name,
+                        'id' => $Employees_arr->id,
+                        'paid_salary' => '',
+                        'balanceAmount' => '',
+                    );
+                }
             
             }
        
@@ -165,19 +170,28 @@ class Payoffcontroller extends Controller
 
 
 
-        foreach ($request->get('amountgiven') as $key => $amount_given) {
-            if($request->amountgiven[$key] != ""){
+        foreach ($request->get('salaryamountgiven') as $key => $salaryamountgiven) {
+            if($request->salaryamountgiven[$key] != ""){
+
+                if($request->salaryamountgiven[$key] > $request->perdaysalary[$key]){
+
+                    $total_paidamount = $request->salaryamountgiven[$key];
+                    $perday_salary = $request->perdaysalary[$key];
+                    $reduced_dates = $total_paidamount / $perday_salary;
+                    $reduced_countdate = number_format((float)$reduced_dates, 2, '.', '');
                 
-                $pdrandomkey = Str::random(5);
-                $Payoffdata = new Payoffdata();
-                $Payoffdata->unique_key = $pdrandomkey;
-                $Payoffdata->date = $request->get('date');
-                $Payoffdata->month = $request->get('salary_month');
-                $Payoffdata->year = $request->get('salary_year');
-                $Payoffdata->employee_id = $request->employee_id[$key];
-                $Payoffdata->payable_amount = $request->amountgiven[$key];
-                $Payoffdata->payoffnotes = $request->payoffnotes[$key];
-                $Payoffdata->save();
+                    $pdrandomkey = Str::random(5);
+                    $Payoffdata = new Payoffdata();
+                    $Payoffdata->unique_key = $pdrandomkey;
+                    $Payoffdata->date = $request->get('date');
+                    $Payoffdata->month = date('m', strtotime($request->get('date')));
+                    $Payoffdata->year = $request->get('salary_year');
+                    $Payoffdata->employee_id = $request->employee_id[$key];
+                    $Payoffdata->payable_amount = $salaryamountgiven;
+                    $Payoffdata->reduced_dates = $reduced_countdate;
+                    $Payoffdata->save();
+
+                }
 
             }
         }
@@ -185,39 +199,21 @@ class Payoffcontroller extends Controller
 
 
 
-        foreach ($request->get('amountgiven') as $key => $amountgiven) {
+        foreach ($request->get('salaryamountgiven') as $key => $salaryamountgiven) {
 
             $employee_id = $request->employee_id[$key];
-            $month = $request->get('salary_month');
+            $month = date('m', strtotime($request->get('date')));
             $year = $request->get('salary_year');
 
-            $GetEmloyeeSalaryRow = Payoff::where('employee_id', '=', $employee_id)->where('month', '=', $month)->where('year', '=', $year)->first();
+            $GetEmloyeeSalaryRow = Payoff::where('employee_id', '=', $employee_id)->where('date', '=', $date)->where('year', '=', $year)->first();
             if($GetEmloyeeSalaryRow != ""){
 
-                $date = $request->date[$key];
-                $total_days = $request->totaldays[$key];
-                $present_days = $request->total_presentdays[$key];
                 $perdaysalary = $request->perdaysalary[$key];
-                $total_salaryamount = $request->total_salaryamount[$key];
+                $salaryamountgiven = $request->salaryamountgiven[$key];
 
-                $oldpaid_salary = $request->paid_salaryamount[$key];
-                $amountgiven = $request->amountgiven[$key];
+                //$oldpaid_salary = $request->paid_salaryamount[$key];
 
-                $newPaidSalary = $oldpaid_salary + $amountgiven;
-
-                if($total_salaryamount == $newPaidSalary){
-                    $status = 'Paid';
-                }else if($total_salaryamount < $newPaidSalary){
-                    $status = 'ExtraPaid';
-                }else if($total_salaryamount == ''){
-                    $status = 'NotPaid';
-                }else if($total_salaryamount > $newPaidSalary){
-                    $status = 'Lesspaid';
-                }
-
-                DB::table('payoffs')->where('id', $GetEmloyeeSalaryRow->id)->update([
-                    'total_days' => $total_days,  'present_days' => $present_days,  'perdaysalary' => $perdaysalary,  'total_salaryamount' => $total_salaryamount,  'paid_salary' => $newPaidSalary,  'amountgiven' => $amountgiven,  'status' => $status
-                ]);
+               
 
             }else {
 
@@ -227,27 +223,14 @@ class Payoffcontroller extends Controller
 
                 $Payoff->unique_key = $randomkey;
                 $Payoff->date = $request->get('date');
-                $Payoff->month = $request->get('salary_month');
+                $Payoff->month = date('m', strtotime($request->get('date')));
                 $Payoff->year = $request->get('salary_year');
                 $Payoff->employee_id = $request->employee_id[$key];
-                $Payoff->total_days = $request->totaldays[$key];
-                $Payoff->present_days = $request->total_presentdays[$key];
                 $Payoff->perdaysalary = $request->perdaysalary[$key];
-                $Payoff->total_salaryamount = $request->total_salaryamount[$key];
-                $Payoff->paid_salary = $request->amountgiven[$key];
+                $Payoff->amountgiven = $request->salaryamountgiven[$key];
+                $Payoff->payoffnotes = $request->payoffnotes[$key];
     
-                $tot_salary = $request->total_salaryamount[$key];
-                $paid_salary = $request->amountgiven[$key];
-    
-                if($tot_salary == $paid_salary){
-                    $Payoff->status = 'Paid';
-                }else if($tot_salary < $paid_salary){
-                    $Payoff->status = 'ExtraPaid';
-                }else if($paid_salary == ''){
-                    $Payoff->status = 'NotPaid';
-                }else if($tot_salary > $paid_salary){
-                    $Payoff->status = 'Lesspaid';
-                }
+                
                 $Payoff->save();
             }
 

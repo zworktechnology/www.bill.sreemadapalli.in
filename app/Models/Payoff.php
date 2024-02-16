@@ -22,6 +22,7 @@ class Payoff extends Model
         'total_salaryamount',
         'paid_salary',
         'amountgiven',
-        'status'
+        'status',
+        'payoffnotes'
     ];
 }
