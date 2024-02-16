@@ -5,6 +5,7 @@
         <div class="page-header">
             <div class="page-title">
                 <h4>Sales Payment</h4>
+                <p style="color:lightgray">( Customers Sales Payment )</p>
             </div>
             <div class="page-btn">
 
@@ -19,8 +20,8 @@
                                         value="Search" /></div>
                             </div>
                         </form>
-                </div>  
-                    
+                </div>
+
             </div>
         </div>
 
@@ -38,7 +39,6 @@
                                     <th>Customer</th>
                                     <th>Date</th>
                                     <th>Paid Amount</th>
-                                    <th>Delivery Plan</th>
                                     <th>Action</th>
                                  </tr>
                               </thead>
@@ -48,8 +48,7 @@
                                           <td>{{ ++$keydata }}</td>
                                           <td>{{ $salepayment_datas['customer'] }}</td>
                                           <td>{{ $salepayment_datas['date'] }}</td>
-                                          <td>{{ $salepayment_datas['paid_amount']  }}.00</td>
-                                          <td>{{ $salepayment_datas['deliveryplan'] }}</td>
+                                          <td>{{ $salepayment_datas['paid_amount']  }}</td>
                                           <td>
                                                 <ul class="list-unstyled hstack gap-1 mb-0">
                                                    <li>
@@ -80,7 +79,7 @@
                                                 @include('page.backend.salespayment.delete')
                                           </div>
 
-                                    
+
                                  @endforeach
                               </tbody>
                         </table>
@@ -93,8 +92,8 @@
             @include('page.backend.salespayment.create')
             </div>
         </div>
-        
 
-       
+
+
     </div>
 @endsection
