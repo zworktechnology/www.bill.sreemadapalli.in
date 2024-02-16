@@ -47,7 +47,7 @@ class CustomerController extends Controller
         return view('page.backend.customer.index', compact('customerdata'));
     }
 
-    public function viewall()
+    public function pending()
     {
 
         $data = Customer::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
@@ -69,7 +69,7 @@ class CustomerController extends Controller
             }
         }
 
-        return view('page.backend.customer.viewall', compact('customerdata'));
+        return view('page.backend.customer.pending', compact('customerdata'));
     }
 
 

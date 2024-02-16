@@ -8,7 +8,7 @@
                 <p style="color:lightgray">( All Customers Details )</p>
             </div>
             <div class="page-btn">
-                <a href="{{ route('customer.viewall') }}">
+                <a href="{{ route('customer.pending') }}">
                 <button class="btn btn-primary waves-effect waves-light btn-added">View Pending</button>
                 </a>
             </div>
@@ -34,9 +34,16 @@
                                             {{-- <td>{{ ++$keydata }}</td> --}}
                                             <td>{{ $custmer_data['name'] }}<br>{{ $custmer_data['phone_number'] }}</td>
 
+                                           
+
+
                                             @if ($custmer_data['pending_amount'] != '')
-                                                <td style="color: red;">{{ $custmer_data['pending_amount'] }}</td>
-                                            @else
+                                                <td style="color: red;">₹ {{ $custmer_data['pending_amount'] }}</td>
+                                            @elseif ($custmer_data['account_balance'] != '')
+                                                <td  style="color: green;">
+                                                ₹ {{ $custmer_data['account_balance'] }}
+                                                </td>
+                                                @else
                                                 <td></td>
                                             @endif
 

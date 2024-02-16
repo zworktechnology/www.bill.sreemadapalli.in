@@ -121,7 +121,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         // CHECK DUPLICATE
         Route::middleware(['auth:sanctum', 'verified'])->post('/zworktechnology/customer/checkduplicate', [CustomerController::class, 'checkduplicate'])->name('customer.checkduplicate');
         // VIEW ALL
-        Route::middleware(['auth:sanctum', 'verified'])->get('/zworktechnology/customer/pending', [CustomerController::class, 'viewall'])->name('customer.viewall');
+        Route::middleware(['auth:sanctum', 'verified'])->get('/zworktechnology/customer/pending', [CustomerController::class, 'pending'])->name('customer.pending');
     });
     // EMPLOYEE CONTROLLER
     Route::middleware(['auth:sanctum', 'verified'])->group(function () {
