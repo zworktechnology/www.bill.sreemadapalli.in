@@ -33,7 +33,6 @@ class SupplierController extends Controller
                 $account_balance = '';
             }
 
-          
 
             $supplierdata[] = array(
                 'id' => $datas->id,

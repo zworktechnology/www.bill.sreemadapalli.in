@@ -106,9 +106,6 @@
         </div>
         </div>
 
-        <div class="modal fade supplier-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
-            aria-hidden="true">
-            @include('page.backend.supplier.create')
-        </div>
+        
     </div>
 @endsection
