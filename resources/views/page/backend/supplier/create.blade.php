@@ -16,7 +16,7 @@
                     <div class="col-lg-12 col-sm-6 col-12">
                         <div class="form-group">
                             <label>Phone Number<span style="color: red;">*</span></label>
-                            <textarea name="phone_number" class="customer_contactno" placeholder="Enter Phone Number" required></textarea>
+                            <textarea name="phone_number" class="" placeholder="Enter Phone Number" required></textarea>
                             
                         </div>
                     </div>
