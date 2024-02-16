@@ -121,7 +121,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         // CHECK DUPLICATE
         Route::middleware(['auth:sanctum', 'verified'])->post('/zworktechnology/customer/checkduplicate', [CustomerController::class, 'checkduplicate'])->name('customer.checkduplicate');
         // VIEW ALL
-        Route::middleware(['auth:sanctum', 'verified'])->get('/zworktechnology/customer/viewall', [CustomerController::class, 'viewall'])->name('customer.viewall');
+        Route::middleware(['auth:sanctum', 'verified'])->get('/zworktechnology/customer/pending', [CustomerController::class, 'viewall'])->name('customer.viewall');
     });
     // EMPLOYEE CONTROLLER
     Route::middleware(['auth:sanctum', 'verified'])->group(function () {
@@ -207,7 +207,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         // EDIT
         Route::middleware(['auth:sanctum', 'verified'])->get('/zworktechnology/sales/edit/{unique_key}', [SaleController::class, 'edit'])->name('sales.edit');
 
-        
+
         // INDEX
         Route::middleware(['auth:sanctum', 'verified'])->get('/zworktechnology/deliverysales', [SaleController::class, 'delivery_index'])->name('deliverysales.delivery_index');
         // EDIT
@@ -364,7 +364,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/expense/datefilter', [ExpenseController::class, 'datefilter'])->name('expense.datefilter');
         // DELETE
         Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/expense/delete/{unique_key}', [ExpenseController::class, 'delete'])->name('expense.delete');
-        
+
     });
 
 
@@ -386,7 +386,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/outdoor/delete/{unique_key}', [OutdoorController::class, 'delete'])->name('outdoor.delete');
         // PAY BALACE
         Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/outdoor/pay_balance/{unique_key}', [OutdoorController::class, 'pay_balance'])->name('outdoor.pay_balance');
-        
+
     });
 
 
@@ -448,7 +448,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/payoff/update/{empid}/{month}/{year}', [Payoffcontroller::class, 'update'])->name('payoff.update');
         // DATAE FILTER
         Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/payoff/datefilter', [Payoffcontroller::class, 'datefilter'])->name('payoff.datefilter');
-        
+
     });
 
 
@@ -467,7 +467,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/deliveryboyspayoff/update/{deliveryboyid}/{month}/{year}', [DeliverypayoffController::class, 'update'])->name('deliveryboyspayoff.update');
         // DATAE FILTER
         Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/deliveryboyspayoff/datefilter', [DeliverypayoffController::class, 'datefilter'])->name('deliveryboyspayoff.datefilter');
-        
+
     });
 
 

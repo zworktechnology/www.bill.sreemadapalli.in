@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-sm-6 col-12">
                         <div class="form-group">
-                            <label>Name <span style="color: red;">*</span></label>
+                            <label>Name or Address <span style="color: red;">*</span></label>
                             <input type="text" name="name" placeholder="Enter name" required value="{{ $custmer_data['name'] }}">
                         </div>
                     </div>
@@ -21,8 +21,8 @@
                     </div>
                     <div class="col-lg-12 col-sm-6 col-12">
                         <div class="form-group">
-                            <label>Address<span style="color: red;">*</span></label>
-                            <input type="text" name="address" placeholder="Enter Address" value="{{ $custmer_data['address'] }}">
+                            <label>Note</label>
+                            <input type="text" name="address" placeholder="Enter Note (optional)" value="{{ $custmer_data['address'] }}">
                         </div>
                     </div>
                     <hr>
