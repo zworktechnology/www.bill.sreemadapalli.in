@@ -5,11 +5,11 @@
         <div class="page-header">
             <div class="page-title">
                 <h4>Customer</h4>
-                <p style="color:lightgray">( Pending Customers Details )</p>
+                <p style="color:lightgray">( All Customers Details )</p>
             </div>
             <div class="page-btn">
                 <a href="{{ route('customer.viewall') }}">
-                <button class="btn btn-primary waves-effect waves-light btn-added">View All</button>
+                <button class="btn btn-primary waves-effect waves-light btn-added">View Pending</button>
                 </a>
             </div>
         </div>
@@ -24,7 +24,7 @@
                                     <tr>
                                         {{-- <th>Sl. No</th> --}}
                                         <th>Details</th>
-                                        <th>Pending Amount</th>
+                                        <th>Accounts Value</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
