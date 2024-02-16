@@ -1442,21 +1442,10 @@ $(document).ready(function() {
     });
 
 
-    $(document).on('click', '.addsupplierphno', function() {
-    
-            $(".supplier_phnodiv").append(
-                '<div class="col-lg-10"><input type="text" name="phone_number" class="supplier_contactno"  placeholder="Enter Phone Number"></div>' +
-                '<div class="col-lg-2 removephnodiv"><button style="width: 35px;" class="text-white py-1 font-medium rounded-lg text-sm  text-center btn btn-danger remove-supply_phnodiv" type="button" >-</button>' +
-                '</div>'
-            );
-
-    });
+  
 
 });
 
-$(document).on('click', '.remove-supply_phnodiv', function() {
-    $(this).parent('div').remove();
-});
 
 $(document).on('click', '.remove-expensetr', function() {
     $(this).parents('tr').remove();
