@@ -5,6 +5,7 @@
         <div class="page-header">
             <div class="page-title">
                 <h4>Sales</h4>
+                <p style="color:lightgray">( Sales Details )</p>
             </div>
 
             <div class="page-btn">
@@ -29,47 +30,8 @@
                         </form>
                         <a href="{{ route('sales.create') }}" class="btn btn-added" style="margin-right: 10px;">Add New</a>
                 </div>
-
-
             </div>
         </div>
-
-
-        <div class="row">
-            <div class="col-lg-3 col-sm-6 col-12">
-                <div class="dash-widget dash1" style="background: #ad2a31;">
-                    <div class="dash-widgetcontent">
-                        <h5 style="color:white">₹ <span class="counters"  data-count="{{ $totsaleAmount }}"></span></h5>
-                        <h6 style="color:white">Total Sales Value</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6 col-12">
-                <div class="dash-widget dash1" style="background: #6ed1a3;">
-                    <div class="dash-widgetcontent">
-                        <h5>₹ <span class="counters" data-count="{{ $total_dine_in }}"></span></h5>
-                        <h6>Total Dine In</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6 col-12">
-                <div class="dash-widget dash1" style="background: #d5eb15;">
-                    <div class="dash-widgetcontent">
-                        <h5>₹ <span class="counters" data-count="{{ $total_take_away }}"></span></h5>
-                        <h6>Total WalkAway</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6 col-12">
-                <div class="dash-widget dash1" style="background: #ffb17f;">
-                    <div class="dash-widgetcontent">
-                        <h5>₹ <span class="counters" data-count="{{ $totaldelivery }}"></span></h5>
-                        <h6>Total Delivery</h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br/>
         <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
                 <li class="nav-item"><a class="nav-link active" href="#solid-tab1" data-bs-toggle="tab">Delivery</a></li>
             </ul>
@@ -169,7 +131,7 @@
                     </div>
 
                 </div>
-                   
+
             </div>
 
     </div>

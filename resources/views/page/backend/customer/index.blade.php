@@ -35,7 +35,7 @@
                                             <td>{{ $custmer_data['name'] }}<br>{{ $custmer_data['phone_number'] }}</td>
 
                                             @if ($custmer_data['pending_amount'] != '')
-                                                <td style="color: red;">₹ {{ $custmer_data['pending_amount'] }}</td>
+                                                <td style="color: red;">{{ $custmer_data['pending_amount'] }}</td>
                                             @else
                                                 <td></td>
                                             @endif

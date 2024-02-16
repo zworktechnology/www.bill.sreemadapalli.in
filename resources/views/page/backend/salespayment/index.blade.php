@@ -5,6 +5,7 @@
         <div class="page-header">
             <div class="page-title">
                 <h4>Sales Payment</h4>
+                <p style="color:lightgray">( Customers Sales Payment )</p>
             </div>
             <div class="page-btn">
 
@@ -19,8 +20,8 @@
                                         value="Search" /></div>
                             </div>
                         </form>
-                </div>  
-                    
+                </div>
+
             </div>
         </div>
 
@@ -78,7 +79,7 @@
                                                 @include('page.backend.salespayment.delete')
                                           </div>
 
-                                    
+
                                  @endforeach
                               </tbody>
                         </table>
@@ -91,8 +92,8 @@
             @include('page.backend.salespayment.create')
             </div>
         </div>
-        
 
-       
+
+
     </div>
 @endsection

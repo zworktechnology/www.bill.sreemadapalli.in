@@ -12,7 +12,7 @@
                                     <option value="" disabled selected hiddden>Select Customer</option>
                                     @foreach ($Customer as $Customers)
                                         <option value="{{ $Customers->id }}">{{ $Customers->name }} - {{ $Customers->phone_number }}</option>
-                                    @endforeach 
+                                    @endforeach
                                 </select>
                         </div>
                       </div>
@@ -48,6 +48,19 @@
                             <label> Balance</label>
                             <input type="text" name="salebalance" id="salebalance" class="salepaymentbal" placeholder="" readonly>
                          </div>
+                      </div>
+                   </div>
+                   <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+                         <div class="form-group">
+                            <label>Delivery Plan <span style="color: red;">*</span></label>
+                              <select class="form-control  select js-example-basic-single deliveryplan_id" name="deliveryplan_id" id="deliveryplanid">
+                                    <option value="" disabled selected hiddden>Select Delivery Plan</option>
+                                    @foreach ($deliveryplan as $deliveryplans)
+                                        <option value="{{ $deliveryplans->id }}">{{ $deliveryplans->name }}</option>
+                                    @endforeach
+                                </select>
+                        </div>
                       </div>
                    </div>
                    <div class="col-lg-12 button-align">

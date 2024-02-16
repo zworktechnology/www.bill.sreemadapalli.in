@@ -14,15 +14,14 @@
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Sales</h6>
                     <ul>
+                        <li class="{{ Route::is('customer.index', 'customer.store', 'customer.edit', 'customer.delete', 'customer.checkduplicate', 'customer.viewall') ? 'active' : '' }}">
+                            <a href="{{ route('customer.index') }}"><i data-feather="user"></i><span>Customers</span></a>
+                        </li>
                         <li class="{{ Route::is('sales.index', 'sales.datefilter') ? 'active' : '' }}">
                             <a href="{{ route('sales.index') }}"><i data-feather="shopping-cart"></i><span>Sales</span></a>
                         </li>
-                        <li class="{{ Route::is('salespayment.index') ? 'active' : '' }}">
-                            <a href="{{ route('salespayment.index') }}"><i data-feather="shopping-cart"></i><span>Sales Payment</span></a>
-                        </li>
-
-                        <li class="{{ Route::is('deliverysales.delivery_index', 'deliverysales.delivery_datefilter') ? 'active' : '' }}">
-                            <a href="{{ route('deliverysales.delivery_index') }}"><i data-feather="shopping-cart"></i><span>Delivery Sales</span></a>
+                        <li class="{{ Route::is('salespayment.index', 'salespayment.datefilter') ? 'active' : '' }}">
+                            <a href="{{ route('salespayment.index') }}"><i data-feather="credit-card"></i><span>Sales Payment</span></a>
                         </li>
                     </ul>
                 </li>
@@ -30,13 +29,13 @@
                     <h6 class="submenu-hdr">Purchase</h6>
                     <ul>
                         <li class="{{ Route::is('supplier.index', 'supplier.store') ? 'active' : '' }}">
-                            <a href="{{ route('supplier.index') }}"><i data-feather="credit-card"></i><span>Supplier</span></a>
+                            <a href="{{ route('supplier.index') }}"><i data-feather="user"></i><span>Supplier</span></a>
                         </li>
                         <li class="{{ Route::is('purchase.index', 'purchase.store', 'purchase.edit', 'purchase.datefilter', 'purchase.create') ? 'active' : '' }}">
-                            <a href="{{ route('purchase.index') }}"><i data-feather="credit-card"></i><span>Purchase</span></a>
+                            <a href="{{ route('purchase.index') }}"><i data-feather="shopping-cart"></i><span>Purchase</span></a>
                         </li>
                         <li class="{{ Route::is('purchasepayment.index') ? 'active' : '' }}">
-                            <a href="{{ route('purchasepayment.index') }}"><i data-feather="shopping-cart"></i><span>Purchase Payment</span></a>
+                            <a href="{{ route('purchasepayment.index') }}"><i data-feather="credit-card"></i><span>Purchase Payment</span></a>
                         </li>
                     </ul>
                 </li>
@@ -101,9 +100,6 @@
                     <ul>
                         <li class="{{ Route::is('bank.index', 'bank.store') ? 'active' : '' }}">
                             <a href="{{ route('bank.index') }}"><i data-feather="credit-card"></i><span>Payment Mode</span></a>
-                        </li>
-                        <li class="{{ Route::is('customer.index', 'customer.store', 'customer.edit', 'customer.delete', 'customer.checkduplicate', 'customer.viewall') ? 'active' : '' }}">
-                            <a href="{{ route('customer.index') }}"><i data-feather="user"></i><span>Customers</span></a>
                         </li>
                     </ul>
                 </li>
