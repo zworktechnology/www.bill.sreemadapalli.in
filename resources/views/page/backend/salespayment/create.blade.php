@@ -12,7 +12,7 @@
                                 name="customer_id" id="customer_id" required>
                                 <option value="" disabled selected hiddden>Select Customer</option>
                                 @foreach ($Customer as $Customers)
-                                    <option value="{{ $Customers->id }}">{{ $Customers->name }} -
+                                    <option value="{{ $Customers->id }}">{{ $Customers->name }}<br>
                                         {{ $Customers->phone_number }}</option>
                                 @endforeach
                             </select>
