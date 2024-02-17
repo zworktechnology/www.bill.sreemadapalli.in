@@ -2,34 +2,31 @@
 
 namespace App\Exports;
 
-use App\Models\Customer;
+use App\Models\Supplier;
 use App\Models\Payment;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class AllCustomersExport implements FromCollection
+class SuppliersExport implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
+        $data = Supplier::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
 
-        $data = Customer::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
-        $customerdata = [];
-        foreach ($data as $key => $datas)
-        {
-            $PaymentsData = Payment::where('customer_id', '=', $datas->id)->first();
+        $supplierdata = [];
+        foreach ($data as $key => $datas) {
+
+            $PaymentsData = Payment::where('supplier_id', '=', $datas->id)->first();
             if($PaymentsData != ""){
-                if($PaymentsData->salepaid > $PaymentsData->saleamount){
-                    $account_balance = $PaymentsData->salepaid - $PaymentsData->saleamount;
+                if($PaymentsData->purchase_paid > $PaymentsData->purchase_amount){
+                    $account_balance = $PaymentsData->purchase_paid - $PaymentsData->purchase_amount;
                     $pending_amount = '';
-                }else if($PaymentsData->saleamount > $PaymentsData->salepaid){
-                    $pending_amount = $PaymentsData->saleamount - $PaymentsData->salepaid;
+                }else if($PaymentsData->purchase_amount > $PaymentsData->purchase_paid){
+                    $pending_amount = $PaymentsData->purchase_amount - $PaymentsData->purchase_paid;
                     $account_balance = '';
-                }else {
-                    $pending_amount = '';
-                $account_balance = '';
                 }
             }else {
                 $pending_amount = '';
@@ -43,19 +40,20 @@ class AllCustomersExport implements FromCollection
             }else {
                 $balnceamount = '';
             }
-            $customerdata[] = array(
+
+
+            $supplierdata[] = array(
                 'name' => $datas->name,
                 'phone_number' => $datas->phone_number,
                 'balnceamount' => $balnceamount,
             );
         }
 
-        return collect($customerdata);
+        return collect($supplierdata);
     }
-
 
     public function headings(): array
     {
-        return ["Name", "Phone Number", "AccountBalance"];
+        return ["Name", "Phone Number", "Pending"];
     }
 }

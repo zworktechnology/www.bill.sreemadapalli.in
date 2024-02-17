@@ -10,6 +10,10 @@
             <div class="page-btn">
 
                 <div style="display: flex;">
+
+                <a href="/salespayment_pdfexport/{{ $today }}" target="_blank" class="btn btn-sucess" style="margin-right:5px;background: #7eddb1;">PDF Export</a>
+                <a href="/salespayment_excelexport/{{ $today }}" target="_blank" class="btn btn-sucess" style="margin-right:5px;background: #e1c677;">Excel</a>
+
                         <form autocomplete="off" method="POST" action="{{ route('salespayment.datefilter') }}">
                             @method('PUT')
                             @csrf

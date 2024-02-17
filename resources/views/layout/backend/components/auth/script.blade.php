@@ -1254,13 +1254,13 @@ function printDiv(divName) {
 
 
 
-    $(document).on("keyup", 'input.purchasepaidamount', function() {
-        var purchasepaidamount = $(this).val();
-        var purchasetotal_amount = $(".purchasetotal_amount").val();
-        //alert(bill_paid_amount);
-        var purchase_balance_amount = Number(purchasetotal_amount) - Number(purchasepaidamount);
-        $('.purchasebalanceamount').val(purchase_balance_amount.toFixed(2));
-    });
+    // $(document).on("keyup", 'input.purchasepaidamount', function() {
+    //     var purchasepaidamount = $(this).val();
+    //     var purchasetotal_amount = $(".purchasetotal_amount").val();
+    //     //alert(bill_paid_amount);
+    //     var purchase_balance_amount = Number(purchasetotal_amount) - Number(purchasepaidamount);
+    //     $('.purchasebalanceamount').val(purchase_balance_amount.toFixed(2));
+    // });
 
 
     $(document).on("keyup", 'input.purchasepaidamount', function() {
@@ -1372,23 +1372,29 @@ function purchasesubmitForm(btn) {
                             var len = response.length;
                             for (var i = 0; i < len; i++) {
                                 $(".purchaseoldbalance").val(response[i].payment_pending);
-                                var purchasepaidamount = 0;
-                                var balance_amount = Number(response[i].payment_pending) - Number(purchasepaidamount);
-                                $('.purchasebal').val(balance_amount.toFixed(2));
+                                // var purchasepaidamount = 0;
+                                // var balance_amount = Number(response[i].payment_pending) - Number(purchasepaidamount);
+                                // $('.purchasebal').val(balance_amount.toFixed(2));
                             }
                         }
                     });
             });
     });
 
-
+    $(document).on("keyup", '.purchasetotal_amount', function() {
+        var purchasetotal_amount = $(this).val();
+        var purchaseoldbalance = $(".purchaseoldbalance").val();
+        //alert(bill_paid_amount);
+        var grandtotal = Number(purchasetotal_amount) - Number(purchaseoldbalance);
+        $('.purchasegrandtotal').val(grandtotal.toFixed(2));
+    });
 
     $(document).on("keyup", '.purchasepaidamount', function() {
         var purchasepaidamount = $(this).val();
-        var purchaseoldbalance = $(".purchaseoldbalance").val();
+        var purchasegrandtotal = $(".purchasegrandtotal").val();
         //alert(bill_paid_amount);
-        var balance_amount = Number(purchaseoldbalance) - Number(purchasepaidamount);
-        $('.purchasebal').val(balance_amount.toFixed(2));
+        var balance_amount = Number(purchasegrandtotal) - Number(purchasepaidamount);
+        $('.purchasebalanceamount').val(balance_amount.toFixed(2));
     });
 
 

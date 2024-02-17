@@ -514,3 +514,16 @@ Route::get('/customerpending_export', [CustomerController::class, 'customerpendi
 Route::get('/customerall_export', [CustomerController::class, 'customerall_export']);
 Route::get('/customerpending_excelexport', [CustomerController::class, 'customerpending_excelexport']);
 Route::get('/customerall_excelexport', [CustomerController::class, 'customerall_excelexport']);
+
+Route::get('/salespayment_pdfexport/{today}', [SalespaymentController::class, 'salespayment_pdfexport']);
+Route::get('/salespayment_excelexport/{today}', [SalespaymentController::class, 'salespayment_excelexport']);
+
+Route::get('/supplierallpdf_export', [SupplierController::class, 'supplierallpdf_export']);
+Route::get('/supplierall_excelexport', [SupplierController::class, 'supplierall_excelexport']);
+
+
+Route::get('/purchase_pdfexport/{today}', [PurchaseController::class, 'purchase_pdfexport']);
+Route::get('/purchase_excelexport/{today}', [PurchaseController::class, 'purchase_excelexport']);
+
+Route::get('/purchasepayment_pdfexport/{today}', [PurchasepaymentController::class, 'purchasepayment_pdfexport']);
+Route::get('/purchasepayment_excelexport/{today}', [PurchasepaymentController::class, 'purchasepayment_excelexport']);

@@ -10,6 +10,7 @@ use App\Models\Customer;
 use App\Models\Deliveryplan;
 use App\Models\Salespayment;
 use App\Models\Payment;
+use App\Exports\SalespaymentExport;
 
 
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
+use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
 class SalespaymentController extends Controller
@@ -206,5 +208,46 @@ class SalespaymentController extends Controller
         $data->delete();
 
         return redirect()->route('salespayment.index')->with('warning', 'Deleted !');
+    }
+
+
+
+    public function salespayment_pdfexport($today) 
+    {
+        $data = Salespayment::where('date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
+        $salepayment_data = [];
+        foreach ($data as $key => $datas) {
+
+                $customer = Customer::findOrFail($datas->customer_id);
+
+            $salepayment_data[] = array(
+                'customer' => $customer->name,
+                'phone_number' => $customer->phone_number,
+                'customer_id' => $datas->customer_id,
+                'date' => date('d-m-Y', strtotime($datas->date)),
+                'time' => $datas->time,
+                'paid_amount' => $datas->paid_amount,
+                'id' => $datas->id,
+                'unique_key' => $datas->unique_key,
+            );
+        }
+
+    
+
+
+        $pdf = Pdf::loadView('page.backend.salespayment.salespayment_pdfexport', [
+            'salepayment_data' => $salepayment_data,
+            'today' => $today,
+        ]);
+
+        $name = 'SalesReceipt.' . 'pdf';
+        return $pdf->stream($name);
+    }
+
+
+    public function salespayment_excelexport($today) 
+    {
+       // $from = Carbon::parse($today);
+        return Excel::download(new SalespaymentExport($today), 'salepaymentreports.xlsx');
     }
 }

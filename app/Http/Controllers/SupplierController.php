@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\Supplier;
 use App\Models\Payment;
+use App\Exports\SuppliersExport;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
 class SupplierController extends Controller
@@ -128,5 +130,58 @@ class SupplierController extends Controller
             $userData['data'] = $SupplierData;
             echo json_encode($userData);
         }
+    }
+
+
+
+    public function supplierallpdf_export() 
+    {
+        $data = Supplier::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
+
+        $supplierdata = [];
+        foreach ($data as $key => $datas) {
+
+            $PaymentsData = Payment::where('supplier_id', '=', $datas->id)->first();
+            if($PaymentsData != ""){
+                if($PaymentsData->purchase_paid > $PaymentsData->purchase_amount){
+                    $account_balance = $PaymentsData->purchase_paid - $PaymentsData->purchase_amount;
+                    $pending_amount = '';
+                }else if($PaymentsData->purchase_amount > $PaymentsData->purchase_paid){
+                    $pending_amount = $PaymentsData->purchase_amount - $PaymentsData->purchase_paid;
+                    $account_balance = '';
+                }
+            }else {
+                $pending_amount = '';
+                $account_balance = '';
+            }
+
+
+            $supplierdata[] = array(
+                'id' => $datas->id,
+                'unique_key' => $datas->unique_key,
+                'name' => $datas->name,
+                'phone_number' => $datas->phone_number,
+                'address' => $datas->address,
+                'account_balance' => $account_balance,
+                'pending_amount' => $pending_amount,
+            );
+        }
+
+        $today = Carbon::now()->format('Y-m-d');
+
+
+        $pdf = Pdf::loadView('page.backend.supplier.supplierallpdf_export', [
+            'supplierdata' => $supplierdata,
+            'today' => $today,
+        ]);
+
+        $name = 'AllSupplierReport.' . 'pdf';
+        return $pdf->stream($name);
+    }
+
+
+    public function supplierall_excelexport() 
+    {
+        return Excel::download(new SuppliersExport, 'suppliers.xlsx');
     }
 }

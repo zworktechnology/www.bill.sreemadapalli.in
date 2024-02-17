@@ -10,6 +10,7 @@ use App\Models\Purchaseproduct;
 use App\Models\Bank;
 use App\Models\Payment;
 use App\Models\Purchasepayment;
+use App\Exports\PurchasepaymentExport;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
+use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
 class PurchasepaymentController extends Controller
@@ -188,6 +190,45 @@ class PurchasepaymentController extends Controller
         $data->delete();
 
         return redirect()->route('purchasepayment.index')->with('warning', 'Deleted !');
+    }
+
+
+    public function purchasepayment_pdfexport($today) 
+    {
+        $data = Purchasepayment::where('date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
+        $purchasepayment_data = [];
+        foreach ($data as $key => $datas) {
+
+                $supplier = Supplier::findOrFail($datas->supplier_id);
+
+            $purchasepayment_data[] = array(
+                'supplier' => $supplier->name,
+                'phone_number' => $supplier->phone_number,
+                'supplier_id' => $datas->supplier_id,
+                'purchasedate' => $datas->date,
+                'date' => date('d-m-Y', strtotime($datas->date)),
+                'paid_amount' => $datas->paid_amount,
+                'id' => $datas->id,
+                'unique_key' => $datas->unique_key,
+            );
+        }
+
+    
+
+
+        $pdf = Pdf::loadView('page.backend.purchasepayment.purchasepayment_pdfexport', [
+            'purchasepayment_data' => $purchasepayment_data,
+            'today' => $today,
+        ]);
+
+        $name = 'PurchaseExport.' . 'pdf';
+        return $pdf->stream($name);
+    }
+
+    public function purchasepayment_excelexport($today) 
+    {
+       // $from = Carbon::parse($today);
+        return Excel::download(new PurchasepaymentExport($today), 'purchasepaymentreports.xlsx');
     }
 
 }

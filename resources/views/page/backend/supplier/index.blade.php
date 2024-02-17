@@ -7,12 +7,18 @@
                 <h4>Supplier</h4>
                 <p style="color:lightgray">( All Suppliers Details )</p>
             </div>
+            <div class="page-btn" >
+                <div style="display:flex;">
+                    <a href="/supplierallpdf_export" target="_blank" class="btn btn-sucess" style="margin-right:5px;background: #7eddb1;">PDF Export</a>
+                    <a href="/supplierall_excelexport" target="_blank" class="btn btn-sucess" style="margin-right:5px;background: #e1c677;">Excel</a>
+                </div>
+            </div>
         </div>
 
         <div style="display: flex">
         <div class="col-8">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body"> 
                     <div class="table-responsive">
                         <table class="table  datanew">
                             <thead>
@@ -26,7 +32,15 @@
                                 @foreach ($supplierdata as $keydata => $supplier_data)
                                     <tr>
                                         <td>{{ $supplier_data['name'] }} <br> {{ $supplier_data['phone_number']  }}</td>
-                                        <td></td>
+                                        @if ($supplier_data['pending_amount'] != '')
+                                                <td style="color: red;">₹ {{ $supplier_data['pending_amount'] }}</td>
+                                            @elseif ($supplier_data['account_balance'] != '')
+                                                <td  style="color: green;">
+                                                ₹ {{ $supplier_data['account_balance'] }}
+                                                </td>
+                                                @else
+                                                <td></td>
+                                            @endif
                                         <td>
                                             <ul class="list-unstyled hstack gap-1 mb-0">
                                                 <li>

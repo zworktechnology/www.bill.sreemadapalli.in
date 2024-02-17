@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Payment;
 use App\Exports\CustomersExport;
+use App\Exports\AllCustomersExport;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -215,6 +216,9 @@ class CustomerController extends Controller
                 $pending_amount = '';
                 $account_balance = '';
             }
+
+
+            
             $customerdata[] = array(
                 'id' => $datas->id,
                 'unique_key' => $datas->unique_key,
@@ -248,7 +252,7 @@ class CustomerController extends Controller
 
     public function customerall_excelexport() 
     {
-        return Excel::download(new CustomersExport, 'allcustomers.xlsx');
+        return Excel::download(new AllCustomersExport, 'allcustomers.xlsx');
     }
 
 

@@ -48,7 +48,7 @@
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Supplier<span
                                         style="color: red;">*</span> </label>
-                                <select class="form-control js-example-basic-single select" name="supplier_id"
+                                <select class="form-control js-example-basic-single select purchasepaymentsupplier" name="supplier_id"
                                     id="supplier_id" required>
                                     <option value="" disabled selected hiddden>Select Supplier</option>
                                     @foreach ($Supplier as $suppliers)
@@ -66,6 +66,20 @@
                                         style="color: red;">*</span></label>
                                 <input type="text" name="purchasetotal_amount" class="purchasetotal_amount"
                                     placeholder="Enter Total Amount">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Old Balance<span
+                                        style="color: red;">*</span></label>
+                                <input type="text" name="purchaseoldbalance" class="purchaseoldbalance" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Grand Total<span
+                                        style="color: red;">*</span></label>
+                                <input type="text" name="purchasegrandtotal" class="purchasegrandtotal" readonly>
                             </div>
                         </div>
                         <div class="col-lg-6 col-sm-6 col-12">

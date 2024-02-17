@@ -9,6 +9,7 @@ use App\Models\Supplier;
 use App\Models\Purchaseproduct;
 use App\Models\Bank;
 use App\Models\Payment;
+use App\Exports\PurchaseExport;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
+use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
 class PurchaseController extends Controller
@@ -338,5 +340,54 @@ class PurchaseController extends Controller
             );
         }
         echo json_encode($output);
+    }
+
+
+    public function purchase_pdfexport($today) 
+    {
+        $data = Purchase::where('date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
+        $purchase_data = [];
+        $terms = [];
+        foreach ($data as $key => $datas) {
+            $supplier_name = Supplier::findOrFail($datas->supplier_id);
+
+
+            $payment_method = Bank::findOrFail($datas->payment_method);
+            $purchase_data[] = array(
+                'unique_key' => $datas->unique_key,
+                'bill_no' => $datas->bill_no,
+                'voucher_no' => $datas->voucher_no,
+                'date' => $datas->date,
+                'time' => $datas->time,
+                'supplier_id' => $datas->supplier_id,
+                'supplier_name' => $supplier_name->name,
+                'supplier_phone_number' => $supplier_name->phone_number,
+                'supplier_address' => $supplier_name->address,
+                'id' => $datas->id,
+                'grandtotal' => $datas->grandtotal,
+                'paidamount' => $datas->paidamount,
+                'balanceamount' => $datas->balanceamount,
+                'payment_method' => $payment_method->name,
+            );
+
+        }
+
+    
+
+
+        $pdf = Pdf::loadView('page.backend.purchase.purchase_pdfexport', [
+            'purchase_data' => $purchase_data,
+            'today' => $today,
+        ]);
+
+        $name = 'PurchaseExport.' . 'pdf';
+        return $pdf->stream($name);
+    }
+
+
+    public function purchase_excelexport($today) 
+    {
+       // $from = Carbon::parse($today);
+        return Excel::download(new PurchaseExport($today), 'purchasereports.xlsx');
     }
 }
