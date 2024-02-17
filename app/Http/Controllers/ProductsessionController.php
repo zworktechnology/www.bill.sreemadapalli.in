@@ -21,7 +21,7 @@ class ProductsessionController extends Controller
 {
     public function index()
     {
-        $data = Product::where('soft_delete', '!=', 1)->orderBy('id', 'DESC')->take(100)->get();
+        $data = Product::where('soft_delete', '!=', 1)->orderBy('id', 'DESC')->get();
         $Productdata = [];
         $terms = [];
         foreach ($data as $key => $datas) {

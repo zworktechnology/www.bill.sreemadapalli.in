@@ -19,7 +19,7 @@ class Payoffcontroller extends Controller
     {
         
         $today = Carbon::now()->format('Y-m-d');
-        $data = Payoff::where('month', '=', date('m', strtotime($today)))->where('year', '=', date('Y', strtotime($today)))->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
+        $data = Payoff::where('month', '=', date('m', strtotime($today)))->where('year', '=', date('Y', strtotime($today)))->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
         $payoffdata = [];
         foreach ($data as $key => $datas) {
 

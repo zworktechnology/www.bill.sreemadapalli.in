@@ -20,7 +20,7 @@ class DenominationController extends Controller
     {
         $today = Carbon::now()->format('Y-m-d');
         $timenow = Carbon::now()->format('H:i');
-        $data = Denomination::where('soft_delete', '!=', 1)->orderBy('id', 'DESC')->take(100)->get();
+        $data = Denomination::where('soft_delete', '!=', 1)->orderBy('id', 'DESC')->get();
         $determination_Data = [];
         $terms = [];
         foreach ($data as $key => $datas) {

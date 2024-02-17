@@ -11,7 +11,7 @@ class DeliveryareaController extends Controller
 {
     public function index()
     {
-        $data = Deliveryarea::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
+        $data = Deliveryarea::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
 
         return view('page.backend.deliveryarea.index', compact('data'));
     }

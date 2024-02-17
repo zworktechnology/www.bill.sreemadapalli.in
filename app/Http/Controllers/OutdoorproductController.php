@@ -13,7 +13,7 @@ class OutdoorproductController extends Controller
 {
     public function index()
     {
-        $data = Outdoorproduct::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
+        $data = Outdoorproduct::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
         return view('page.backend.outdoor_product.index', compact('data'));
     }
 

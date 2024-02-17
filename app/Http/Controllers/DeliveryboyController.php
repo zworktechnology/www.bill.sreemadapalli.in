@@ -12,7 +12,7 @@ class DeliveryboyController extends Controller
 {
     public function index()
     {
-        $data = Deliveryboy::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
+        $data = Deliveryboy::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
         $deliveryarea = Deliveryarea::where('soft_delete', '!=', 1)->get();
 
         return view('page.backend.deliveryboy.index', compact('data', 'deliveryarea'));

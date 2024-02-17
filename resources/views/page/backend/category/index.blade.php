@@ -6,12 +6,10 @@
             <div class="page-title">
                 <h4>Category</h4>
             </div>
-            <div class="page-btn">
-                <button type="button" class="btn btn-primary waves-effect waves-light btn-added" data-bs-toggle="modal"
-                    data-bs-target=".category-modal-xl">Add New</button>
-            </div>
         </div>
 
+        <div style="display: flex">
+            <div class="col-8">
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
@@ -64,6 +62,27 @@
                 </div>
             </div>
         </div>
+            </div>
+            <div class="col-4" style="margin-left: 25px;">
+                <div class="card">
+                    <div class="card-body">
+                        <form autocomplete="off" method="POST" action="{{ route('category.store') }}">
+                            @csrf
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <label>Name <span style="color: red;">*</span></label>
+                                        <input type="text" name="name" placeholder="Enter Category name" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 button-align">
+                                    <button type="submit" class="btn btn-submit me-2">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
         <div class="modal fade category-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
             aria-hidden="true">

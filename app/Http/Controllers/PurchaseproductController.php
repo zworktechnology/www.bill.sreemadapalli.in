@@ -15,7 +15,7 @@ class PurchaseproductController extends Controller
 {
     public function index()
     {
-        $data = Purchaseproduct::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->take(100)->get();
+        $data = Purchaseproduct::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
         return view('page.backend.purchase_product.index', compact('data'));
     }
 
