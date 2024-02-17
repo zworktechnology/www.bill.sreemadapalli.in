@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Payment;
+use App\Exports\CustomersExport;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
 class CustomerController extends Controller
@@ -148,4 +150,107 @@ class CustomerController extends Controller
             echo json_encode($userData);
         }
     }
+
+
+
+    public function customerpending_export() 
+    {
+        $data = Customer::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
+        $customerdata = [];
+        foreach ($data as $key => $datas) {
+
+            $PaymentsData = Payment::where('customer_id', '=', $datas->id)->first();
+            if($PaymentsData != ""){
+
+                if($PaymentsData->saleamount > $PaymentsData->salepaid){
+                    $pending_amount = $PaymentsData->saleamount - $PaymentsData->salepaid;
+
+
+                    $customerdata[] = array(
+                        'id' => $datas->id,
+                        'unique_key' => $datas->unique_key,
+                        'name' => $datas->name,
+                        'phone_number' => $datas->phone_number,
+                        'address' => $datas->address,
+                        'pending_amount' => $pending_amount,
+                    );
+                }
+            }
+
+        }
+
+        $today = Carbon::now()->format('Y-m-d');
+
+
+        $pdf = Pdf::loadView('page.backend.customer.customerpending_export', [
+            'customerdata' => $customerdata,
+            'today' => $today,
+        ]);
+
+        $name = 'CustomerPendingReport.' . 'pdf';
+        return $pdf->stream($name);
+    }
+
+
+
+    public function customerall_export() 
+    {
+        $data = Customer::where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
+        $customerdata = [];
+        foreach ($data as $key => $datas) {
+
+            $PaymentsData = Payment::where('customer_id', '=', $datas->id)->first();
+            if($PaymentsData != ""){
+                if($PaymentsData->salepaid > $PaymentsData->saleamount){
+                    $account_balance = $PaymentsData->salepaid - $PaymentsData->saleamount;
+                    $pending_amount = '';
+                }else if($PaymentsData->saleamount > $PaymentsData->salepaid){
+                    $pending_amount = $PaymentsData->saleamount - $PaymentsData->salepaid;
+                    $account_balance = '';
+                }else {
+                    $pending_amount = '';
+                $account_balance = '';
+                }
+            }else {
+                $pending_amount = '';
+                $account_balance = '';
+            }
+            $customerdata[] = array(
+                'id' => $datas->id,
+                'unique_key' => $datas->unique_key,
+                'name' => $datas->name,
+                'phone_number' => $datas->phone_number,
+                'address' => $datas->address,
+                'pending_amount' => $pending_amount,
+                'account_balance' => $account_balance,
+            );
+
+        }
+
+        $today = Carbon::now()->format('Y-m-d');
+
+
+        $pdf = Pdf::loadView('page.backend.customer.customerall_export', [
+            'customerdata' => $customerdata,
+            'today' => $today,
+        ]);
+
+        $name = 'CustomerPendingReport.' . 'pdf';
+        return $pdf->stream($name);
+    }
+
+
+
+    public function customerpending_excelexport() 
+    {
+        return Excel::download(new CustomersExport, 'pendingcustomers.xlsx');
+    }
+
+    public function customerall_excelexport() 
+    {
+        return Excel::download(new CustomersExport, 'allcustomers.xlsx');
+    }
+
+
+
 }

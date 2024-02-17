@@ -508,3 +508,9 @@ Route::get('getoutdoorProducts/', [OutdoorproductController::class, 'getoutdoorP
 Route::get('/gettotpresentdays', [EmpattendanceController::class, 'gettotpresentdays']);
 Route::get('/getdeliveryboy_totpresentdays', [DeliveryattendanceController::class, 'getdeliveryboy_totpresentdays']);
 Route::get('/getoldbalanceforPayment', [SaleController::class, 'getoldbalanceforPayment']);
+
+
+Route::get('/customerpending_export', [CustomerController::class, 'customerpending_export']);
+Route::get('/customerall_export', [CustomerController::class, 'customerall_export']);
+Route::get('/customerpending_excelexport', [CustomerController::class, 'customerpending_excelexport']);
+Route::get('/customerall_excelexport', [CustomerController::class, 'customerall_excelexport']);

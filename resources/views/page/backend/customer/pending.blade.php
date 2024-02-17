@@ -8,9 +8,13 @@
                 <p style="color:lightgray">( Pending Customers Details )</p>
             </div>
             <div class="page-btn">
-                <a href="{{ route('customer.index') }}">
-                <button class="btn btn-primary waves-effect waves-light btn-added">View All</button>
-                </a>
+                <div style="display:flex;">
+                    <a href="/customerpending_export" target="_blank" class="btn btn-sucess" style="margin-right:5px;background: #7eddb1;">PDF</a>
+                    <a href="/customerpending_excelexport" target="_blank" class="btn btn-sucess" style="margin-right:5px;background: #e1c677;">Excel</a>
+                    <a href="{{ route('customer.index') }}">
+                        <button class="btn btn-primary waves-effect waves-light btn-added">View All</button>
+                    </a>
+                </div>
             </div>
         </div>
 

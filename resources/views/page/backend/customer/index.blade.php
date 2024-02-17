@@ -7,10 +7,14 @@
                 <h4>Customer</h4>
                 <p style="color:lightgray">( All Customers Details )</p>
             </div>
-            <div class="page-btn">
-                <a href="{{ route('customer.pending') }}">
-                <button class="btn btn-primary waves-effect waves-light btn-added">View Pending</button>
-                </a>
+            <div class="page-btn" >
+                <div style="display:flex;">
+                <a href="/customerall_export" target="_blank" class="btn btn-sucess" style="margin-right:5px;background: #7eddb1;">PDF Export</a>
+                <a href="/customerall_excelexport" target="_blank" class="btn btn-sucess" style="margin-right:5px;background: #e1c677;">Excel</a>
+                    <a href="{{ route('customer.pending') }}">
+                        <button class="btn btn-primary waves-effect waves-light btn-added">View Pending</button>
+                    </a>
+                </div>
             </div>
         </div>
 
