@@ -1352,6 +1352,15 @@ function purchasesubmitForm(btn) {
     });
 
 
+    $(document).on("keyup", '.purchasepaidamount', function() {
+        var purchasepaidamount = $(this).val();
+        var purchaseold_balance = $("#purchaseold_balance").val();
+        //alert(bill_paid_amount);
+        var balance_amount = Number(purchaseold_balance) - Number(purchasepaidamount);
+        $('#purchase_balance').val(balance_amount.toFixed(2));
+    });
+
+
 
 
     $(document).ready(function() {
@@ -1385,8 +1394,12 @@ function purchasesubmitForm(btn) {
         var purchasetotal_amount = $(this).val();
         var purchaseoldbalance = $(".purchaseoldbalance").val();
         //alert(bill_paid_amount);
-        var grandtotal = Number(purchasetotal_amount) - Number(purchaseoldbalance);
+        var grandtotal = Number(purchasetotal_amount) + Number(purchaseoldbalance);
         $('.purchasegrandtotal').val(grandtotal.toFixed(2));
+
+        var purchasepaidamount = $(".purchasepaidamount").val();
+        var balance_amount = Number(grandtotal.toFixed(2)) - Number(purchasepaidamount);
+        $('.purchasebalanceamount').val(balance_amount.toFixed(2));
     });
 
     $(document).on("keyup", '.purchasepaidamount', function() {

@@ -30,7 +30,7 @@
                       <div class="col-lg-12 col-md-12 col-sm-12">
                          <div class="form-group">
                             <label>Old Balance</label>
-                            <input type="text" class="purchaseoldbalance" name="purchaseoldbalance" id="purchaseoldbalance" placeholder="" readonly>
+                            <input type="text" class="purchaseoldbalance" name="purchaseoldbalance" id="purchaseold_balance" placeholder="" readonly>
                          </div>
                       </div>
                    </div>
@@ -42,11 +42,20 @@
                          </div>
                       </div>
                    </div>
+                  <div class="row">
+                     <div class="col-lg-12 col-md-12 col-sm-12">
+                           <div class="form-group">
+                              <label>Note</label>
+                              <input type="text" name="purchasepayment_note" id="purchasepayment_note" class="purchasepayment_note"
+                                 placeholder="Enter Note">
+                           </div>
+                     </div>
+                  </div>
                    <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12">
                          <div class="form-group">
                             <label> Balance</label>
-                            <input type="text" name="purchasebalance" id="purchasebalance" class="purchasebal" placeholder="" readonly>
+                            <input type="text" name="purchasebalance" id="purchase_balance" class="purchasebal" placeholder="" readonly>
                          </div>
                       </div>
                    </div>

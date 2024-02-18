@@ -37,6 +37,7 @@ class PurchasepaymentController extends Controller
                 'supplier' => $supplier->name,
                 'supplier_id' => $datas->supplier_id,
                 'purchasedate' => $datas->date,
+                'purchasepayment_note' => $datas->purchasepayment_note,
                 'date' => date('d-m-Y', strtotime($datas->date)),
                 'paid_amount' => $datas->paid_amount,
                 'id' => $datas->id,
@@ -66,6 +67,7 @@ class PurchasepaymentController extends Controller
                 'purchasedate' => $datas->date,
                 'date' => date('d-m-Y', strtotime($datas->date)),
                 'paid_amount' => $datas->paid_amount,
+                'purchasepayment_note' => $datas->purchasepayment_note,
                 'id' => $datas->id,
                 'unique_key' => $datas->unique_key,
             );
@@ -78,17 +80,19 @@ class PurchasepaymentController extends Controller
     }
 
 
-
     public function store(Request $request)
     {
         $randomkey = Str::random(5);
+        $timenow = Carbon::now()->format('H:i');
 
         $data = new Purchasepayment();
 
         $data->unique_key = $randomkey;
         $data->supplier_id = $request->get('supplier_id');
         $data->date = $request->get('date');
+        $data->time = $timenow;
         $data->paid_amount = $request->get('paid_amount');
+        $data->purchasepayment_note = $request->get('purchasepayment_note');
         $data->save();
 
         $supplier_id = $request->get('supplier_id');
@@ -108,7 +112,20 @@ class PurchasepaymentController extends Controller
             DB::table('payments')->where('supplier_id', $supplier_id)->update([
                 'purchase_amount' => $new_grossamount,  'purchase_paid' => $new_paid, 'purchase_balance' => $new_balance
             ]);
-        }
+        }else {
+
+            $new_grossamount = 0;
+            $paidamount = $request->get('paid_amount');
+            $new_balance = $new_grossamount - $paidamount;
+
+            $Paymentata = new Payment();
+
+            $Paymentata->supplier_id = $supplier_id;
+            $Paymentata->purchase_amount = 0;
+            $Paymentata->purchase_paid = $paidamount;
+            $Paymentata->purchase_balance = $new_balance;
+            $Paymentata->save();
+    }
 
         return redirect()->route('purchasepayment.index')->with('message', 'Added !');
     }
@@ -146,6 +163,7 @@ class PurchasepaymentController extends Controller
         $Purchasepayment->supplier_id = $request->get('supplier_id');
         $Purchasepayment->date = $request->get('date');
         $Purchasepayment->paid_amount = $request->get('paid_amount');
+        $Purchasepayment->purchasepayment_note = $request->get('purchasepayment_note');
         $Purchasepayment->update();
 
         

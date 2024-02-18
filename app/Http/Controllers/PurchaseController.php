@@ -148,7 +148,9 @@ class PurchaseController extends Controller
         $data->date = $request->get('date');
         $data->time = $request->get('time');
         $data->supplier_id = $request->get('supplier_id');
-        $data->grandtotal = $request->get('purchasetotal_amount');
+        $data->purchaseoldbalance = $request->get('purchaseoldbalance');
+        $data->total = $request->get('purchasetotal_amount');
+        $data->grandtotal = $request->get('purchasegrandtotal');
         $data->paidamount = $request->get('purchasepaidamount');
         $data->balanceamount = $request->get('purchasebalanceamount');
         $data->payment_method = $request->get('payment_method');
@@ -210,7 +212,7 @@ class PurchaseController extends Controller
     {
         $Purchase_Data = Purchase::where('unique_key', '=', $unique_key)->first();
 
-        $purchase_supplier_id = $request->get('supplier_id');
+        $purchase_supplier_id = $Purchase_Data->supplier_id;
 
 
         $PurchasebranchwiseData = Payment::where('supplier_id', '=', $purchase_supplier_id)->first();
@@ -220,7 +222,7 @@ class PurchaseController extends Controller
             $old_grossamount = $PurchasebranchwiseData->purchase_amount;
             $old_paid = $PurchasebranchwiseData->purchase_paid;
 
-            $oldentry_grossamount = $Purchase_Data->grandtotal;
+            $oldentry_grossamount = $Purchase_Data->total;
             $oldentry_paid = $Purchase_Data->paidamount;
 
             $gross_amount = $request->get('purchasetotal_amount');
@@ -246,14 +248,13 @@ class PurchaseController extends Controller
         $Purchase_Data->voucher_no = $request->get('voucher_no');
         $Purchase_Data->date = $request->get('date');
         $Purchase_Data->time = $request->get('time');
-        $Purchase_Data->supplier_id = $request->get('supplier_id');
-        $Purchase_Data->grandtotal = $request->get('purchasetotal_amount');
+        $Purchase_Data->purchaseoldbalance = $request->get('purchaseoldbalance');
+        $Purchase_Data->total = $request->get('purchasetotal_amount');
+        $Purchase_Data->grandtotal = $request->get('purchasegrandtotal');
         $Purchase_Data->paidamount = $request->get('purchasepaidamount');
         $Purchase_Data->balanceamount = $request->get('purchasebalanceamount');
         $Purchase_Data->payment_method = $request->get('payment_method');
         $Purchase_Data->update();
-
-        $PurchaseId = $Purchase_Data->id;
 
 
 
@@ -282,7 +283,7 @@ class PurchaseController extends Controller
             $old_grossamount = $PurchasebranchwiseData->purchase_amount;
             $old_paid = $PurchasebranchwiseData->purchase_paid;
 
-            $oldentry_grossamount = $data->grandtotal;
+            $oldentry_grossamount = $data->total;
             $oldentry_paid = $data->paidamount;
 
          

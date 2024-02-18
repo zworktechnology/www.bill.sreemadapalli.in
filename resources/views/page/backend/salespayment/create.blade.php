@@ -49,6 +49,15 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="form-group">
+                            <label>Note</label>
+                            <input type="text" name="salespayment_note" id="salespayment_note" class="salespayment_note"
+                                placeholder="Enter Note">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
                             <label> Balance</label>
                             <input type="text" name="salebalance" id="salebalance" class="salepaymentbal"
                                 placeholder="" readonly style="background: #DCDCDC">

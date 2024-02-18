@@ -52,7 +52,7 @@
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Supplier<span
                                         style="color: red;">*</span> </label>
                                 <select class="form-control js-example-basic-single select" name="supplier_id"
-                                    id="supplier_id" required>
+                                    id="supplier_id" disabled>
                                     <option value="" disabled selected hiddden>Select Supplier</option>
                                     @foreach ($Supplier as $suppliers)
                                         <option
@@ -67,23 +67,24 @@
                     <div class="row">
                         <div class="col-lg-6 col-sm-6 col-12">
                             <div class="form-group">
-                                <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Total Amount<span
+                                <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Old Balance<span
                                         style="color: red;">*</span></label>
-                                <input type="text" name="purchasetotal_amount" class="purchasetotal_amount"
-                                    value="{{ $PurchaseData->grandtotal }}" placeholder="Enter Total Amount">
+                                <input type="text" name="purchaseoldbalance" class="purchaseoldbalance" readonly value="{{ $PurchaseData->purchaseoldbalance }}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-sm-6 col-12">
                             <div class="form-group">
-                                <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Payment Method<span
+                                <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Total Amount<span
                                         style="color: red;">*</span></label>
-                                <select class="select payment_method" name="payment_method" id="payment_method" required>
-                                    @foreach ($bank as $banks)
-                                        <option
-                                            value="{{ $banks->id }}"@if ($banks->id === $PurchaseData->payment_method) selected='selected' @endif>
-                                            {{ $banks->name }}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" name="purchasetotal_amount" class="purchasetotal_amount"
+                                    placeholder="Enter Total Amount" value="{{ $PurchaseData->total }}">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Grand Total<span
+                                        style="color: red;">*</span></label>
+                                <input type="text" name="purchasegrandtotal" class="purchasegrandtotal" readonly value="{{ $PurchaseData->grandtotal }}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-sm-6 col-12">
@@ -91,15 +92,26 @@
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Payable Amount<span
                                         style="color: red;">*</span></label>
                                 <input type="text" name="purchasepaidamount" class="purchasepaidamount"
-                                    value="{{ $PurchaseData->paidamount }}" placeholder="Enter Payable Amount" required>
+                                    placeholder="Enter Payable Amount" required value="{{ $PurchaseData->paidamount }}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Balance Amount<span
                                         style="color: red;">*</span></label>
-                                <input type="text" name="purchasebalanceamount" class="purchasebalanceamount"
-                                    value="{{ $PurchaseData->balanceamount }}" readonly>
+                                <input type="text" name="purchasebalanceamount" class="purchasebalanceamount" readonly value="{{ $PurchaseData->balanceamount }}">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Payment Method<span
+                                        style="color: red;">*</span></label>
+                                <select class="form-control js-example-basic-single select payment_method" name="payment_method" id="payment_method" required>
+                                    <option value="" disabled selected hiddden>Select Payment Method</option>
+                                    @foreach ($bank as $banks)
+                                        <option value="{{ $banks->id }}"@if ($banks->id === $PurchaseData->payment_method) selected='selected' @endif>{{ $banks->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>

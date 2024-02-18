@@ -13,6 +13,8 @@ class Purchasepayment extends Model
         'soft_delete',
         'supplier_id',
         'date',
+        'time',
         'paid_amount',
+        'purchasepayment_note'
     ];
 }

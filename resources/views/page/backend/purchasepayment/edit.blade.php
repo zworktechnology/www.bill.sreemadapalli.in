@@ -30,6 +30,12 @@
                             <input type="text" name="paid_amount" id="paid_amount" class="purcahsepaymentpaidamt" value="{{ $purchasepayment_datas['paid_amount'] }}" placeholder="Enter Payable Amount">
                         </div>
                     </div>
+                    <div class="col-lg-6 col-sm-6 col-6">
+                        <div class="form-group">
+                            <label>Note</label>
+                            <input type="text" name="purchasepayment_note" id="purchasepayment_note" class="purchasepayment_note" value="{{ $purchasepayment_datas['purchasepayment_note'] }}" placeholder="Enter Note">
+                        </div>
+                    </div>
                     <hr>
                     <div class="col-lg-12 button-align">
                         <button type="submit" class="btn btn-submit me-2">Update</button>
