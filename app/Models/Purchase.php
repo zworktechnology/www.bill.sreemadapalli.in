@@ -18,6 +18,8 @@ class Purchase extends Model
         'date',
         'time',
         'supplier_id',
+        'purchaseoldbalance',
+        'total',
         'grandtotal',
         'paidamount',
         'balanceamount',

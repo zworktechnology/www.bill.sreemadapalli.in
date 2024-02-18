@@ -42,6 +42,7 @@ class SalespaymentController extends Controller
                 'date' => date('d-m-Y', strtotime($datas->date)),
                 'time' => $datas->time,
                 'paid_amount' => $datas->paid_amount,
+                'salespayment_note' => $datas->salespayment_note,
                 'id' => $datas->id,
                 'unique_key' => $datas->unique_key,
             );
@@ -63,15 +64,17 @@ class SalespaymentController extends Controller
 
                 $customer = Customer::findOrFail($datas->customer_id);
 
-            $salepayment_data[] = array(
-                'customer' => $customer->name,
-                'customer_id' => $datas->customer_id,
-                'date' => date('d-m-Y', strtotime($datas->date)),
-                'time' => $datas->time,
-                'paid_amount' => $datas->paid_amount,
-                'id' => $datas->id,
-                'unique_key' => $datas->unique_key,
-            );
+                $salepayment_data[] = array(
+                    'customer' => $customer->name,
+                    'customer_id' => $datas->customer_id,
+                    'saledate' => $datas->date,
+                    'date' => date('d-m-Y', strtotime($datas->date)),
+                    'time' => $datas->time,
+                    'paid_amount' => $datas->paid_amount,
+                    'salespayment_note' => $datas->salespayment_note,
+                    'id' => $datas->id,
+                    'unique_key' => $datas->unique_key,
+                );
         }
         
         $Customer = Customer::where('soft_delete', '!=', 1)->get();
@@ -86,14 +89,16 @@ class SalespaymentController extends Controller
     public function store(Request $request)
     {
         $randomkey = Str::random(5);
+        $timenow = Carbon::now()->format('H:i');
 
         $data = new Salespayment();
 
         $data->unique_key = $randomkey;
         $data->customer_id = $request->get('customer_id');
         $data->date = $request->get('date');
-        $data->time = $request->get('time');
+        $data->time = $timenow;
         $data->paid_amount = $request->get('paid_amount');
+        $data->salespayment_note = $request->get('salespayment_note');
         $data->save();
 
         $customerid = $request->get('customer_id');
@@ -164,6 +169,7 @@ class SalespaymentController extends Controller
         $Salespayment->customer_id = $request->get('customer_id');
         $Salespayment->date = $request->get('date');
         $Salespayment->paid_amount = $request->get('paid_amount');
+        $Salespayment->salespayment_note = $request->get('salespayment_note');
         $Salespayment->update();
 
         

@@ -46,7 +46,7 @@
                       <div class="col-lg-12 col-md-12 col-sm-12">
                          <div class="form-group">
                             <label> Balance</label>
-                            <input type="text" name="purchasebalance" id="purchasebalance" class="purchasebal" placeholder="" readonly style="background: #DCDCDC">
+                            <input type="text" name="purchasebalance" id="purchase_balance" class="purchasebal" placeholder="" readonly>
                          </div>
                       </div>
                    </div>
