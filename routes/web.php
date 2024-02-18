@@ -401,8 +401,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::middleware(['auth:sanctum', 'verified'])->post('/zworktechnology/openaccount/edit/{unique_key}', [OpenaccountController::class, 'edit'])->name('openaccount.edit');
         // DELETE
         Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/openaccount/delete/{unique_key}', [OpenaccountController::class, 'delete'])->name('openaccount.delete');
-        // CHECK DUPLICATE
-        //Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/openaccount/datefilter', [OpenaccountController::class, 'datefilter'])->name('openaccount.datefilter');
+        //DATE FILTER 
+        Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/openaccount/datefilter', [OpenaccountController::class, 'datefilter'])->name('openaccount.datefilter');
     });
 
     // OPEN ACCOUNT CONTROLLER
@@ -527,3 +527,6 @@ Route::get('/purchase_excelexport/{today}', [PurchaseController::class, 'purchas
 
 Route::get('/purchasepayment_pdfexport/{today}', [PurchasepaymentController::class, 'purchasepayment_pdfexport']);
 Route::get('/purchasepayment_excelexport/{today}', [PurchasepaymentController::class, 'purchasepayment_excelexport']);
+
+Route::get('/expense_pdfexport/{today}', [ExpenseController::class, 'expense_pdfexport']);
+Route::get('/expense_excelexport/{today}', [ExpenseController::class, 'expense_excelexport']);

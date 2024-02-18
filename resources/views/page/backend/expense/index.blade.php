@@ -22,6 +22,10 @@
                     </form>
                     <a href="{{ route('expense.create') }}" class="btn btn-added" style="margin-right: 10px;">New
                         Expense</a>
+                    <a href="/expense_pdfexport/{{ $today }}" target="_blank" class="btn btn-sucess"
+                        style="margin-right:5px; background: #ff2116; color:white;">PDF</a>
+                    <a href="/expense_excelexport/{{ $today }}" target="_blank" class="btn btn-sucess"
+                        style="margin-right:5px; background: #067639; color:white;">Excel</a>
                 </div>
 
             </div>
@@ -44,11 +48,17 @@
                             @foreach ($expense_data as $keydata => $datas)
                                 <tr>
                                     <td>{{ ++$keydata }}</td>
-                                    <td></td>
+                                    <td>
+                                    @foreach ($datas['terms'] as $index => $terms_array)
+                                                    @if ($terms_array['expense_id'] == $datas['id'])
+                                                    {{ $terms_array['note'] }} - {{ $terms_array['price'] }}<br/>
+                                                    @endif
+                                                    @endforeach
+                                    </td>
                                     <td>
                                         {{ $datas['total_price'] }}
                                     </td>
-                                    <td></td>
+                                    <td> {{ $datas['bank'] }}</td>
                                     <td>
 
                                         <ul class="list-unstyled hstack gap-1 mb-0">

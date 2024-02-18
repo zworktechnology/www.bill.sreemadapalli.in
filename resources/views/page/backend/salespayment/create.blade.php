@@ -4,7 +4,6 @@
         <div class="card-body">
             <div class="form-group-item">
 
-                <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="form-group">
                             <label>Customer <span style="color: red;">*</span></label>
@@ -18,8 +17,6 @@
                             </select>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="form-group">
                             <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Date <span
@@ -27,8 +24,6 @@
                             <input type="date" name="date" placeholder="" value="{{ $today }}" required>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="form-group">
                             <label>Old Balance</label>
@@ -36,8 +31,6 @@
                                 placeholder="" readonly style="background: #DCDCDC">
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="form-group">
                             <label>Payable Amount<span
@@ -46,8 +39,6 @@
                                 placeholder="Enter Payable Amount">
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="form-group">
                             <label>Balance</label>
@@ -55,8 +46,16 @@
                                 placeholder="" readonly style="background: #DCDCDC">
                         </div>
                     </div>
-                </div>
-                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label>Payment Method</label>
+                            <select class="select bank_id" name="bank_id" id="bank_id" required>
+                                    @foreach ($bank as $banks)
+                                       <option value="{{ $banks->id }}">{{ $banks->name }}</option>
+                                    @endforeach
+                                 </select>
+                        </div>
+                    </div>
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="form-group">
                             <label>Note</label>
@@ -64,7 +63,6 @@
                                 placeholder="Enter Note (Optional)">
                         </div>
                     </div>
-                </div>
                 <div class="col-lg-12 button-align">
                     <button type="submit" class="btn btn-submit">Save</button>
                 </div>

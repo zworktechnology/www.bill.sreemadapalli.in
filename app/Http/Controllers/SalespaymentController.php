@@ -10,6 +10,7 @@ use App\Models\Customer;
 use App\Models\Deliveryplan;
 use App\Models\Salespayment;
 use App\Models\Payment;
+use App\Models\Bank;
 use App\Exports\SalespaymentExport;
 
 
@@ -33,7 +34,15 @@ class SalespaymentController extends Controller
         foreach ($data as $key => $datas) {
 
                 $customer = Customer::findOrFail($datas->customer_id);
-              
+
+                if($datas->bank_id != ""){
+                    $bank = Bank::findOrFail($datas->bank_id);
+                    $bankname = $bank->name;
+                    $bank_id = $datas->bank_id;
+                }else {
+                    $bankname = '';
+                    $bank_id = '';
+                }
 
             $salepayment_data[] = array(
                 'customer' => $customer->name,
@@ -44,15 +53,18 @@ class SalespaymentController extends Controller
                 'paid_amount' => $datas->paid_amount,
                 'salespayment_note' => $datas->salespayment_note,
                 'id' => $datas->id,
+                'bank_id' => $datas->bank_id,
+                'bankname' => $bankname,
                 'unique_key' => $datas->unique_key,
             );
         }
         
         $Customer = Customer::where('soft_delete', '!=', 1)->get();
+        $bank = Bank::where('soft_delete', '!=', 1)->get();
         $deliveryplan = deliveryplan::where('soft_delete', '!=', 1)->get();
 
         $todaydate = Carbon::now()->format('d-m-Y');
-        return view('page.backend.salespayment.index', compact('salepayment_data', 'Customer', 'deliveryplan', 'today', 'todaydate'));
+        return view('page.backend.salespayment.index', compact('salepayment_data', 'Customer', 'deliveryplan', 'today', 'todaydate', 'bank'));
     }
 
 
@@ -64,6 +76,15 @@ class SalespaymentController extends Controller
 
                 $customer = Customer::findOrFail($datas->customer_id);
 
+                if($datas->bank_id != ""){
+                    $bank = Bank::findOrFail($datas->bank_id);
+                    $bankname = $bank->name;
+                    $bank_id = $datas->bank_id;
+                }else {
+                    $bankname = '';
+                    $bank_id = '';
+                }
+
                 $salepayment_data[] = array(
                     'customer' => $customer->name,
                     'customer_id' => $datas->customer_id,
@@ -73,15 +94,18 @@ class SalespaymentController extends Controller
                     'paid_amount' => $datas->paid_amount,
                     'salespayment_note' => $datas->salespayment_note,
                     'id' => $datas->id,
+                    'bank_id' => $datas->bank_id,
+                    'bankname' => $bankname,
                     'unique_key' => $datas->unique_key,
                 );
         }
         
         $Customer = Customer::where('soft_delete', '!=', 1)->get();
         $deliveryplan = deliveryplan::where('soft_delete', '!=', 1)->get();
+        $bank = Bank::where('soft_delete', '!=', 1)->get();
 
         $todaydate = Carbon::now()->format('d-m-Y');
-        return view('page.backend.salespayment.index', compact('salepayment_data', 'Customer', 'deliveryplan', 'today', 'todaydate'));
+        return view('page.backend.salespayment.index', compact('salepayment_data', 'Customer', 'deliveryplan', 'today', 'todaydate', 'bank'));
     }
 
 
@@ -99,6 +123,7 @@ class SalespaymentController extends Controller
         $data->time = $timenow;
         $data->paid_amount = $request->get('paid_amount');
         $data->salespayment_note = $request->get('salespayment_note');
+        $data->bank_id = $request->get('bank_id');
         $data->save();
 
         $customerid = $request->get('customer_id');
@@ -170,6 +195,7 @@ class SalespaymentController extends Controller
         $Salespayment->date = $request->get('date');
         $Salespayment->paid_amount = $request->get('paid_amount');
         $Salespayment->salespayment_note = $request->get('salespayment_note');
+        $Salespayment->bank_id = $request->get('bank_id');
         $Salespayment->update();
 
         

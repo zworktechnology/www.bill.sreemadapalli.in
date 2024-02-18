@@ -79,7 +79,6 @@
                                                 type="button">-</button>
                                         </td>
                                     </tr>
-
                                 </tbody>
                                 <tbody>
                                     <tr>

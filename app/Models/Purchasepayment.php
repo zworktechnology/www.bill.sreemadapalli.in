@@ -12,6 +12,7 @@ class Purchasepayment extends Model
     protected $fillable = [
         'soft_delete',
         'supplier_id',
+        'bank_id',
         'date',
         'time',
         'paid_amount',

@@ -30,7 +30,18 @@
                             <input type="text" name="paid_amount" id="paid_amount" class="purcahsepaymentpaidamt" value="{{ $purchasepayment_datas['paid_amount'] }}" placeholder="Enter Payable Amount">
                         </div>
                     </div>
-                    <div class="col-lg-6 col-sm-6 col-6">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label>Payment Method</label>
+                            <select class="form-control select bank_id" name="bank_id" id="bank_id" required>
+                            <option value="" disabled selected hiddden>Select</option>
+                                    @foreach ($bank as $banks)
+                                       <option value="{{ $banks->id }}"@if ($banks->id === $purchasepayment_datas['bank_id']) selected='selected' @endif>{{ $banks->name }}</option>
+                                    @endforeach
+                                 </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-12 col-12">
                         <div class="form-group">
                             <label>Note</label>
                             <input type="text" name="purchasepayment_note" id="purchasepayment_note" class="purchasepayment_note" value="{{ $purchasepayment_datas['purchasepayment_note'] }}" placeholder="Enter Note">

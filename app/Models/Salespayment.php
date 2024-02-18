@@ -12,6 +12,7 @@ class Salespayment extends Model
     protected $fillable = [
         'soft_delete',
         'customer_id',
+        'bank_id',
         'date',
         'time',
         'paid_amount',
