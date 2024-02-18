@@ -40,6 +40,7 @@
                                         <th>Sl. No</th>
                                         <th>Customer</th>
                                         <th>Paid Amount</th>
+                                        <th>Payment Method</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -49,6 +50,7 @@
                                             <td>{{ ++$keydata }}</td>
                                             <td>{{ $salepayment_datas['customer'] }}</td>
                                             <td>{{ $salepayment_datas['paid_amount'] }}</td>
+                                            <td>{{ $salepayment_datas['bankname'] }}</td>
                                             <td>
                                                 <ul class="list-unstyled hstack gap-1 mb-0">
                                                     <li>

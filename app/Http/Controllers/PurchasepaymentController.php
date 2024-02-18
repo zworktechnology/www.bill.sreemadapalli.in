@@ -33,6 +33,15 @@ class PurchasepaymentController extends Controller
 
                 $supplier = Supplier::findOrFail($datas->supplier_id);
 
+                if($datas->bank_id != ""){
+                    $bank = Bank::findOrFail($datas->bank_id);
+                    $bankname = $bank->name;
+                    $bank_id = $datas->bank_id;
+                }else {
+                    $bankname = '';
+                    $bank_id = '';
+                }
+
             $purchasepayment_data[] = array(
                 'supplier' => $supplier->name,
                 'supplier_id' => $datas->supplier_id,
@@ -41,14 +50,17 @@ class PurchasepaymentController extends Controller
                 'date' => date('d-m-Y', strtotime($datas->date)),
                 'paid_amount' => $datas->paid_amount,
                 'id' => $datas->id,
+                'bank_id' => $datas->bank_id,
+                'bankname' => $bankname,
                 'unique_key' => $datas->unique_key,
             );
         }
         
         $Supplier = Supplier::where('soft_delete', '!=', 1)->get();
+        $bank = Bank::where('soft_delete', '!=', 1)->get();
 
         $todaydate = Carbon::now()->format('d-m-Y');
-        return view('page.backend.purchasepayment.index', compact('purchasepayment_data', 'Supplier', 'today', 'todaydate'));
+        return view('page.backend.purchasepayment.index', compact('purchasepayment_data', 'Supplier', 'today', 'todaydate', 'bank'));
     }
 
 
@@ -61,6 +73,15 @@ class PurchasepaymentController extends Controller
 
                 $supplier = Supplier::findOrFail($datas->supplier_id);
 
+                if($datas->bank_id != ""){
+                    $bank = Bank::findOrFail($datas->bank_id);
+                    $bankname = $bank->name;
+                    $bank_id = $datas->bank_id;
+                }else {
+                    $bankname = '';
+                    $bank_id = '';
+                }
+
             $purchasepayment_data[] = array(
                 'supplier' => $supplier->name,
                 'supplier_id' => $datas->supplier_id,
@@ -69,14 +90,17 @@ class PurchasepaymentController extends Controller
                 'paid_amount' => $datas->paid_amount,
                 'purchasepayment_note' => $datas->purchasepayment_note,
                 'id' => $datas->id,
+                'bank_id' => $datas->bank_id,
+                'bankname' => $bankname,
                 'unique_key' => $datas->unique_key,
             );
         }
         
         $Supplier = Supplier::where('soft_delete', '!=', 1)->get();
+        $bank = Bank::where('soft_delete', '!=', 1)->get();
 
         $todaydate = Carbon::now()->format('d-m-Y');
-        return view('page.backend.purchasepayment.index', compact('purchasepayment_data', 'Supplier', 'today', 'todaydate'));
+        return view('page.backend.purchasepayment.index', compact('purchasepayment_data', 'Supplier', 'today', 'todaydate', 'bank'));
     }
 
 
@@ -93,6 +117,7 @@ class PurchasepaymentController extends Controller
         $data->time = $timenow;
         $data->paid_amount = $request->get('paid_amount');
         $data->purchasepayment_note = $request->get('purchasepayment_note');
+        $data->bank_id = $request->get('bank_id');
         $data->save();
 
         $supplier_id = $request->get('supplier_id');
@@ -164,6 +189,7 @@ class PurchasepaymentController extends Controller
         $Purchasepayment->date = $request->get('date');
         $Purchasepayment->paid_amount = $request->get('paid_amount');
         $Purchasepayment->purchasepayment_note = $request->get('purchasepayment_note');
+        $Purchasepayment->bank_id = $request->get('bank_id');
         $Purchasepayment->update();
 
         

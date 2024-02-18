@@ -21,6 +21,9 @@ return new class extends Migration
             $table->unsignedBigInteger('supplier_id')->nullable();
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
 
+            $table->unsignedBigInteger('bank_id')->nullable();
+            $table->foreign('bank_id')->references('id')->on('banks')->onDelete('cascade');
+
             $table->string('date')->nullable();
             $table->string('time')->nullable();
             $table->string('purchasepayment_note')->nullable();

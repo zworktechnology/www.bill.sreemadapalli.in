@@ -5,10 +5,16 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Expense;
 use App\Models\Expensedata;
 use App\Models\Bank;
+use App\Exports\ExpenseExport;
+
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
+use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
 class ExpenseController extends Controller
@@ -234,5 +240,68 @@ class ExpenseController extends Controller
         $data->update();
 
         return redirect()->route('expense.index')->with('warning', 'Deleted !');
+    }
+
+
+    public function expense_pdfexport($today) 
+    {
+        $data = Expense::where('date', '=', $today)->where('soft_delete', '!=', 1)->get();
+
+        $expense_data = [];
+        $terms = [];
+        foreach ($data as $key => $datas) {
+
+            $Expensedata = Expensedata::where('expense_id', '=', $datas->id)->get();
+            foreach ($Expensedata as $key => $Expensedatas_arr) {
+
+                $terms[] = array(
+                    'note' => $Expensedatas_arr->note,
+                    'price' => $Expensedatas_arr->price,
+                    'expense_id' => $Expensedatas_arr->expense_id,
+
+                );
+            }
+
+
+            if($datas->bank_id != ""){
+                $bank = Bank::findOrFail($datas->bank_id);
+                $bankname = $bank->name;
+                $bank_id = $datas->bank_id;
+            }else {
+                $bankname = '';
+                $bank_id = '';
+            }
+
+
+            $expense_data[] = array(
+                'unique_key' => $datas->unique_key,
+                'date' => $datas->date,
+                'time' => $datas->time,
+                'terms' => $terms,
+                'total_price' => $datas->total_price,
+                'bank_id' => $bank_id,
+                'bank' => $bankname,
+                'id' => $datas->id,
+            );
+
+        }
+
+    
+
+
+        $pdf = Pdf::loadView('page.backend.expense.expense_pdfexport', [
+            'expense_data' => $expense_data,
+            'today' => $today,
+        ]);
+
+        $name = 'ExpenseExport.' . 'pdf';
+        return $pdf->stream($name);
+    }
+
+
+    public function expense_excelexport($today) 
+    {
+       // $from = Carbon::parse($today);
+        return Excel::download(new ExpenseExport($today), 'expensereports.xlsx');
     }
 }

@@ -24,9 +24,23 @@ class ProductController extends Controller
     public function index()
     {
         $data = Product::where('soft_delete', '!=', 1)->orderBy('id', 'DESC')->get();
+
         $Productdata = [];
+        $terms = [];
+        
         foreach ($data as $key => $datas) {
             $Categoryid = Category::findOrFail($datas->category_id);
+
+            $productsessiondata = Productsession::where('product_id', '=', $datas->id)->where('soft_delete', '!=', 1)->get();
+            foreach ($productsessiondata as $key => $productsessiondatas) {
+
+                $terms[] = array(
+                    'sessionname' => $productsessiondatas->sessionname,
+                    'product_id' => $productsessiondatas->product_id,
+                    'session_id' => $productsessiondatas->session_id,
+                    'id' => $productsessiondatas->id,
+                );
+            }
 
             $Productdata[] = array(
                 'id' => $datas->id,
@@ -37,6 +51,7 @@ class ProductController extends Controller
                 'image' => $datas->image,
                 'categoryname' => $Categoryid->name,
                 'category_id' => $datas->category_id,
+                'terms' => $terms,
             );
         }
         $session = Session::where('soft_delete', '!=', 1)->get();

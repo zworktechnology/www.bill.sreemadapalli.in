@@ -96,7 +96,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="submit" class="btn btn-warning" onclick="expensesubmitForm(this);" value="Upadte"  />
+                        <input type="submit" class="btn btn-warning" onclick="expensesubmitForm(this);" value="Update"  />
                         <a href="{{ route('expense.index') }}" class="btn btn-danger" value="">Cancel</a>
                     </div>
                 </form>

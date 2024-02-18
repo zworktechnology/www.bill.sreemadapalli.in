@@ -20,7 +20,7 @@ class DenominationController extends Controller
     {
         $today = Carbon::now()->format('Y-m-d');
         $timenow = Carbon::now()->format('H:i');
-        $data = Denomination::where('soft_delete', '!=', 1)->orderBy('id', 'DESC')->get();
+        $data = Denomination::where('date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'DESC')->get();
         $determination_Data = [];
         $terms = [];
         foreach ($data as $key => $datas) {
@@ -47,6 +47,41 @@ class DenominationController extends Controller
                 'terms' => $terms,
             );
         }
+        return view('page.backend.dinomination.index', compact('determination_Data', 'today', 'timenow'));
+    }
+
+    public function datefilter(Request $request) {
+        $today = $request->get('from_date');
+
+        $timenow = Carbon::now()->format('H:i');
+        $data = Denomination::where('date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'DESC')->get();
+        $determination_Data = [];
+        $terms = [];
+        foreach ($data as $key => $datas) {
+
+
+            $Determinationdatas = Determinationdata::where('determination_id', '=', $datas->id)->get();
+            foreach ($Determinationdatas as $key => $Determinationdatas_arr) {
+                
+                $terms[] = array(
+                    'rupee' => $Determinationdatas_arr->rupee,
+                    'count' => $Determinationdatas_arr->count,
+                    'amount' => $Determinationdatas_arr->amount,
+                    'determination_id' => $Determinationdatas_arr->determination_id,
+                    'id' => $Determinationdatas_arr->id,
+                );
+            }
+
+            $determination_Data[] = array(
+                'id' => $datas->id,
+                'unique_key' => $datas->unique_key,
+                'date' => $datas->date,
+                'time' => $datas->time,
+                'total_amount' => $datas->total_amount,
+                'terms' => $terms,
+            );
+        }
+
         return view('page.backend.dinomination.index', compact('determination_Data', 'today', 'timenow'));
     }
 

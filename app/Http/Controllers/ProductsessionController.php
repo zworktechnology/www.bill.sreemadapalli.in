@@ -68,6 +68,8 @@ class ProductsessionController extends Controller
             }
         }
 
+        
+
         return view('page.backend.productsession.index', compact('Productdata', 'session', 'product_Arr', 'Product'));
     }
 

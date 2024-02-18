@@ -1254,22 +1254,23 @@ function printDiv(divName) {
 
 
 
-    // $(document).on("keyup", 'input.purchasepaidamount', function() {
-    //     var purchasepaidamount = $(this).val();
-    //     var purchasetotal_amount = $(".purchasetotal_amount").val();
-    //     //alert(bill_paid_amount);
-    //     var purchase_balance_amount = Number(purchasetotal_amount) - Number(purchasepaidamount);
-    //     $('.purchasebalanceamount').val(purchase_balance_amount.toFixed(2));
-    // });
+    $(document).on("keyup", 'input.purchase_paid_amount', function() {
+        var purchase_paid_amount = $(this).val();
+        var purchaseoldbalance = $(".purchaseoldbalance").val();
+        //alert(bill_paid_amount);
+        var purchase_balance_amount = Number(purchaseoldbalance) - Number(purchase_paid_amount);
+        $('.purchasebal').val(purchase_balance_amount.toFixed(2));
+    });
 
 
-    $(document).on("keyup", 'input.purchasepaidamount', function() {
+    $(document).on("keyup", 'input.purchase_paid_amount', function() {
             var payable_amount = $(this).val();
-            var grand_total = $(".purchasetotal_amount").val();
+            var purchaseoldbalance = $(".purchaseoldbalance").val();
 
-            if (Number(payable_amount) > Number(grand_total)) {
+            if (Number(payable_amount) > Number(purchaseoldbalance)) {
                 alert('!Paid Amount is More than of Total!');
-                $(".purchasepaidamount").val('');
+                $(".purchase_paid_amount").val('');
+                $(".purchasebal").val('');
             }
     });
 
@@ -1361,8 +1362,6 @@ function purchasesubmitForm(btn) {
     });
 
 
-
-
     $(document).ready(function() {
             $('.purchasepaymentsupplier').on('change', function() {
                 var supplierid = this.value;
@@ -1447,7 +1446,6 @@ function purchasesubmitForm(btn) {
 $(document).ready(function() {
 
     $(document).on('click', '.addexpensefields', function() {
-     ++i;
             $(".expense_fields").append(
                 '<tr>' +
                 '<td><input type="hidden"id="expenes_detail_id"name="expenes_detail_id[]" value=""/><input type="text" class="form-control note" id="note" name="note[]"placeholder="note" value="" required />' +
