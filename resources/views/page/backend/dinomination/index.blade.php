@@ -5,11 +5,12 @@
          <div class="page-header">
                   <div class="page-title">
                      <h4>Determination</h4>
+                     <p style="color:lightgray">( Determination Value )</p>
                   </div>
             </div>
 
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-7">
 
                <div class="card">
                   <div class="card-body">
@@ -17,8 +18,6 @@
                         <table class="table  datanew">
                               <thead>
                                  <tr>
-                                    <th>Sl. No</th>
-                                    <th>Date</th>
                                     <th>Amount</th>
                                     <th>Action</th>
                                  </tr>
@@ -26,8 +25,6 @@
                               <tbody>
                                  @foreach ($determination_Data as $keydata => $datas)
                                     <tr>
-                                          <td>{{ ++$keydata }}</td>
-                                          <td>{{ date('d-m-Y', strtotime($datas['date'])) }}</td>
                                           <td>{{ $datas['total_amount'] }}</td>
                                           <td>
                                                 <ul class="list-unstyled hstack gap-1 mb-0">
@@ -35,7 +32,7 @@
                                                          <a href="#edit{{ $datas['unique_key'] }}" data-bs-toggle="modal"
                                                             data-id="{{ $datas['unique_key'] }}"
                                                             data-bs-target=".determinationedit-modal-xl{{ $datas['unique_key'] }}"
-                                                            class="badges bg-lightgrey determinationedit{{ $datas['id'] }}" style="color: white">Edit</a>
+                                                            class="badges bg-warning determinationedit{{ $datas['id'] }}" style="color: white">Edit</a>
                                                    </li>
                                                    <li>
                                                          <a href="#delete{{ $datas['unique_key'] }}" data-bs-toggle="modal"
@@ -67,7 +64,7 @@
                   </div>
                </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-5">
 
             @include('page.backend.dinomination.create')
             </div>

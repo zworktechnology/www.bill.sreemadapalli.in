@@ -5,6 +5,7 @@
         <div class="page-header">
             <div class="page-title">
                 <h4>Delivery Attendance</h4>
+                <p style="color:lightgray">( Delivery Attendance Details )</p>
             </div>
             <div class="page-btn">
 
@@ -19,9 +20,9 @@
                                         value="Search" /></div>
                             </div>
                         </form>
-                        <a href="{{ route('delivery_attendance.breakfastcreate') }}" class="btn btn-added" style="margin-right: 10px;background: black;">BreakFast</a>
-                        <a href="{{ route('delivery_attendance.lunchcreate') }}" class="btn btn-added" style="margin-right: 10px;background: black;">Lunch</a>
-                        <a href="{{ route('delivery_attendance.dinnercreate') }}" class="btn btn-added" style="margin-right: 10px;background: black;">Dinner</a>
+                        <a href="{{ route('delivery_attendance.breakfastcreate') }}" class="btn btn-added" style="margin-right: 10px;background:darkcyan;">BreakFast</a>
+                        <a href="{{ route('delivery_attendance.lunchcreate') }}" class="btn btn-added" style="margin-right: 10px;background:goldenrod;">Lunch</a>
+                        <a href="{{ route('delivery_attendance.dinnercreate') }}" class="btn btn-added" style="margin-right: 10px;background:mediumvioletred;">Dinner</a>
                 </div>
 
             </div>
@@ -75,7 +76,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <tr>
+                            <tr style="background-color: #fafbfe">
                                 <td class="border">Add / Edit</td>
                                 @foreach ($list as $lists)
                                @foreach ($session_terms as $session_termsarr)

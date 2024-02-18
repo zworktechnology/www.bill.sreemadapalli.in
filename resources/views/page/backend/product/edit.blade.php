@@ -61,7 +61,7 @@
                         </div>
                         <hr>
                         <div class="col-lg-12 button-align">
-                            <button type="submit" class="btn btn-submit me-2">Update</button>
+                            <button type="submit" class="btn btn-warning me-2">Update</button>
                             <button type="button" class="btn btn-cancel" data-bs-dismiss="modal"
                                 aria-label="Close">Cancel</button>
                         </div>

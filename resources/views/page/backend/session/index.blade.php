@@ -5,6 +5,7 @@
         <div class="page-header">
             <div class="page-title">
                 <h4>Session</h4>
+                <p style="color:lightgray">( Session Details )</p>
             </div>
         </div>
         <div class="row">
@@ -31,13 +32,13 @@
                                                         <a href="#edit{{ $session_data->unique_key }}"
                                                             data-bs-toggle="modal" data-id="{{ $session_data->unique_key }}"
                                                             data-bs-target=".sessionedit-modal-xl{{ $session_data->unique_key }}"
-                                                            class="badges bg-lightgrey" style="color: white">Edit</a>
+                                                            class="badges bg-warning" style="color: white">Edit</a>
                                                     </li>
                                                     <li>
                                                         <a href="#delete{{ $session_data->unique_key }}"
                                                             data-bs-toggle="modal" data-id="{{ $session_data->unique_key }}"
                                                             data-bs-target=".sessiondelete-modal-xl{{ $session_data->unique_key }}"
-                                                            class="badges bg-lightyellow" style="color: white">Delete</a>
+                                                            class="badges bg-danger" style="color: white">Delete</a>
                                                     </li>
                                                 </ul>
                                             </td>

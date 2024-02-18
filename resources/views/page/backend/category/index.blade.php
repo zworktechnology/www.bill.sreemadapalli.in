@@ -5,6 +5,7 @@
         <div class="page-header">
             <div class="page-title">
                 <h4>Category</h4>
+                <p style="color:lightgray">( Category Details )</p>
             </div>
         </div>
 
@@ -32,13 +33,13 @@
                                                 <a href="#edit{{ $category_data['unique_key'] }}" data-bs-toggle="modal"
                                                     data-id="{{ $category_data['unique_key'] }}"
                                                     data-bs-target=".categoryeedit-modal-xl{{ $category_data['unique_key'] }}"
-                                                    class="badges bg-lightgrey" style="color: white">Edit</a>
+                                                    class="badges bg-warning" style="color: white">Edit</a>
                                             </li>
                                             <li hidden>
                                                 <a href="#delete{{ $category_data['unique_key'] }}" data-bs-toggle="modal"
                                                     data-id="{{ $category_data['unique_key'] }}"
                                                     data-bs-target=".categorydelete-modal-xl{{ $category_data['unique_key'] }}"
-                                                    class="badges bg-lightyellow" style="color: white">Delete</a>
+                                                    class="badges bg-danger" style="color: white">Delete</a>
                                             </li>
                                         </ul>
                                     </td>

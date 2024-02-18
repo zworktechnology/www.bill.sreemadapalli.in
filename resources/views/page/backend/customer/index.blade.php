@@ -40,10 +40,6 @@
                                             {{-- <td>{{ ++$keydata }}</td> --}}
                                             <td>{{ $custmer_data['name'] }}
                                                 {{ $custmer_data['address'] }}<br>{{ $custmer_data['phone_number'] }}</td>
-
-
-
-
                                             @if ($custmer_data['pending_amount'] != '')
                                                 <td style="color: red;">₹ {{ $custmer_data['pending_amount'] }}</td>
                                             @elseif ($custmer_data['account_balance'] != '')
@@ -53,7 +49,6 @@
                                             @else
                                                 <td></td>
                                             @endif
-
                                             <td>
                                                 <ul class="list-unstyled hstack gap-1 mb-0">
                                                     <li>

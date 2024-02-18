@@ -5,6 +5,7 @@
         <div class="page-header">
             <div class="page-title">
                 <h4>Employee Attendance</h4>
+                <p style="color:lightgray">( Employee Attendance Details )</p>
             </div>
             <div class="page-btn">
 
@@ -19,8 +20,8 @@
                                         value="Search" /></div>
                             </div>
                         </form>
-                        <a href="{{ route('emp_attendance.shiftonecreate') }}" class="btn btn-added" style="margin-right: 10px;">shift 1</a>
-                        <a href="{{ route('emp_attendance.shifttwocreate') }}" class="btn btn-added" style="margin-right: 10px;">Shift 2</a>
+                        <a href="{{ route('emp_attendance.shiftonecreate') }}" class="btn" style="margin-right: 10px; background-color:#d6903f; color:white;">Shift 1</a>
+                        <a href="{{ route('emp_attendance.shifttwocreate') }}" class="btn" style="margin-right: 10px; background-color:#7470f2; color:white;">Shift 2</a>
                 </div>
 
             </div>
