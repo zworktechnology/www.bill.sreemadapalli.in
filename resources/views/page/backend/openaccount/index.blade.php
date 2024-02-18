@@ -5,6 +5,7 @@
         <div class="page-header">
             <div class="page-title">
                 <h4>Open Account</h4>
+                <p style="color:lightgray">( Open Account Details )</p>
             </div>
         </div>
 
@@ -19,8 +20,8 @@
                               <thead>
                                  <tr>
                                     <th>Sl. No</th>
-                                    <th>Date</th>
                                     <th>Amount</th>
+                                    <th>Note</th>
                                     <th>Action</th>
                                  </tr>
                               </thead>
@@ -28,15 +29,15 @@
                                  @foreach ($data as $keydata => $datas)
                                     <tr>
                                           <td>{{ ++$keydata }}</td>
-                                          <td>{{ date('d-m-Y', strtotime($datas->date)) }}</td>
                                           <td>{{ $datas->amount }}</td>
+                                          <td>{{ $datas->note }}</td>
                                           <td>
                                                 <ul class="list-unstyled hstack gap-1 mb-0">
                                                    <li>
                                                          <a href="#edit{{ $datas->unique_key }}" data-bs-toggle="modal"
                                                             data-id="{{ $datas->unique_key }}"
                                                             data-bs-target=".openacountedit-modal-xl{{ $datas->unique_key }}"
-                                                            class="badges bg-lightgrey" style="color: white">Edit</a>
+                                                            class="badges bg-warning" style="color: white">Edit</a>
                                                    </li>
                                                    <li>
                                                          <a href="#delete{{ $datas->unique_key }}" data-bs-toggle="modal"

@@ -5,22 +5,24 @@
         <div class="page-header">
             <div class="page-title">
                 <h4>Purchase Payment</h4>
+                <p style="color:lightgray">( Suppliers Purchase Payment Details )</p>
             </div>
             <div class="page-btn">
 
                 <div style="display: flex;">
-                <a href="/purchasepayment_pdfexport/{{ $today }}" target="_blank" class="btn btn-sucess" style="margin-right:5px;background: #7eddb1;">PDF Export</a>
-                <a href="/purchasepayment_excelexport/{{ $today }}" target="_blank" class="btn btn-sucess" style="margin-right:5px;background: #e1c677;">Excel</a>
                     <form autocomplete="off" method="POST" action="{{ route('purchasepayment.datefilter') }}">
                         @method('PUT')
                         @csrf
                         <div style="display: flex">
                             <div style="margin-right: 10px;"><input type="date" name="from_date"
                                     class="form-control from_date" value="{{ $today }}"></div>
-                            <div style="margin-right: 10px;"><input type="submit" class="btn btn-success" value="Search" />
+                            <div style="margin-right: 5px;"><input type="submit" class="btn" value="Search" style="background: #ff9f43; color:white;" />
                             </div>
                         </div>
                     </form>
+                    
+                <a href="/purchasepayment_pdfexport/{{ $today }}" target="_blank" class="btn btn-sucess" style="margin-right:5px; background: #ff2116; color:white;">PDF</a>
+                <a href="/purchasepayment_excelexport/{{ $today }}" target="_blank" class="btn btn-sucess" style="margin-right:5px; background: #067639; color:white;">Excel</a>
                 </div>
 
             </div>
@@ -55,7 +57,7 @@
                                                             data-bs-toggle="modal"
                                                             data-id="{{ $purchasepayment_datas['unique_key'] }}"
                                                             data-bs-target=".purchasepaymentedit-modal-xl{{ $purchasepayment_datas['unique_key'] }}"
-                                                            class="badges bg-lightgrey" style="color: white">Edit</a>
+                                                            class="badges bg-warning" style="color: white">Edit</a>
                                                     </li>
                                                     <li>
                                                         <a href="#delete{{ $purchasepayment_datas['unique_key'] }}"

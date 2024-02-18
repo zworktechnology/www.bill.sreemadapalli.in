@@ -9,11 +9,11 @@
             </div>
             <div class="page-btn">
                 <div style="display:flex;">
-                    <a href="/customerpending_export" target="_blank" class="btn btn-sucess" style="margin-right:5px;background: #7eddb1;">PDF</a>
-                    <a href="/customerpending_excelexport" target="_blank" class="btn btn-sucess" style="margin-right:5px;background: #e1c677;">Excel</a>
                     <a href="{{ route('customer.index') }}">
-                        <button class="btn btn-primary waves-effect waves-light btn-added">View All</button>
+                        <button class="btn waves-effect waves-light btn-added" style="background: #ff9f43">View All</button>
                     </a>
+                    <a href="/customerpending_export" target="_blank" class="btn btn-sucess" style="margin-left:5px; margin-right:5px; background: #ff2116; color:white;">PDF</a>
+                    <a href="/customerpending_excelexport" target="_blank" class="btn btn-sucess" style="margin-right:5px; background: #067639; color:white;">Excel</a>
                 </div>
             </div>
         </div>
@@ -107,6 +107,12 @@
                                     <div class="form-group">
                                         <label>Old Balance <span style="color: red;">*</span></label>
                                         <input type="text" name="old_balance" placeholder="Enter Old Balance Amount">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label>Note</label>
+                                        <input type="text" name="address" placeholder="Enter Note (optional)">
                                     </div>
                                 </div>
                                 <div class="col-lg-12 button-align">

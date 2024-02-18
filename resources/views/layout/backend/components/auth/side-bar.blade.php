@@ -14,7 +14,7 @@
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Sales</h6>
                     <ul>
-                        <li class="{{ Route::is('customer.index', 'customer.store', 'customer.edit', 'customer.delete', 'customer.checkduplicate', 'customer.viewall') ? 'active' : '' }}">
+                        <li class="{{ Route::is('customer.index', 'customer.store', 'customer.edit', 'customer.delete', 'customer.checkduplicate', 'customer.viewall', 'customer.pending') ? 'active' : '' }}">
                             <a href="{{ route('customer.index') }}"><i data-feather="user"></i><span>Customers</span></a>
                         </li>
                         <li class="{{ Route::is('sales.index', 'sales.datefilter') ? 'active' : '' }}">

@@ -30,15 +30,15 @@
                       <div class="col-lg-12 col-md-12 col-sm-12">
                          <div class="form-group">
                             <label>Old Balance</label>
-                            <input type="text" class="purchaseoldbalance" name="purchaseoldbalance" id="purchaseoldbalance" placeholder="" readonly>
+                            <input type="text" class="purchaseoldbalance" name="purchaseoldbalance" id="purchaseoldbalance" placeholder="" readonly style="background: #DCDCDC">
                          </div>
                       </div>
                    </div>
                    <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12">
                          <div class="form-group">
-                            <label>Payable Amount</label>
-                            <input type="text" name="paid_amount" id="paid_amount" class="purchasepaidamount" placeholder="Enter Payable Amount">
+                            <label>Payable Amount <span style="color: red;">*</span></label>
+                            <input type="text" name="paid_amount" id="paid_amount" class="purchasepaidamount" placeholder="Enter Payable Amount" required>
                          </div>
                       </div>
                    </div>
@@ -46,7 +46,7 @@
                       <div class="col-lg-12 col-md-12 col-sm-12">
                          <div class="form-group">
                             <label> Balance</label>
-                            <input type="text" name="purchasebalance" id="purchasebalance" class="purchasebal" placeholder="" readonly>
+                            <input type="text" name="purchasebalance" id="purchasebalance" class="purchasebal" placeholder="" readonly style="background: #DCDCDC">
                          </div>
                       </div>
                    </div>

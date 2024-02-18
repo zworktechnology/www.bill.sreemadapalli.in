@@ -24,17 +24,17 @@
                                  </div>
                                  <div style="margin-right: 10px;"><input type="date" name="from_date"
                                         class="form-control from_date" value="{{ $today }}"></div>
-                                <div style="margin-right: 10px;"><input type="submit" class="btn btn-success"
-                                        value="Search" /></div>
+                                <div style="margin-right: 10px;"><input type="submit" class="btn"
+                                        value="Search" style="background: #ff9f43; color:white;"/></div>
                             </div>
                         </form>
                         <a href="{{ route('sales.create') }}" class="btn btn-added" style="margin-right: 10px;">Add New</a>
                 </div>
             </div>
         </div>
-        <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
+        {{-- <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
                 <li class="nav-item"><a class="nav-link active" href="#solid-tab1" data-bs-toggle="tab">Delivery</a></li>
-            </ul>
+            </ul> --}}
             <div class="tab-content">
                 <div class="tab-pane show active" id="solid-tab1">
 

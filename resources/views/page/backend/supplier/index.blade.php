@@ -9,8 +9,8 @@
             </div>
             <div class="page-btn" >
                 <div style="display:flex;">
-                    <a href="/supplierallpdf_export" target="_blank" class="btn btn-sucess" style="margin-right:5px;background: #7eddb1;">PDF Export</a>
-                    <a href="/supplierall_excelexport" target="_blank" class="btn btn-sucess" style="margin-right:5px;background: #e1c677;">Excel</a>
+                    <a href="/supplierallpdf_export" target="_blank" class="btn btn-sucess" style="margin-right:5px; background: #ff2116; color:white;">PDF</a>
+                    <a href="/supplierall_excelexport" target="_blank" class="btn btn-sucess" style="margin-right:5px; background: #067639; color:white;">Excel</a>
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
                                                     <a href="#edit{{ $supplier_data['unique_key'] }}" data-bs-toggle="modal"
                                                         data-id="{{ $supplier_data['unique_key'] }}"
                                                         data-bs-target=".supplieredit-modal-xl{{ $supplier_data['unique_key'] }}"
-                                                        class="badges bg-lightgrey" style="color: white">Edit</a>
+                                                        class="badges bg-warning" style="color: white">Edit</a>
                                                 </li>
                                                 <li>
                                                     <a href="#delete{{ $supplier_data['unique_key'] }}" data-bs-toggle="modal"

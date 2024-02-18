@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <input type="submit" class="btn btn-primary" />
+                        <input type="submit" class="btn btn-warning" value="Update"/>
                         <a href="{{ route('purchase.index') }}" class="btn btn-danger" value="">Cancel</a>
                     </div>
                 </form>
