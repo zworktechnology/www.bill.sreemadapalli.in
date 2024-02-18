@@ -1263,13 +1263,14 @@ function printDiv(divName) {
     });
 
 
-    $(document).on("keyup", 'input.purchasepaidamount', function() {
+    $(document).on("keyup", 'input.purchase_paid_amount', function() {
             var payable_amount = $(this).val();
-            var grand_total = $(".purchasetotal_amount").val();
+            var purchaseoldbalance = $(".purchaseoldbalance").val();
 
-            if (Number(payable_amount) > Number(grand_total)) {
+            if (Number(payable_amount) > Number(purchaseoldbalance)) {
                 alert('!Paid Amount is More than of Total!');
-                $(".purchasepaidamount").val('');
+                $(".purchase_paid_amount").val('');
+                $(".purchasebal").val('');
             }
     });
 
