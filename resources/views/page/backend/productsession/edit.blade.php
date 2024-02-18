@@ -22,7 +22,7 @@
 
                        
                         <div class="col-lg-12 col-sm-12 col-12">
-                        <label>Session <span style="color: red;">*</span></label>
+                            <label>Session <span style="color: red;">*</span></label>
                             <div style="display: flex;margin-bottom: 34px;">
                                 @foreach ($Productdatas['terms'] as $index => $terms_array)
                                     @if ($terms_array['product_id'] == $Productdatas['id'])
@@ -43,7 +43,25 @@
                                     @endif
                                 @endforeach
 
-                               
+                            </div>
+                        </div> 
+
+                        
+                        <div class="col-lg-12 col-sm-12 col-12"> 
+                            <div style="display: flex;margin-bottom: 34px;">     
+                                        <div class="input-group produtseesiondiv" style="margin-right: 5px;height: 37px;">
+                                        
+                                            <div class="input-group-text" style="background: #dc3545;padding: 0px;">
+                                            <button style="width: 10px;" class="text-white py-1 font-medium rounded-lg text-sm  text-center btn btn-danger remove-produtseesiondiv" type="button" >-</button>
+                                            <input type="hidden" name="productsession_id[]" id="productsession_id" value="" />
+                                            </div>
+                                            <select class="form-control  select session_id" name="session_id[]" id="session_id" >
+                                                <option value="" disabled selected hiddden>Select Session</option>
+                                                @foreach ($session as $sessions)
+                                                    <option value="{{ $sessions->id }}">{{ $sessions->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                         <div class="input-group produtseesiondiv" style="margin-right: 5px;height: 37px;">
                                         
                                             <div class="input-group-text" style="background: #dc3545;padding: 0px;">
