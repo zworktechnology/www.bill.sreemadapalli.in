@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="form-group">
-                            <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Date<span
+                            <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Date <span
                                     style="color: red;">*</span></label>
                             <input type="date" name="date" placeholder="" value="{{ $today }}" required>
                         </div>
@@ -40,7 +40,8 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="form-group">
-                            <label>Payable Amount</label>
+                            <label>Payable Amount<span
+                                style="color: red;">*</span></label>
                             <input type="text" name="paid_amount" id="paid_amount" class="salepaymentpaidamt"
                                 placeholder="Enter Payable Amount">
                         </div>
@@ -49,18 +50,18 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="form-group">
-                            <label>Note</label>
-                            <input type="text" name="salespayment_note" id="salespayment_note" class="salespayment_note"
-                                placeholder="Enter Note">
+                            <label>Balance</label>
+                            <input type="text" name="salebalance" id="salebalance" class="salepaymentbal"
+                                placeholder="" readonly style="background: #DCDCDC">
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="form-group">
-                            <label> Balance</label>
-                            <input type="text" name="salebalance" id="salebalance" class="salepaymentbal"
-                                placeholder="" readonly style="background: #DCDCDC">
+                            <label>Note</label>
+                            <input type="text" name="salespayment_note" id="salespayment_note" class="salespayment_note"
+                                placeholder="Enter Note (Optional)">
                         </div>
                     </div>
                 </div>
