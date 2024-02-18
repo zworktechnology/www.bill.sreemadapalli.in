@@ -6,6 +6,22 @@
                   <div class="page-title">
                      <h4>Determination</h4>
                   </div>
+                  <div class="page-btn">
+
+                  <div style="display: flex;">
+                     <form autocomplete="off" method="POST" action="{{ route('dinomination.datefilter') }}">
+                           @method('PUT')
+                           @csrf
+                           <div style="display: flex">
+                              <div style="margin-right: 10px;"><input type="date" name="from_date"
+                                       class="form-control from_date" value="{{ $today }}"></div>
+                              <div style="margin-right: 5px;"><input type="submit" class="btn" value="Search"
+                                       style="background: #ff9f43; color:white;" /></div>
+                           </div>
+                     </form>
+                  </div>
+
+               </div>
             </div>
 
         <div class="row">
