@@ -32,85 +32,106 @@
 
 
                 <div class="row">
-                    <table class="table">
-                        <thead><h5 style="text-transform: uppercase;text-align:center;color:black;padding-bottom:10px">{{ $curent_month}} - {{$year}}</h5></thead>
-                        <thead>
-                            <tr>
-                                <th class="border">Date</th>
-                                 @foreach ($list as $lists)
-                                    <th class="border" style="text-align:center;" colspan="2">{{ $lists }}</th>
-                                  @endforeach
-                            </tr>
-                            <tr>
-                                <th class="border">Day</th>
-                                @foreach ($list as $lists_ass)
-                                @php 
-                                
-                                $timestamp = strtotime($year .'-'. $month .'-'. $lists_ass); 
-                                $day = date('l', $timestamp);
-                                $date = $year .'-'. $month .'-'. $lists_ass;
-                                @endphp
 
-                                
-                                        <th class="border" colspan="2" style="text-align:center;">
-                                            <a href="#dayedit{{ $date }}" data-bs-toggle="modal" data-bs-target=".dayedit-modal-xl{{ $date }}"
-                                                            class="badges bg-lightyellow dayedit{{ $date }}" style="color: white">{{$day}}</a>
-                                        </th>
-                                        <div class="modal fade dayedit-modal-xl{{ $date }}"
-                                            tabindex="-1" role="dialog"data-bs-backdrop="static"
-                                            aria-labelledby="deleteLargeModalLabel{{ $date }}"
-                                            aria-hidden="true">
-                                            @include('page.backend.emp_attendance.dayedit')
+                                        <div class="col-sm-2">
+                                            <table class="table ">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="border">Date</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="border" style="padding: 13px;">Day</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="border" style="padding: 12px;">Shift</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="border" style="padding: 13px;">Add / Edit</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($data as $datas_emp)
+                                                        <tr class="border"></tr>
+                                                        <td class="border" >{{$datas_emp->name}}</td>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
                                         </div>
+                                        <div class="col-sm-10" style="overflow: auto;">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        @foreach ($list as $lists)
+                                                            <th class="border" style="text-align:center;" colspan="2">{{ $lists }}</th>
+                                                        @endforeach
+                                                    </tr>
+                                                    <tr>
+                                                        @foreach ($list as $lists_ass)
+                                                        @php 
+                                                        
+                                                        $timestamp = strtotime($year .'-'. $month .'-'. $lists_ass); 
+                                                        $day = date('l', $timestamp);
+                                                        $date = $year .'-'. $month .'-'. $lists_ass;
+                                                        @endphp
 
-                                
-                                @endforeach
-                            </tr>
-                            <tr>
-                                <th class="border">Shift 1 / Shift 2</th>
-                                @foreach ($list as $listsarr)
-                                <th class="border" style="color:#d38625;font-weight: 800;">S1</th>
-                                <th class="border" style="color:#7367f0;font-weight: 800;">S2</th>
-                                @endforeach
-                            </tr>
-                            <tr>
-                                <td class="border">Add / Edit</td>
-                                @foreach ($monthdates as $monthdate_arr)
-                                @foreach ($shift_arr as $shift_array)
-                                     <td class="border"  style=""><a style="color: #6d91cc;" href="{{ route('emp_attendance.edit', ['date' => $monthdate_arr, 'shift' => $shift_array]) }}" class="btn btn-sm btn-soft-info">
-                                     <i class="fa fa-edit" data-bs-toggle="tooltip" title="fa fa-edit"></i></a></td>
-                                @endforeach
-                                @endforeach
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($data as $employee)
-                            <tr class="">
-                                <td class="border" style="color:black;">{{$employee->name}}</td>
+                                                        
+                                                                <th class="border" colspan="2" style="text-align:center;">
+                                                                    <a href="#dayedit{{ $date }}" data-bs-toggle="modal" data-bs-target=".dayedit-modal-xl{{ $date }}"
+                                                                                    class="badges bg-lightyellow dayedit{{ $date }}" style="color: white">{{$day}}</a>
+                                                                </th>
+                                                                <div class="modal fade dayedit-modal-xl{{ $date }}"
+                                                                    tabindex="-1" role="dialog"data-bs-backdrop="static"
+                                                                    aria-labelledby="deleteLargeModalLabel{{ $date }}"
+                                                                    aria-hidden="true">
+                                                                    @include('page.backend.emp_attendance.dayedit')
+                                                                </div>
 
-                                @foreach ($attendence_Data as $attendence_Data_arr)
-                                    @if ($employee->id == $attendence_Data_arr['empid'])
+                                                        
+                                                        @endforeach
+                                                    </tr>
+                                                    <tr>
+                                                        @foreach ($list as $listsarr)
+                                                        <th class="border" style="color:#d38625;font-weight: 800;">S1</th>
+                                                        <th class="border" style="color:#7367f0;font-weight: 800;">S2</th>
+                                                        @endforeach
+                                                    </tr>
+                                                    <tr>
+                                                        @foreach ($monthdates as $monthdate_arr)
+                                                        @foreach ($shift_arr as $shift_array)
+                                                            <td class="border"  style=""><a style="color: #6d91cc;" href="{{ route('emp_attendance.edit', ['date' => $monthdate_arr, 'shift' => $shift_array]) }}" class="btn btn-sm btn-soft-info">
+                                                            <i class="fa fa-edit" data-bs-toggle="tooltip" title="fa fa-edit"></i></a></td>
+                                                        @endforeach
+                                                        @endforeach
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($data as $employee)
+                                                    <tr class="">
 
-                                        @if ($attendence_Data_arr['attendence_status'] == 'P')
-                                            <td class="border" style="color:green;" >{{ $attendence_Data_arr['attendence_status'] }}</td>
-                                        @elseif ($attendence_Data_arr['attendence_status'] == 'A')
-                                            <td class="border" style="color:red;" >{{ $attendence_Data_arr['attendence_status'] }}</td>
-                                        @elseif ($attendence_Data_arr['attendence_status'] == 'L')
-                                            <td class="border" style="color:blue;" >{{ $attendence_Data_arr['attendence_status'] }}</td>
-                                        @elseif ($attendence_Data_arr['attendence_status'] == 'SL')
-                                            <td class="border" style="color:orange;" >{{ $attendence_Data_arr['attendence_status'] }}</td>
-                                        @elseif($attendence_Data_arr['attendence_status'] == 'NULL')
-                                             <td class="border" style="color:#76691b;font-weight: 800;">H</td>
-                                             @else
-                                             <td class="border" style=""></td>
-                                        @endif
+                                                        @foreach ($attendence_Data as $attendence_Data_arr)
+                                                            @if ($employee->id == $attendence_Data_arr['empid'])
 
-                                    @endif
-                                @endforeach
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                                                @if ($attendence_Data_arr['attendence_status'] == 'P')
+                                                                    <td class="border" style="color:green;" >{{ $attendence_Data_arr['attendence_status'] }}</td>
+                                                                @elseif ($attendence_Data_arr['attendence_status'] == 'A')
+                                                                    <td class="border" style="color:red;" >{{ $attendence_Data_arr['attendence_status'] }}</td>
+                                                                @elseif ($attendence_Data_arr['attendence_status'] == 'L')
+                                                                    <td class="border" style="color:blue;" >{{ $attendence_Data_arr['attendence_status'] }}</td>
+                                                                @elseif ($attendence_Data_arr['attendence_status'] == 'SL')
+                                                                    <td class="border" style="color:orange;" >{{ $attendence_Data_arr['attendence_status'] }}</td>
+                                                                @elseif($attendence_Data_arr['attendence_status'] == 'NULL')
+                                                                    <td class="border" style="color:#76691b;font-weight: 800;">H</td>
+                                                                    @else
+                                                                    <td class="border" style="color:white">No</td>
+                                                                @endif
+
+                                                            @endif
+                                                        @endforeach
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
                 </div>
 
 

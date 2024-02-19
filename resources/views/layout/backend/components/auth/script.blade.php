@@ -1274,6 +1274,16 @@ function printDiv(divName) {
             }
     });
 
+    $(document).on("keyup", 'input.payoffedit_amountgiven', function() {
+            var payoffedit_amountgiven = $(this).val();
+            var payoffedit_perday_salary = $(".payoffedit_perday_salary").val();
+
+            if (Number(payoffedit_amountgiven) > Number(payoffedit_perday_salary)) {
+                alert('!Paid Amount is More than of Day Salary!');
+                $(".payoffedit_amountgiven").val('');
+            }
+    });
+
 
 function purchasesubmitForm(btn) {
         // disable the button

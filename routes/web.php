@@ -331,7 +331,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         // STORE
         Route::middleware(['auth:sanctum', 'verified'])->post('/zworktechnology/delivery_attendance/store', [DeliveryattendanceController::class, 'store'])->name('delivery_attendance.store');
         // EDIT
-        Route::middleware(['auth:sanctum', 'verified'])->get('/zworktechnology/delivery_attendance/edit/{date}/{session_id}', [DeliveryattendanceController::class, 'edit'])->name('delivery_attendance.edit');
+        Route::middleware(['auth:sanctum', 'verified'])->get('/zworktechnology/delivery_attendance/edit/{date}/{shift}', [DeliveryattendanceController::class, 'edit'])->name('delivery_attendance.edit');
         // UPDATE
         Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/delivery_attendance/update/{unique_key}', [DeliveryattendanceController::class, 'update'])->name('delivery_attendance.update');
         // DATAE FILTER
@@ -442,10 +442,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::middleware(['auth:sanctum', 'verified'])->get('/zworktechnology/payoff/create', [Payoffcontroller::class, 'create'])->name('payoff.create');
         // STORE
         Route::middleware(['auth:sanctum', 'verified'])->post('/zworktechnology/payoff/store', [Payoffcontroller::class, 'store'])->name('payoff.store');
-        // EDIT
-        Route::middleware(['auth:sanctum', 'verified'])->get('/zworktechnology/payoff/edit/{empid}/{month}/{year}', [Payoffcontroller::class, 'edit'])->name('payoff.edit');
         // UPDATE
-        Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/payoff/update/{empid}/{month}/{year}', [Payoffcontroller::class, 'update'])->name('payoff.update');
+        Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/payoff/update/{unique_key}', [Payoffcontroller::class, 'update'])->name('payoff.update');
         // DATAE FILTER
         Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/payoff/datefilter', [Payoffcontroller::class, 'datefilter'])->name('payoff.datefilter');
 
@@ -505,7 +503,7 @@ Route::get('/getselectedsessioncat', [SaleController::class, 'getselectedsession
 Route::get('/getlastdateofpurchase', [SaleController::class, 'getlastdateofpurchase']);
 Route::get('/getbalanceforpurchasePayment', [PurchaseController::class, 'getbalanceforpurchasePayment']);
 Route::get('getoutdoorProducts/', [OutdoorproductController::class, 'getoutdoorProducts']);
-Route::get('/gettotpresentdays', [EmpattendanceController::class, 'gettotpresentdays']);
+Route::get('/getpayoffdatas', [Payoffcontroller::class, 'getpayoffdatas']);
 Route::get('/getdeliveryboy_totpresentdays', [DeliveryattendanceController::class, 'getdeliveryboy_totpresentdays']);
 Route::get('/getoldbalanceforPayment', [SaleController::class, 'getoldbalanceforPayment']);
 

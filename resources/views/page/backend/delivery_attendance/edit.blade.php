@@ -5,7 +5,7 @@
    <div class="content">
       <div class="page-header">
          <div class="page-title">
-            <h4>Update {{$sessionname->name}} Delivery Attendance</h4>
+            <h4>Update {{$shiftname}} Delivery Attendance</h4>
          </div>
       </div>
 
@@ -38,13 +38,9 @@
                             <div class="form-group">
                                 <label style="font-size:15px;padding-top: 5px;padding-bottom: 2px;">Session<span
                                         style="color: red;">*</span></label>
-                                    <select class="form-control js-example-basic-single select" name="session_id" id="session_id">
-                                    <option value="" disabled selected hiddden>Select Session</option>
-                                    @foreach ($session as $sessions)
-                                        <option value="{{ $sessions->id }}"@if ($sessions->id === $Deliveryattendance->session_id) selected='selected' @endif>{{ $sessions->name }}</option>
-                                        
-                                    @endforeach
-                                </select>
+                                        <select class="form-control select" name="shift" id="shift">
+                                            <option value="{{$shift}}">{{$shiftname}}</option>
+                                        </select>
                                 
                             </div>
                         </div>

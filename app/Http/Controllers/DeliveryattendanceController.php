@@ -31,7 +31,8 @@ class DeliveryattendanceController extends Controller
 
         $list=array();
         $monthdates = [];
-        for($d=1; $d<=31; $d++)
+        $maxDays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+        for($d=1; $d<=$maxDays; $d++)
         {
             $times = mktime(12, 0, 0, $month, $d, $year);
             if (date('m', $times) == $month)
@@ -40,19 +41,19 @@ class DeliveryattendanceController extends Controller
         }
         $attendence_Data = [];
 
-
+        $shift_arr = array(1,2);
 
         foreach (($monthdates) as $key => $monthdate_arr) {
+
+            foreach (($shift_arr) as $key => $shift_arrays) {
 
             $deliveryboy = Deliveryboy::where('soft_delete', '!=', 1)->get();
 
             foreach ($deliveryboy as $key => $deliveryboy_arr) {
 
-                $sesionarr = Session::where('soft_delete', '!=', 1)->get();
-                foreach ($sesionarr as $key => $sesionarry) {
-
                     $status = '';
-                    $attendencedata = Deliveryattendancedata::where('deliveryboy_id', '=', $deliveryboy_arr->id)->where('date', '=', $monthdate_arr)->where('session_id', '=', $sesionarry->id)->first();
+                $attendencedata = Deliveryattendancedata::where('deliveryboy_id', '=', $deliveryboy_arr->id)->where('date', '=', $monthdate_arr)
+                                                        ->where('shift', '=', $shift_arrays)->first();
                     if($attendencedata != ""){
 
                         if($attendencedata->checkleave == 1){
@@ -90,33 +91,12 @@ class DeliveryattendanceController extends Controller
         }
         
 
-        
 
-
-
-
-        $session = Session::where('soft_delete', '!=', 1)->get();
-        $session_terms = [];
-        foreach ($session as $key => $session_arr) {
-
-            if($session_arr->id == 1){
-                $session = 'BF';
-            }else if($session_arr->id == 2){
-                $session = 'L';
-            }else if($session_arr->id == 3){
-                $session = 'D';
-            }
-
-            $session_terms[] = array(
-                'id' => $session_arr->id,
-                'session' => $session
-            );
-        }
         $Deliveryboy = Deliveryboy::where('soft_delete', '!=', 1)->get();
         $timenow = Carbon::now()->format('H:i');
 
         
-        return view('page.backend.delivery_attendance.index', compact('attendence_Data', 'today', 'timenow', 'Deliveryboy', 'curent_month', 'year', 'list', 'session_terms', 'monthdates', 'month'));
+        return view('page.backend.delivery_attendance.index', compact('attendence_Data', 'today', 'timenow', 'Deliveryboy', 'curent_month', 'year', 'list', 'shift_arr', 'monthdates', 'month'));
     }
 
 
@@ -132,7 +112,9 @@ class DeliveryattendanceController extends Controller
 
         $list=array();
         $monthdates = [];
-        for($d=1; $d<=31; $d++)
+
+        $maxDays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+        for($d=1; $d<=$maxDays; $d++)
         {
             $times = mktime(12, 0, 0, $month, $d, $year);
             if (date('m', $times) == $month)
@@ -141,19 +123,19 @@ class DeliveryattendanceController extends Controller
         }
         $attendence_Data = [];
 
-
+        $shift_arr = array(1,2);
 
         foreach (($monthdates) as $key => $monthdate_arr) {
+            foreach (($shift_arr) as $key => $shift_arrays) {
 
             $deliveryboy = Deliveryboy::where('soft_delete', '!=', 1)->get();
 
             foreach ($deliveryboy as $key => $deliveryboy_arr) {
-
-                $sesionarr = Session::where('soft_delete', '!=', 1)->get();
-                foreach ($sesionarr as $key => $sesionarry) {
+            
 
                     $status = '';
-                    $attendencedata = Deliveryattendancedata::where('deliveryboy_id', '=', $deliveryboy_arr->id)->where('date', '=', $monthdate_arr)->where('session_id', '=', $sesionarry->id)->first();
+                    $attendencedata = Deliveryattendancedata::where('deliveryboy_id', '=', $deliveryboy_arr->id)->where('date', '=', $monthdate_arr)
+                                ->where('shift', '=', $shift_arrays)->first();
                     if($attendencedata != ""){
 
                         if($attendencedata->checkleave == 1){
@@ -194,30 +176,11 @@ class DeliveryattendanceController extends Controller
         
 
 
-
-
-        $session = Session::where('soft_delete', '!=', 1)->get();
-        $session_terms = [];
-        foreach ($session as $key => $session_arr) {
-
-            if($session_arr->id == 1){
-                $session = 'BF';
-            }else if($session_arr->id == 2){
-                $session = 'L';
-            }else if($session_arr->id == 3){
-                $session = 'D';
-            }
-
-            $session_terms[] = array(
-                'id' => $session_arr->id,
-                'session' => $session
-            );
-        }
         $Deliveryboy = Deliveryboy::where('soft_delete', '!=', 1)->get();
         $timenow = Carbon::now()->format('H:i');
 
         
-        return view('page.backend.delivery_attendance.index', compact('attendence_Data', 'today', 'timenow', 'Deliveryboy', 'curent_month', 'year', 'list', 'session_terms', 'monthdates', 'month'));
+        return view('page.backend.delivery_attendance.index', compact('attendence_Data', 'today', 'timenow', 'Deliveryboy', 'curent_month', 'year', 'list', 'shift_arr', 'monthdates', 'month'));
     }
 
 
@@ -270,9 +233,9 @@ class DeliveryattendanceController extends Controller
     public function store(Request $request)
     {
         $date = $request->get('date');
-        $session_id = $request->get('session_id');
+        $shift = $request->get('shift');
 
-        $dateatend = Deliveryattendance::where('date', '=', $date)->where('session_id', '=', $session_id)->first();
+        $dateatend = Deliveryattendance::where('date', '=', $date)->where('shift', '=', $shift)->first();
         if($dateatend == ""){
 
             $randomkey = Str::random(5);
@@ -284,7 +247,7 @@ class DeliveryattendanceController extends Controller
             $data->month = date('m', strtotime($request->get('date')));
             $data->year = date('Y', strtotime($request->get('date')));
             $data->dateno = date('d', strtotime($request->get('date')));
-            $data->session_id = $request->get('session_id');
+            $data->shift = $request->get('shift');
             $data->save();
 
             $insertedId = $data->id;
@@ -299,7 +262,7 @@ class DeliveryattendanceController extends Controller
                     $Deliveryattendancedata->deliveryboy = $request->deliveryboy[$key];
                     $Deliveryattendancedata->attendance = $request->attendance[$deliveryboy_id];
                     $Deliveryattendancedata->date = $request->get('date');
-                    $Deliveryattendancedata->session_id = $request->get('session_id');
+                    $Deliveryattendancedata->shift = $request->get('shift');
                     $Deliveryattendancedata->month = date('m', strtotime($request->get('date')));
                     $Deliveryattendancedata->year = date('Y', strtotime($request->get('date')));
                     $Deliveryattendancedata->save();
@@ -317,48 +280,42 @@ class DeliveryattendanceController extends Controller
 
    
 
-    public function edit($date, $session_id)
+    public function edit($date, $shift)
     {
-        $Deliveryattendance = Deliveryattendance::where('date', '=', $date)->where('session_id', '=', $session_id)->first();
+        $Deliveryattendance = Deliveryattendance::where('date', '=', $date)->where('shift', '=', $shift)->first();
         if($Deliveryattendance != ""){
+            if($shift == 1){
+                $shiftname = 'Morning';
+            }else if($shift == 2){
+                $shiftname = 'Evening';
+            }
 
             $deliveryboy = Deliveryboy::where('soft_delete', '!=', 1)->get();
-            $session = Session::where('soft_delete', '!=', 1)->get();
             $today = Carbon::now()->format('Y-m-d');
             $timenow = Carbon::now()->format('H:i');
             $Deliveryattendancedata = Deliveryattendancedata::where('deliveryattendance_id', '=', $Deliveryattendance->id)->get();
 
-            $sessionname = Session::findOrFail($session_id);
 
-            return view('page.backend.delivery_attendance.edit', compact('Deliveryattendance', 'deliveryboy', 'today', 'timenow', 'Deliveryattendancedata', 'session', 'sessionname', 'session_id'));
+            return view('page.backend.delivery_attendance.edit', compact('Deliveryattendance', 'deliveryboy', 'today', 'timenow', 'Deliveryattendancedata', 'shift', 'shiftname'));
         }else {
-            if($session_id == 1){
+            if($shift == 1){
 
                 $deliveryboy = Deliveryboy::where('soft_delete', '!=', 1)->get();
-                $session = Session::where('soft_delete', '!=', 1)->get();
                 $today = $date;
                 $timenow = Carbon::now()->format('H:i');
+                $shiftname = 'Morning';
 
-                return view('page.backend.delivery_attendance.breakfastcreate', compact('deliveryboy', 'today', 'timenow', 'session'));
+                return view('page.backend.delivery_attendance.breakfastcreate', compact('deliveryboy', 'today', 'timenow', 'shift', 'shiftname'));
 
-            }else if($session_id == 2){
+            }else if($shift == 2){
 
                 $deliveryboy = Deliveryboy::where('soft_delete', '!=', 1)->get();
-                $session = Session::where('soft_delete', '!=', 1)->get();
                 $today = $date;
                 $timenow = Carbon::now()->format('H:i');
+                $shiftname = 'Evening';
         
-                return view('page.backend.delivery_attendance.lunchcreate', compact('deliveryboy', 'today', 'timenow', 'session'));
+                return view('page.backend.delivery_attendance.lunchcreate', compact('deliveryboy', 'today', 'timenow', 'shift', 'shiftname'));
 
-
-            }else if($session_id == 3){
-
-                $deliveryboy = Deliveryboy::where('soft_delete', '!=', 1)->get();
-                $session = Session::where('soft_delete', '!=', 1)->get();
-                $today = $date;
-                $timenow = Carbon::now()->format('H:i');
-
-                return view('page.backend.delivery_attendance.dinnercreate', compact('deliveryboy', 'today', 'timenow', 'session'));
 
             }
         }
@@ -407,15 +364,17 @@ class DeliveryattendanceController extends Controller
         $Deliveryattendance = Deliveryattendance::where('date', '=', $date)->first();
         if($Deliveryattendance == ""){
 
-            $session = Session::where('soft_delete', '!=', 1)->get();
-            foreach ($session as $key => $sessions_arr) {
+            $shift_arr = array(1,2);
+            foreach ($shift_arr as $key => $shift_arrs) {
+                $derandomkey = Str::random(5);
 
                 $data = new Deliveryattendance();
+                $data->unique_key = $derandomkey;
                 $data->date = $date;
                 $data->month = date('m', strtotime($date));
                 $data->year = date('Y', strtotime($date));
                 $data->dateno = date('d', strtotime($date));
-                $data->session_id = $sessions_arr->id;
+                $data->shift = $shift_arrs;
                 $data->save();
 
 
@@ -433,7 +392,7 @@ class DeliveryattendanceController extends Controller
                     $Deliveryattendancedata->month = date('m', strtotime($date));
                     $Deliveryattendancedata->year = date('Y', strtotime($date));
                     $Deliveryattendancedata->attendance = 'Present';
-                    $Deliveryattendancedata->session_id = $sessions_arr->id;
+                    $Deliveryattendancedata->shift = $shift_arrs;
                     $Deliveryattendancedata->checkleave = 1;
                     $Deliveryattendancedata->save();
                 }
@@ -454,76 +413,6 @@ class DeliveryattendanceController extends Controller
     }
 
 
-    public function getdeliveryboy_totpresentdays()
-    {
-        $salary_month = request()->get('salary_month');
-
-        $today = Carbon::now()->format('Y-m-d');
-        $year = request()->get('salary_year');
-
-        $atendance_output = [];
-        
-            $Deliveryboy = Deliveryboy::where('soft_delete', '!=', 1)->get();
-            foreach ($Deliveryboy as $key => $Deliveryboy_arr) {
-
-                $presentdays = Deliveryattendancedata::where('deliveryboy_id', '=', $Deliveryboy_arr->id)->where('month', '=', $salary_month)->where('year', '=', $year)->where('attendance', '=', 'Present')->get();
-                $count = collect($presentdays)->count();
-
-                $pershiftsalary = $Deliveryboy_arr->pershiftsalary;
-                $total_salary = $pershiftsalary * $count;
-
-                $paidsalary = Deliveryboypayoff::where('deliveryboy_id', '=', $Deliveryboy_arr->id)->where('month', '=', $salary_month)->where('year', '=', $year)->first();
-                if($paidsalary != ""){
-
-                    if($paidsalary->paid_salary > 0){
-                        $paid_salary = $paidsalary->paid_salary;
-                    }else {
-                        $paid_salary = 0;
-                    }
-                }else {
-                    $paid_salary = 0;
-                }
-                $balanceAmount = $total_salary - $paid_salary;
-
-                if($total_salary == 0){
-                    $placeholder = 'Enter Amount';
-                    $readonly = '';
-                    $noteplaceholder = 'Enter Note';
-                }else {
-                    if($balanceAmount == 0){
-                        $readonly = 'readonly';
-                        $placeholder = '';
-                        $noteplaceholder = '';
-                    }else {
-                        $readonly = '';
-                        $placeholder = 'Enter Amount';
-                        $noteplaceholder = 'Enter Note';
-                        
-                    }
-                }
-                
-
-               
-                $days = cal_days_in_month( 0, $salary_month, $year);
-                $atendance_output[] = array(
-                    'total_days' => $days,
-                    'total_presentdays' => $count,
-                    'total_salary' => $total_salary,
-                    'pershiftsalary' => $Deliveryboy_arr->pershiftsalary,
-                    'deliveryboy' => $Deliveryboy_arr->name,
-                    'id' => $Deliveryboy_arr->id,
-                    'paid_salary' => $paid_salary,
-                    'balanceAmount' => $balanceAmount,
-                    'readonly' => $readonly,
-                    'placeholder' => $placeholder,
-                    'noteplaceholder' => $noteplaceholder,
-                );
-            
-            }
-
-            
-            echo json_encode($atendance_output);
-    }
 
 
 

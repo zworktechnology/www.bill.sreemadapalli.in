@@ -16,6 +16,7 @@ class Deliveryattendance extends Model
         'month',
         'year',
         'dateno',
+        'shift',
         'time',
         'session_id'
     ];

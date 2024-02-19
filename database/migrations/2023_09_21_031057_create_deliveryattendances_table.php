@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('month')->nullable();
             $table->string('year')->nullable();
             $table->string('dateno')->nullable();
+            $table->string('shift')->nullable();
 
             $table->unsignedBigInteger('session_id')->nullable();
             

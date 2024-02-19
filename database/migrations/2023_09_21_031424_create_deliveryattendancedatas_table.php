@@ -25,6 +25,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('session_id')->nullable();
             $table->foreign('session_id')->references('id')->on('sessions')->onDelete('cascade');
+            $table->string('shift')->nullable();
             $table->string('sessionname')->nullable();
             $table->string('attendance')->nullable();
             $table->string('checkleave')->default(0);
