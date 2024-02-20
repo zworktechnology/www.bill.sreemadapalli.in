@@ -29,6 +29,7 @@
                     <table class="table  datanew">
                         <thead>
                             <tr>
+                                <th>S.No</th>
                                 <th>Date</th>
                                 <th>Delivery Boy</th>
                                 <th>Salary Amount</th>
@@ -39,6 +40,7 @@
                         <tbody>
                             @foreach ($payoffdata as $keydata => $datas)
                                 <tr>
+                                <td>{{ ++$keydata }}</td>
                                     <td> {{ date('d-m-Y', strtotime($datas['date'])) }}</td>
                                     <td>{{ $datas['deliveryboy'] }}</td>
                                     <td> {{ $datas['perdaysalary'] }}</td>
