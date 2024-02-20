@@ -254,18 +254,27 @@ class DeliveryattendanceController extends Controller
 
 
             foreach ($request->get('deliveryboy_id') as $key => $deliveryboy_id) {
-                $pprandomkey = Str::random(5);
+                
+
+                $shiftatend = Deliveryattendancedata::where('date', '=', $request->get('date'))->where('deliveryboy_id', '=', $deliveryboy_id)->first();
+                if($shiftatend == ""){
+                    if($request->attendance[$deliveryboy_id] != ""){
+
+                        $pprandomkey = Str::random(5);
+                        $Deliveryattendancedata = new Deliveryattendancedata;
+                        $Deliveryattendancedata->deliveryattendance_id = $insertedId;
+                        $Deliveryattendancedata->deliveryboy_id = $deliveryboy_id;
+                        $Deliveryattendancedata->deliveryboy = $request->deliveryboy[$key];
+                        $Deliveryattendancedata->attendance = $request->attendance[$deliveryboy_id];
+                        $Deliveryattendancedata->date = $request->get('date');
+                        $Deliveryattendancedata->shift = $request->get('shift');
+                        $Deliveryattendancedata->month = date('m', strtotime($request->get('date')));
+                        $Deliveryattendancedata->year = date('Y', strtotime($request->get('date')));
+                        $Deliveryattendancedata->save();
+                    }
+                }
     
-                    $Deliveryattendancedata = new Deliveryattendancedata;
-                    $Deliveryattendancedata->deliveryattendance_id = $insertedId;
-                    $Deliveryattendancedata->deliveryboy_id = $deliveryboy_id;
-                    $Deliveryattendancedata->deliveryboy = $request->deliveryboy[$key];
-                    $Deliveryattendancedata->attendance = $request->attendance[$deliveryboy_id];
-                    $Deliveryattendancedata->date = $request->get('date');
-                    $Deliveryattendancedata->shift = $request->get('shift');
-                    $Deliveryattendancedata->month = date('m', strtotime($request->get('date')));
-                    $Deliveryattendancedata->year = date('Y', strtotime($request->get('date')));
-                    $Deliveryattendancedata->save();
+                    
     
             }
 

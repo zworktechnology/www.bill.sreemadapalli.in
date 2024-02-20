@@ -18,10 +18,11 @@ class Deliveryboypayoff extends Model
         'deliveryboy_id',
         'total_days',
         'present_shifts',
-        'pershiftsalary',
+        'perdaysalary',
         'total_salaryamount',
         'paid_salary',
         'amountgiven',
-        'status'
+        'status',
+        'payoffnotes'
     ];
 }

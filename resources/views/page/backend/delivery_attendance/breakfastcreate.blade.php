@@ -72,7 +72,7 @@
                                                       <div class="input-group" style="margin-right: 5px;">
                                                          <div class="input-group-text">
                                                                <input class="form-check-input" type="radio" value="Present" id="attendance" name="attendance[{{$deliveryboys->id}}]"
-                                                                  aria-label="Radio button for following text input" checked>
+                                                                  aria-label="Radio button for following text input" >
                                                          </div>
                                                          <input type="text" class="form-control" value="Present" disabled style="background: #fff;width:10px;"
                                                                aria-label="Text input with radio button">

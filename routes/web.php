@@ -459,10 +459,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::middleware(['auth:sanctum', 'verified'])->get('/zworktechnology/deliveryboyspayoff/create', [DeliverypayoffController::class, 'create'])->name('deliveryboyspayoff.create');
         // STORE
         Route::middleware(['auth:sanctum', 'verified'])->post('/zworktechnology/deliveryboyspayoff/store', [DeliverypayoffController::class, 'store'])->name('deliveryboyspayoff.store');
-        // EDIT
-        Route::middleware(['auth:sanctum', 'verified'])->get('/zworktechnology/deliveryboyspayoff/edit/{deliveryboyid}/{month}/{year}', [DeliverypayoffController::class, 'edit'])->name('deliveryboyspayoff.edit');
         // UPDATE
-        Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/deliveryboyspayoff/update/{deliveryboyid}/{month}/{year}', [DeliverypayoffController::class, 'update'])->name('deliveryboyspayoff.update');
+        Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/deliveryboyspayoff/update/{unique_key}', [DeliverypayoffController::class, 'update'])->name('deliveryboyspayoff.update');
         // DATAE FILTER
         Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/deliveryboyspayoff/datefilter', [DeliverypayoffController::class, 'datefilter'])->name('deliveryboyspayoff.datefilter');
 
@@ -504,7 +502,7 @@ Route::get('/getlastdateofpurchase', [SaleController::class, 'getlastdateofpurch
 Route::get('/getbalanceforpurchasePayment', [PurchaseController::class, 'getbalanceforpurchasePayment']);
 Route::get('getoutdoorProducts/', [OutdoorproductController::class, 'getoutdoorProducts']);
 Route::get('/getpayoffdatas', [Payoffcontroller::class, 'getpayoffdatas']);
-Route::get('/getdeliveryboy_totpresentdays', [DeliveryattendanceController::class, 'getdeliveryboy_totpresentdays']);
+Route::get('/getdeliveryboy_payoff', [DeliverypayoffController::class, 'getdeliveryboy_payoff']);
 Route::get('/getoldbalanceforPayment', [SaleController::class, 'getoldbalanceforPayment']);
 
 

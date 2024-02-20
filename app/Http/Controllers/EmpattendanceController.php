@@ -206,7 +206,6 @@ class EmpattendanceController extends Controller
     }
 
 
-
     public function store(Request $request)
     {
         $date = $request->get('date');

@@ -24,11 +24,12 @@ return new class extends Migration
             $table->unsignedBigInteger('deliveryboy_id')->nullable();
             $table->string('total_days')->nullable();
             $table->string('present_shifts')->nullable();
-            $table->string('pershiftsalary')->nullable();
+            $table->string('perdaysalary')->nullable();
             $table->string('total_salaryamount')->nullable();
             $table->string('paid_salary')->nullable();
             $table->string('amountgiven')->nullable();
             $table->string('status')->nullable();
+            $table->string('payoffnotes')->nullable();
             $table->timestamps();
         });
     }

@@ -37,10 +37,10 @@
                             <textarea type="text" name="address" placeholder="Enter address"></textarea>
                         </div>
                     </div>
-                    <div class="col-lg-12 col-sm-6 col-12" hidden>
+                    <div class="col-lg-12 col-sm-6 col-12" >
                         <div class="form-group">
-                            <label>Per Shift Salary <span style="color: red;">*</span></label>
-                            <input type="text" name="pershiftsalary" placeholder="Per Shift Salary ">
+                            <label>Per Day Salary <span style="color: red;">*</span></label>
+                            <input type="text" name="perdaysalary" placeholder="Per Shift Salary ">
                         </div>
                     </div>
                     <hr>

@@ -20,7 +20,7 @@
                                         <th>Name</th>
                                         <th>Phone Number</th>
                                         {{-- <th>Delivery Area</th> --}}
-                                        <!-- <th>Per Shift Salary</th> -->
+                                        <th>Per day Salary</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -31,7 +31,7 @@
                                             <td>{{ $deliveryboydata->name }} <br> <span style="color: lightgray">{{ $deliveryboydata->address }}</span></td>
                                             <td>{{ $deliveryboydata->phone_number }}</td>
                                             {{-- <td>{{ $deliveryboydata->deliveryarea->name }}</td> --}}
-                                            <!-- <td>₹ {{ $deliveryboydata->pershiftsalary }}.00</td> -->
+                                            <td>₹ {{ $deliveryboydata->perdaysalary }}</td>
                                             <td>
                                                 <ul class="list-unstyled hstack gap-1 mb-0">
                                                     <li>
@@ -95,10 +95,10 @@
                                         <textarea type="text" name="address" placeholder="Enter address"></textarea>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 col-sm-6 col-12" hidden>
+                                <div class="col-lg-12 col-sm-6 col-12" >
                                     <div class="form-group">
-                                        <label>Per Shift Salary <span style="color: red;">*</span></label>
-                                        <input type="text" name="pershiftsalary" placeholder="Per Shift Salary ">
+                                        <label>Per Day Salary <span style="color: red;">*</span></label>
+                                        <input type="text" name="perdaysalary" placeholder="Per day Salary ">
                                     </div>
                                 </div>
                                 <div class="col-lg-12 button-align">
@@ -111,9 +111,6 @@
             </div>
 
 
-            <div class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog"
-                aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                @include('page.backend.deliveryboy.create')
-            </div>
+            
         </div>
     @endsection

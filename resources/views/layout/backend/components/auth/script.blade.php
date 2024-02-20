@@ -1285,6 +1285,17 @@ function printDiv(divName) {
     });
 
 
+    $(document).on("keyup", 'input.deliverypayoffedit_amountgiven', function() {
+            var deliverypayoffedit_amountgiven = $(this).val();
+            var deliverypayoffedit_perday_salary = $(".deliverypayoffedit_perday_salary").val();
+
+            if (Number(deliverypayoffedit_amountgiven) > Number(deliverypayoffedit_perday_salary)) {
+                alert('!Paid Amount is More than of Day Salary!');
+                $(".deliverypayoffedit_amountgiven").val('');
+            }
+    });
+
+
 function purchasesubmitForm(btn) {
         // disable the button
         btn.disabled = true;

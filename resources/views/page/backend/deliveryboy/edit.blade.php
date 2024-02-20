@@ -39,8 +39,8 @@
                     </div>
                     <div class="col-lg-12 col-sm-6 col-12" hidden>
                         <div class="form-group">
-                            <label>Per Shift Salary <span style="color: red;">*</span></label>
-                            <input type="text" name="pershiftsalary" placeholder="Per Shift Salary " value="{{ $deliveryboydata->pershiftsalary }}">
+                            <label>Per Day Salary <span style="color: red;">*</span></label>
+                            <input type="text" name="perdaysalary" placeholder="Per Day Salary " value="{{ $deliveryboydata->perdaysalary }}">
                         </div>
                     </div>
                     <hr>

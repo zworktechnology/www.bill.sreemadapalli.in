@@ -17,7 +17,7 @@ class Deliveryboy extends Model
         'phone_number',
         'address',
         'delivery_area_id',
-        'pershiftsalary'
+        'perdaysalary'
     ];
 
     public function deliveryarea()

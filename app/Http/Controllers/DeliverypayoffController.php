@@ -21,7 +21,7 @@ class DeliverypayoffController extends Controller
    {
        
        $today = Carbon::now()->format('Y-m-d');
-       $data = Deliveryboypayoff::where('month', '=', date('m', strtotime($today)))->where('year', '=', date('Y', strtotime($today)))->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
+       $data = Deliveryboypayoff::where('date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
        $payoffdata = [];
        foreach ($data as $key => $datas) {
 
@@ -33,13 +33,10 @@ class DeliverypayoffController extends Controller
                'year' => $datas->year,
                'deliveryboy_id' => $datas->deliveryboy_id,
                'deliveryboy' => $deliveryboy->name,
-               'total_days' => $datas->total_days,
-               'present_shifts' => $datas->present_shifts,
-               'pershiftsalary' => $datas->pershiftsalary,
-               'total_salaryamount' => $datas->total_salaryamount,
-               'paid_salary' => $datas->paid_salary,
+               'perdaysalary' => $datas->perdaysalary,
                'amountgiven' => $datas->amountgiven,
                'status' => $datas->status,
+               'payoffnotes' => $datas->payoffnotes,
                'id' => $datas->id,
                'unique_key' => $datas->unique_key
            );
@@ -53,28 +50,25 @@ class DeliverypayoffController extends Controller
    public function datefilter(Request $request) {
       $today = $request->get('from_date');
       
-      $data = Deliveryboypayoff::where('month', '=', date('m', strtotime($today)))->where('year', '=', date('Y', strtotime($today)))->where('soft_delete', '!=', 1)->get();
+      $data = Deliveryboypayoff::where('date', '=', $today)->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
       $payoffdata = [];
       foreach ($data as $key => $datas) {
 
           $deliveryboy = Deliveryboy::findOrFail($datas->deliveryboy_id);
 
           $payoffdata[] = array(
-              'date' => $datas->date,
-              'month' => $datas->month,
-              'year' => $datas->year,
-              'deliveryboy_id' => $datas->deliveryboy_id,
-              'deliveryboy' => $deliveryboy->name,
-              'total_days' => $datas->total_days,
-              'present_shifts' => $datas->present_shifts,
-              'pershiftsalary' => $datas->pershiftsalary,
-              'total_salaryamount' => $datas->total_salaryamount,
-              'paid_salary' => $datas->paid_salary,
-              'amountgiven' => $datas->amountgiven,
-              'status' => $datas->status,
-              'id' => $datas->id,
-              'unique_key' => $datas->unique_key
-          );
+            'date' => $datas->date,
+            'month' => $datas->month,
+            'year' => $datas->year,
+            'deliveryboy_id' => $datas->deliveryboy_id,
+            'deliveryboy' => $deliveryboy->name,
+            'perdaysalary' => $datas->perdaysalary,
+            'amountgiven' => $datas->amountgiven,
+            'status' => $datas->status,
+            'payoffnotes' => $datas->payoffnotes,
+            'id' => $datas->id,
+            'unique_key' => $datas->unique_key
+        );
       }
       $deliveryboy = Deliveryboy::where('soft_delete', '!=', 1)->get();
       $timenow = Carbon::now()->format('H:i');
@@ -96,8 +90,65 @@ class DeliverypayoffController extends Controller
         //$shiftatend = Empattendancedata::where('employee_id', '=', $employee_id)->first();
 
         $current_year = Carbon::now()->format('Y');
+
+
+            $atendance_output = [];
+        
+            $Deliveryboysarr = Deliveryboy::where('soft_delete', '!=', 1)->get();
+            foreach ($Deliveryboysarr as $key => $Deliveryboys_arr) {
+
+                $perday_Salary = $Deliveryboys_arr->perdaysalary;
+
+                $GetPresentornot = Deliveryattendancedata::where('deliveryboy_id', '=', $Deliveryboys_arr->id)->where('date', '=', $today)->where('attendance', '=', 'Present')->first();
+                if($GetPresentornot != ""){
+
+                    $Attendance_status = 'Present';
+
+                    $paidsalary = Deliveryboypayoff::where('deliveryboy_id', '=', $Deliveryboys_arr->id)->where('date', '=', $today)->first();
+                    if($paidsalary != ""){
+
+                        $paid_salary = $paidsalary->amountgiven;
+                    }else {
+                        $paid_salary = 0;
+                    }
+                    $balanceAmount = $perday_Salary - $paid_salary;
+
+                    if($paid_salary == 0){
+                        $placeholder = 'Enter Amount';
+                        $readonly = '';
+                        $noteplaceholder = 'Enter Note';
+                    }else {
+                        if($balanceAmount == 0){
+                            $readonly = 'readonly';
+                            $placeholder = '';
+                            $noteplaceholder = '';
+                        }else {
+                            $readonly = '';
+                            $placeholder = 'Enter Amount';
+                            $noteplaceholder = 'Enter Note';
+                            
+                        }
+                    }
+                
+
+               
+                    // $days = cal_days_in_month( 0, $salary_month, $year);
+                    $atendance_output[] = array(
+                        'Attendance_status' => $Attendance_status,
+                        'readonly' => $readonly,
+                        'placeholder' => $placeholder,
+                        'noteplaceholder' => $noteplaceholder,
+                        'perdaysalary' => $Deliveryboys_arr->perdaysalary,
+                        'Deliveryboy' => $Deliveryboys_arr->name,
+                        'id' => $Deliveryboys_arr->id,
+                        'paid_salary' => $paid_salary,
+                        'balanceAmount' => $balanceAmount,
+                    );
+                }
+            
+            }
        
-        return view('page.backend.deliveryboyspayoff.create', compact('Deliveryboy', 'today', 'timenow', 'maxDays', 'years_arr', 'current_year'));
+        return view('page.backend.deliveryboyspayoff.create', compact('Deliveryboy', 'today', 'timenow', 'maxDays', 'years_arr', 'current_year', 'atendance_output'));
     }
 
 
@@ -107,97 +158,41 @@ class DeliverypayoffController extends Controller
         $salrymonth = $request->get('salary_month');
 
 
+        foreach ($request->get('salaryamountgiven') as $key => $salaryamountgiven) {
+            if($request->salaryamountgiven[$key] != ""){
 
-        foreach ($request->get('amountgiven') as $key => $amount_given) {
-            if($request->amountgiven[$key] != ""){
-                
-                $pdrandomkey = Str::random(5);
-                $Deliveryboypayoffdata = new Deliveryboypayoffdata();
-                $Deliveryboypayoffdata->unique_key = $pdrandomkey;
-                $Deliveryboypayoffdata->date = $request->get('date');
-                $Deliveryboypayoffdata->month = $request->get('salary_month');
-                $Deliveryboypayoffdata->year = $request->get('salary_year');
-                $Deliveryboypayoffdata->deliveryboy_id = $request->deliveryboy_id[$key];
-                $Deliveryboypayoffdata->payable_amount = $request->amountgiven[$key];
-                $Deliveryboypayoffdata->payoffnotes = $request->dbpayoffnotes[$key];
-                $Deliveryboypayoffdata->save();
+                $paidsalary = Deliveryboypayoff::where('deliveryboy_id', '=', $request->Deliveryboy_id[$key])->where('date', '=', $request->get('date'))->first();
+                if($paidsalary != ""){
 
-            }
-        }
+                    $old_salary_amount = $paidsalary->amountgiven;
+                    $new_salary_amount = $salaryamountgiven;
+                    $totalsalry = $old_salary_amount + $new_salary_amount;
 
+                    $paidsalary->amountgiven = $totalsalry;
+                    $paidsalary->payoffnotes = $request->payoffnotes[$key];
+                    $paidsalary->update();
+                    
 
+                }else {
+                    $randomkey = Str::random(5);
 
-
-        foreach ($request->get('amountgiven') as $key => $amountgiven) {
-
-            $deliveryboy_id = $request->deliveryboy_id[$key];
-            $month = $request->get('salary_month');
-            $year = $request->get('salary_year');
-
-            $GetEmloyeeSalaryRow = Deliveryboypayoff::where('deliveryboy_id', '=', $deliveryboy_id)->where('month', '=', $month)->where('year', '=', $year)->first();
-            if($GetEmloyeeSalaryRow != ""){
-
-                $date = $request->date[$key];
-                $total_days = $request->totaldays[$key];
-                $present_shifts = $request->total_presentdays[$key];
-                $pershiftsalary = $request->pershiftsalary[$key];
-                $total_salaryamount = $request->total_salaryamount[$key];
-
-                $oldpaid_salary = $request->paid_salaryamount[$key];
-                $amountgiven = $request->amountgiven[$key];
-
-                $newPaidSalary = $oldpaid_salary + $amountgiven;
-
-                if($total_salaryamount == $newPaidSalary){
-                    $status = 'Paid';
-                }else if($total_salaryamount < $newPaidSalary){
-                    $status = 'ExtraPaid';
-                }else if($total_salaryamount == ''){
-                    $status = 'NotPaid';
-                }else if($total_salaryamount > $newPaidSalary){
-                    $status = 'Lesspaid';
+                    $Deliveryboypayoff = new Deliveryboypayoff();
+    
+                    $Deliveryboypayoff->unique_key = $randomkey;
+                    $Deliveryboypayoff->date = $request->get('date');
+                    $Deliveryboypayoff->month = date('m', strtotime($request->get('date')));
+                    $Deliveryboypayoff->year = date('Y', strtotime($request->get('date')));
+                    $Deliveryboypayoff->deliveryboy_id = $request->Deliveryboy_id[$key];
+                    $Deliveryboypayoff->perdaysalary = $request->perdaysalary[$key];
+                    $Deliveryboypayoff->amountgiven = $salaryamountgiven;
+                    $Deliveryboypayoff->status = 1;
+                    $Deliveryboypayoff->payoffnotes = $request->payoffnotes[$key];
+                    $Deliveryboypayoff->save();
                 }
 
-                DB::table('deliveryboypayoffs')->where('id', $GetEmloyeeSalaryRow->id)->update([
-                    'total_days' => $total_days,  'present_shifts' => $present_shifts,  'pershiftsalary' => $pershiftsalary,  'total_salaryamount' => $total_salaryamount,  'paid_salary' => $newPaidSalary,  'amountgiven' => $amountgiven,  'status' => $status
-                ]);
-
-            }else {
-
-                $srandomkey = Str::random(5);
-
-                $Deliveryboypayoff = new Deliveryboypayoff();
-
-                $Deliveryboypayoff->unique_key = $srandomkey;
-                $Deliveryboypayoff->date = $request->get('date');
-                $Deliveryboypayoff->month = $request->get('salary_month');
-                $Deliveryboypayoff->year = $request->get('salary_year');
-                $Deliveryboypayoff->deliveryboy_id = $request->deliveryboy_id[$key];
-                $Deliveryboypayoff->total_days = $request->totaldays[$key];
-                $Deliveryboypayoff->present_shifts = $request->total_presentdays[$key];
-                $Deliveryboypayoff->pershiftsalary = $request->pershiftsalary[$key];
-                $Deliveryboypayoff->total_salaryamount = $request->total_salaryamount[$key];
-                $Deliveryboypayoff->paid_salary = $request->amountgiven[$key];
-    
-                $tot_salary = $request->total_salaryamount[$key];
-                $paid_salary = $request->amountgiven[$key];
-    
-                if($tot_salary == $paid_salary){
-                    $Deliveryboypayoff->status = 'Paid';
-                }else if($tot_salary < $paid_salary){
-                    $Deliveryboypayoff->status = 'ExtraPaid';
-                }else if($paid_salary == ''){
-                    $Deliveryboypayoff->status = 'NotPaid';
-                }else if($tot_salary > $paid_salary){
-                    $Deliveryboypayoff->status = 'Lesspaid';
-                }
-                $Deliveryboypayoff->save();
+                    
             }
-
-                
-            
         }
-
 
         
 
@@ -207,92 +202,87 @@ class DeliverypayoffController extends Controller
 
 
 
-    public function edit($deliveryboyid, $month, $year)
+   
+
+
+    public function update(Request $request, $unique_key)
     {
-        $GetPayoffArray = Deliveryboypayoffdata::where('deliveryboy_id', '=', $deliveryboyid)->where('month', '=', $month)->where('year', '=', $year)->get();
-        $payoffdatas = [];
-        foreach ($GetPayoffArray as $key => $GetPayoffArrays) {
+        $Deliveryboypayoff = Deliveryboypayoff::where('unique_key', '=', $unique_key)->first();
+        $Deliveryboypayoff->amountgiven = $request->get('amountgiven');
+        $Deliveryboypayoff->payoffnotes = $request->get('note');
+        $Deliveryboypayoff->update();
 
-            $deliveryboy = Deliveryboy::findOrFail($GetPayoffArrays->deliveryboy_id);
-
-            $GetEmloyeeSalaryRow = Deliveryboypayoff::where('deliveryboy_id', '=', $GetPayoffArrays->deliveryboy_id)->where('month', '=', $GetPayoffArrays->month)->where('year', '=', $GetPayoffArrays->year)->first();
-
-            $payoffdatas[] = array(
-                'unique_key' => $GetPayoffArrays->unique_key,
-                'deliveryboy_id' => $GetPayoffArrays->deliveryboy_id,
-                'deliveryboy' => $deliveryboy->name,
-                'date' => $GetPayoffArrays->date,
-                'month' => $GetPayoffArrays->month,
-                'year' => $GetPayoffArrays->year,
-                'payable_amount' => $GetPayoffArrays->payable_amount,
-                'payoffnotes' => $GetPayoffArrays->payoffnotes,
-                'id' => $GetPayoffArrays->id,
-                'present_shifts' => $GetEmloyeeSalaryRow->present_shifts,
-                'total_days' => $GetEmloyeeSalaryRow->total_days,
-                'pershiftsalary' => $GetEmloyeeSalaryRow->pershiftsalary,
-                'total_salaryamount' => $GetEmloyeeSalaryRow->total_salaryamount,
-            );
-        }
-
-
-        $deliveryboy = Deliveryboy::where('soft_delete', '!=', 1)->get();
-        $today = Carbon::now()->format('Y-m-d');
-        $timenow = Carbon::now()->format('H:i');
-
-        $maxDays=date('t');
-
-        $years = date('Y', strtotime($today)) - 1;
-        $years_arr = array($years, $years+1, $years+2);
-
-        $current_year = Carbon::now()->format('Y');
-
-        $Deliveryboyname = Deliveryboy::findOrFail($deliveryboyid);
-       
-        return view('page.backend.deliveryboyspayoff.edit', compact('deliveryboy', 'today', 'timenow', 'maxDays', 'years_arr', 'current_year', 'payoffdatas', 'year', 'month', 'deliveryboyid', 'Deliveryboyname'));
+        return redirect()->route('deliveryboyspayoff.index')->with('message', 'Data updated successfully!');
     }
 
 
 
-    public function update(Request $request, $deliveryboyid, $month, $year)
+    public function getdeliveryboy_payoff()
     {
-       $getinsertedP_Products = Deliveryboypayoffdata::where('deliveryboy_id', '=', $deliveryboyid)->where('month', '=', $month)->where('year', '=', $year)->get();
-        $Purchaseproducts = array();
-        foreach ($getinsertedP_Products as $key => $getinserted_P_Products) {
-            $Purchaseproducts[] = $getinserted_P_Products->id;
-        }
-
-        $updatedpurchaseproduct_id = $request->payoffdata_id;
-        $updated_PurchaseProduct_id = array_filter($updatedpurchaseproduct_id);
-        $different_ids = array_merge(array_diff($Purchaseproducts, $updated_PurchaseProduct_id), array_diff($updated_PurchaseProduct_id, $Purchaseproducts));
-
-        if (!empty($different_ids)) {
-            foreach ($different_ids as $key => $different_id) {
-                Deliveryboypayoffdata::where('id', $different_id)->delete();
-            }
-        }
+        $deliverypayoff_date = request()->get('deliverypayoff_date');
 
 
+        $atendance_output = [];
         
-        foreach ($request->get('payoffdata_id') as $key => $payoffdata_id) {
+        $Deliveryboysarr = Deliveryboy::where('soft_delete', '!=', 1)->get();
+        foreach ($Deliveryboysarr as $key => $Deliveryboys_arr) {
 
-            $payable_amount = $request->amountgiven[$key];
-            $payoffnotes = $request->payoffnotes[$key];
-            $date = $request->date[$key];
+            $perday_Salary = $Deliveryboys_arr->perdaysalary;
 
-            DB::table('deliveryboypayoffdatas')->where('id', $payoffdata_id)->update([
-                'date' => $date,  'payable_amount' => $payable_amount,  'payoffnotes' => $payoffnotes
-            ]);
+            $GetPresentornot = Deliveryattendancedata::where('deliveryboy_id', '=', $Deliveryboys_arr->id)->where('date', '=', $deliverypayoff_date)->where('attendance', '=', 'Present')->first();
+            if($GetPresentornot != ""){
+
+                $Attendance_status = 'Present';
+
+                $paidsalary = Deliveryboypayoff::where('deliveryboy_id', '=', $Deliveryboys_arr->id)->where('date', '=', $deliverypayoff_date)->first();
+                if($paidsalary != NULL){
+
+                    $paid_salary = $paidsalary->amountgiven;
+                    $payoffnotes = $paidsalary->payoffnotes;
+                }else {
+                    $paid_salary = 0;
+                    $payoffnotes = '';
+                }
+                $balanceAmount = $perday_Salary - $paid_salary;
+
+                if($paid_salary == 0){
+                    $placeholder = 'Enter Amount';
+                    $readonly = '';
+                    $noteplaceholder = 'Enter Note';
+                }else {
+                    if($balanceAmount == 0){
+                        $readonly = 'readonly';
+                        $placeholder = '';
+                        $noteplaceholder = '';
+                    }else {
+                        $readonly = '';
+                        $placeholder = 'Enter Amount';
+                        $noteplaceholder = 'Enter Note';
+                        
+                    }
+                }
+
+           
+                // $days = cal_days_in_month( 0, $salary_month, $year);
+                $atendance_output[] = array(
+                    'Attendance_status' => $Attendance_status,
+                    'readonly' => $readonly,
+                    'placeholder' => $placeholder,
+                    'noteplaceholder' => $noteplaceholder,
+                    'perdaysalary' => $Deliveryboys_arr->perdaysalary,
+                    'Deliveryboy' => $Deliveryboys_arr->name,
+                    'id' => $Deliveryboys_arr->id,
+                    'paid_salary' => $paid_salary,
+                    'balanceAmount' => $balanceAmount,
+                    'payoffnotes' => $payoffnotes,
+                );
+            }
+        
         }
 
-        $total_salary = Deliveryboypayoffdata::where('deliveryboy_id', '=', $deliveryboyid)->where('month', '=', $month)->where('year', '=', $year)->sum('payable_amount');
-
-        DB::table('deliveryboypayoffs')->where('deliveryboy_id', $deliveryboyid)->where('month', $month)->where('year', $year)->update([
-            'paid_salary' => $total_salary
-        ]);
 
 
-
-        return redirect()->route('deliveryboyspayoff.index')->with('info', 'Updated !');
+            echo json_encode($atendance_output);
     }
 
 }

@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('address');
             $table->unsignedBigInteger('delivery_area_id')->nullable();
             $table->foreign('delivery_area_id')->references('id')->on('deliveryareas');
-            $table->string('pershiftsalary')->nullable();
+            $table->string('perdaysalary')->nullable();
 
             // CreatedAt & UpdatedAt columns
             $table->timestamps();

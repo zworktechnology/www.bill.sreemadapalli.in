@@ -9,8 +9,6 @@
          </div>
       </div>
 
-
-
         <div class="card">
             <div class="card-body">
             <form autocomplete="off" method="POST" action="{{ route('delivery_attendance.update', ['unique_key' => $Deliveryattendance->unique_key]) }}" enctype="multipart/form-data">
