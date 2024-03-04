@@ -1039,7 +1039,7 @@ $('#sales_update').submit(function(e){
                         var last_salesid = response.last_id;
 
 
-                    //    window.location= "http://127.0.0.1:8000/zworktechnology/sales/";
+                      //  window.location= "http://127.0.0.1:8000/zworktechnology/sales/";
                         window.location= "https://bill.sreemadapalli.in/zworktechnology/sales";
 
 
