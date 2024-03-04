@@ -905,8 +905,8 @@ $('#sales_store').submit(function(e){
                         var last_salesid = response.last_id;
 
 
-                       window.location= "http://127.0.0.1:8000/zworktechnology/sales/print/" + last_salesid;
-                      // window.location= "https://bill.sreemadapalli.in/zworktechnology/sales/print/" + last_salesid;
+                      // window.location= "http://127.0.0.1:8000/zworktechnology/sales/print/" + last_salesid;
+                       window.location= "https://bill.sreemadapalli.in/zworktechnology/sales/print/" + last_salesid;
 
                         $('button[type=submit], input[type=submit]').prop('disabled',false);
                         document.getElementById("sales_store").reset();
