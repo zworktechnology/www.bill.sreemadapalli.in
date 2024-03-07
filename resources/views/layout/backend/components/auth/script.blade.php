@@ -436,7 +436,7 @@
                                                 for (var i = 0; i < len; i++) {
                                                     var productsdiv = $('<div class="col-lg-2 col-sm-2 col-2 d-flex">' +
                                                                             '<div class="productset flex-fill" style="border: 1px solid #afbcc6;">' +
-                                                                                '<div class="productsetimg" style="height:110px;">' +
+                                                                                '<div class="productsetimg " style="height:110px;">' +
                                                                                     '<img src="'+ response[i].product_image +'" alt="img">' +
                                                                                     '<h6 class="pos-price">₹ '+ response[i].productprice +'</h6>' +
                                                                                 '</div>' +

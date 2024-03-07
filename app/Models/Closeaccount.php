@@ -13,12 +13,14 @@ class Closeaccount extends Model
         'unique_key',
         'soft_delete',
         'date',
-        'opening_balance',
         'sales',
-        'qrcode',
+        'cash',
         'card',
-        'cash_in_hand',
-        'expense',
-        'close_amount'
+        'paytm_business',
+        'paytm',
+        'phonepe_business',
+        'phonepe',
+        'gpay_business',
+        'gpay',
     ];
 }

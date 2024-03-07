@@ -6,10 +6,26 @@
             <div class="page-title">
                 <h4>Close Account</h4>
             </div>
+            <div class="page-btn">
+
+                  <div style="display: flex;">
+                     <form autocomplete="off" method="POST" action="{{ route('closeaccount.datefilter') }}">
+                           @method('PUT')
+                           @csrf
+                           <div style="display: flex">
+                              <div style="margin-right: 10px;"><input type="date" name="from_date"
+                                       class="form-control from_date" value="{{ $today }}"></div>
+                              <div style="margin-right: 5px;"><input type="submit" class="btn" value="Search"
+                                       style="background: #ff9f43; color:white;" /></div>
+                           </div>
+                     </form>
+                  </div>
+
+               </div>
         </div>
 
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-9">
 
 
                <div class="card">
@@ -20,9 +36,15 @@
                                  <tr>
                                     <th>Sl. No</th>
                                     <th>Date</th>
-                                    <th>Close Amount</th>
                                     <th>Sales</th>
-                                    <th>Profit / Loss</th>
+                                    <th>Card</th>
+                                    <th>Cash</th>
+                                    <th>Paytm</th>
+                                    <th>Paytm Business</th>
+                                    <th>Gpay</th>
+                                    <th>Gpay Business</th>
+                                    <th>Phonepay</th>
+                                    <th>Phonepay Business</th>
                                     <th>Action</th>
                                  </tr>
                               </thead>
@@ -31,17 +53,16 @@
                                     <tr>
                                           <td>{{ ++$keydata }}</td>
                                           <td>{{ date('d-m-Y', strtotime($datas->date)) }}</td>
-                                          <td>{{ $datas->close_amount }}</td>
                                           <td>{{ $datas->sales }}</td>
-                                          @if ($datas->close_amount > $datas->sales)
-                                             @php $profit = $datas->close_amount - $datas->sales; @endphp
-                                             <td>+{{ $profit }}</td>
-                                          @elseif ($datas->close_amount < $datas->sales)
-                                             @php $loss = $datas->sales - $datas->close_amount; @endphp
-                                             <td>-{{ $loss }}</td>
-                                          @else
-                                          <td></td>
-                                          @endif
+                                          <td>{{ $datas->card }}</td>
+                                          <td>{{ $datas->cash }}</td>
+
+                                          <td>{{ $datas->paytm }}</td>
+                                          <td>{{ $datas->paytm_business }}</td>
+                                          <td>{{ $datas->gpay }}</td>
+                                          <td>{{ $datas->gpay_business }}</td>
+                                          <td>{{ $datas->phonepe }}</td>
+                                          <td>{{ $datas->phonepe_business }}</td>
                                           <td>
                                                 <ul class="list-unstyled hstack gap-1 mb-0">
                                                    <li>
@@ -80,7 +101,7 @@
                   </div>
                </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-3">
 
             @include('page.backend.closeaccount.create')
             </div>

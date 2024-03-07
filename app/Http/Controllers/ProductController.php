@@ -205,7 +205,6 @@ class ProductController extends Controller
         }
     }
 
-
     public function getselectedcat_products()
     {
         $catogry_id = request()->get('catogry_id');

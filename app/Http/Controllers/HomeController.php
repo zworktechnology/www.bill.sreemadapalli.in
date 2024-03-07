@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Purchase;
 use App\Models\Purchaseproduct;
 use App\Models\Sale;
+use App\Models\Salespayment;
 use App\Models\SaleProduct;
 use App\Models\Expense;
 use App\Models\Bank;
@@ -198,12 +199,41 @@ class HomeController extends Controller
             $sessionarr = Session::where('soft_delete', '!=', 1)->get();
 
             $Openaccountdata = Openaccount::where('date', '=', $today)->sum('amount');
+            $Saledata = Sale::where('date', '=', $today)->sum('grandtotal');
             $Denominationdata = Denomination::where('date', '=', $today)->sum('total_amount');
-            $Closeaccountdata = Closeaccount::where('date', '=', $today)->sum('close_amount');
+
+            $open_sales = $Openaccountdata + $Saledata;
+            $total_expense = Expense::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('total_price');
+
+            $open_sales_exp = (($Openaccountdata + $Saledata) - $total_expense);
+
+           $cash = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('cash');
+           $card = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('card');
+           $paytm_business = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('paytm_business');
+           $paytm = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('paytm');
+           $phonepe_business = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('phonepe_business');
+           $phonepe = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('phonepe');
+           $gpay_business = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('gpay_business');
+           $gpay = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('gpay');
+
+           $totalpayment_methods = $cash + $card + $paytm_business + $paytm + $paytm + $phonepe_business + $phonepe + $gpay_business + $gpay;
+
+           $Salespaymentdata = Salespayment::where('date', '=', $today)->sum('paid_amount');
+
+
+    $total_card_one = $Denominationdata + $totalpayment_methods + $Saledata + $Salespaymentdata;
+
+    if ($open_sales_exp < 0) {
+        $over_all = $total_card_one + $open_sales_exp;
+    } else {
+        $over_all = $total_card_one - $open_sales_exp;
+    }
             
 
         return view('home', compact('today', 'tot_purchaseAmount', 'tot_saleAmount', 'tot_expenseAmount', 'salepaymentmode_table', 'total_Employee', 'total_Deliveryboy',
-         'total_Customer', 'total_Supplier', 'allemployee_attendance', 'alldeliveryboy_attendance', 'sessionarr', 'alldeliveryboy', 'Openaccountdata', 'Denominationdata', 'Closeaccountdata'));
+         'total_Customer', 'total_Supplier', 'allemployee_attendance', 'alldeliveryboy_attendance', 'sessionarr', 'alldeliveryboy', 'Openaccountdata', 'Denominationdata',
+          'card', 'paytm_business', 'paytm', 'phonepe_business', 'phonepe', 'gpay_business', 'gpay', 'cash', 'totalpayment_methods', 'Saledata', 'open_sales', 
+          'total_expense', 'open_sales_exp', 'over_all'));
     }
 
 
@@ -365,10 +395,40 @@ class HomeController extends Controller
             $sessionarr = Session::where('soft_delete', '!=', 1)->get();
 
             $Openaccountdata = Openaccount::where('date', '=', $today)->sum('amount');
+            $Saledata = Sale::where('date', '=', $today)->sum('grandtotal');
             $Denominationdata = Denomination::where('date', '=', $today)->sum('total_amount');
-            $Closeaccountdata = Closeaccount::where('date', '=', $today)->sum('close_amount');
+
+            $open_sales = $Openaccountdata + $Saledata;
+            $total_expense = Expense::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('total_price');
+
+            $open_sales_exp = (($Openaccountdata + $Saledata) - $total_expense);
+
+           $cash = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('cash');
+           $card = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('card');
+           $paytm_business = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('paytm_business');
+           $paytm = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('paytm');
+           $phonepe_business = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('phonepe_business');
+           $phonepe = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('phonepe');
+           $gpay_business = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('gpay_business');
+           $gpay = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('gpay');
+
+           $totalpayment_methods = $cash + $card + $paytm_business + $paytm + $paytm + $phonepe_business + $phonepe + $gpay_business + $gpay;
+
+           $Salespaymentdata = Salespayment::where('date', '=', $today)->sum('paid_amount');
+
+
+    $total_card_one = $Denominationdata + $totalpayment_methods + $Saledata + $Salespaymentdata;
+
+    if ($open_sales_exp < 0) {
+        $over_all = $total_card_one + $open_sales_exp;
+    } else {
+        $over_all = $total_card_one - $open_sales_exp;
+    }
+            
 
         return view('home', compact('today', 'tot_purchaseAmount', 'tot_saleAmount', 'tot_expenseAmount', 'salepaymentmode_table', 'total_Employee', 'total_Deliveryboy',
-         'total_Customer', 'total_Supplier', 'allemployee_attendance', 'alldeliveryboy_attendance', 'sessionarr', 'alldeliveryboy', 'Openaccountdata', 'Denominationdata', 'Closeaccountdata'));
+         'total_Customer', 'total_Supplier', 'allemployee_attendance', 'alldeliveryboy_attendance', 'sessionarr', 'alldeliveryboy', 'Openaccountdata', 'Denominationdata',
+          'card', 'paytm_business', 'paytm', 'phonepe_business', 'phonepe', 'gpay_business', 'gpay', 'cash', 'totalpayment_methods', 'Saledata', 'open_sales', 
+          'total_expense', 'open_sales_exp', 'over_all'));
     }
 }

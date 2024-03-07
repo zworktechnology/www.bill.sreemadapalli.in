@@ -133,16 +133,87 @@
                         <table class="table  ">
                            <tbody>
                               <tr>
-                                 <td>Opening Account</td>
+                                 <td style="color:black;font-weight:600;font-size:15px;text-transform:uppercase;">Opening Account</td>
                                  <td><a href="{{ route('openaccount.index') }}">{{$Openaccountdata}}</a></td>
                               </tr>
                               <tr>
-                                 <td>Closing Account</td>
-                                 <td><a href="{{ route('closeaccount.index') }}">{{$Closeaccountdata}}</a></td>
+                                 <td style="color:black;font-weight:600;font-size:15px;text-transform:uppercase;">Sales</td>
+                                 <td><a href="{{ route('sales.index') }}">{{$Saledata}}</a></td>
                               </tr>
                               <tr>
-                                 <td>Denomination</td>
-                                 <td><a href="{{ route('dinomination.index') }}">{{$Denominationdata}}</a></td>
+                                 <td style="color:red;font-weight:700;font-size:15px;text-transform:uppercase;">Total</td>
+                                 <td style="color:red;font-weight:700;font-size:15px;text-transform:uppercase;">{{$open_sales}}</td>
+                              </tr>
+                              <tr>
+                                 <td style="color:black;font-weight:600;font-size:15px;text-transform:uppercase;">Expense</td>
+                                 <td><a href="{{ route('expense.index') }}">{{$total_expense}}</a></td>
+                              </tr>
+                              <tr>
+                                 <td style="color:red;font-weight:700;font-size:15px;text-transform:uppercase;">Total</td>
+                                 <td>{{$open_sales_exp}}</td>
+                              </tr>
+                              <tr><td></td><td></td></tr>
+                              @if ($over_all > 0)
+                              <tr>
+                                 <td>Over All</td>
+                                 <td style="color:green;font-weight:800;font-size:16px;text-transform:uppercase;">₹ {{$over_all}}</td>
+                              </tr>
+                              @else
+                              <tr>
+                                 <td>Over All</td>
+                                 <td style="font-weight:800;font-size:16px;text-transform:uppercase;">₹ {{$over_all}}</td>
+                              </tr>
+                              @endif
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+
+               </div>
+            </div>
+
+            <div class="col-lg-6 col-sm-12 col-12 d-flex">
+               <div class="card flex-fill">
+
+                  <div class="card-body">
+                     <div class="table-responsive ">
+                        <table class="table  ">
+                           <tbody>
+                              <tr>
+                                 <td style="color:black;font-weight:600;font-size:15px;text-transform:uppercase;">Cash</td>
+                                 <td>{{$cash}}</td>
+                              </tr>
+                              <tr>
+                                 <td style="color:black;font-weight:600;font-size:15px;text-transform:uppercase;">Card</td>
+                                 <td>{{$card}}</td>
+                              </tr>
+                              <tr>
+                                 <td style="color:black;font-weight:600;font-size:15px;text-transform:uppercase;">Paytm Business</td>
+                                 <td>{{$paytm_business}}</td>
+                              </tr>
+                              <tr>
+                                 <td style="color:black;font-weight:600;font-size:15px;text-transform:uppercase;">Paytm</td>
+                                 <td>{{$paytm}}</td>
+                              </tr>
+                              <tr>
+                                 <td style="color:black;font-weight:600;font-size:15px;text-transform:uppercase;">Phonepay Business</td>
+                                 <td>{{$phonepe_business}}</td>
+                              </tr>
+                              <tr>
+                                 <td style="color:black;font-weight:600;font-size:15px;text-transform:uppercase;">Phonepay</td>
+                                 <td>{{$phonepe}}</td>
+                              </tr>
+                              <tr>
+                                 <td style="color:black;font-weight:600;font-size:15px;text-transform:uppercase;">GPay Business</td>
+                                 <td>{{$gpay_business}}</td>
+                              </tr>
+                              <tr>
+                                 <td style="color:black;font-weight:600;font-size:15px;text-transform:uppercase;">GPay</td>
+                                 <td>{{$gpay}}</td>
+                              </tr>
+                              <tr>
+                                 <td style="color:red;font-weight:700;font-size:15px;text-transform:uppercase;">Total</td>
+                                 <td  style="color:red;font-weight:700;font-size:15px;text-transform:uppercase;">{{$totalpayment_methods}}</td>
                               </tr>
                            </tbody>
                         </table>
@@ -151,6 +222,7 @@
 
                </div>
             </div>
+
          </div>
 
 

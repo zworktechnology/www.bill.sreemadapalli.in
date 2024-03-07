@@ -17,59 +17,80 @@
                    <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12">
                          <div class="form-group">
-                            <label>Opening Balance</label>
-                            <input type="text" class="opening_balance" name="opening_balance" id="opening_balance" readonly value="{{$openaccountamount}}">
-                         </div>
-                      </div>
-                   </div>
-                   <div class="row">
-                      <div class="col-lg-12 col-md-12 col-sm-12">
-                         <div class="form-group">
                             <label>Sales</label>
                             <input type="text" class="sales" name="sales" id="sales" required value="{{$saletotalamount}}" readonly>
                          </div>
                       </div>
                    </div>
+
+                 
                    <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12">
                          <div class="form-group">
-                            <label>QR Code</label>
-                            <input type="text" class="qrcode" name="qrcode" id="qrcode" required value="{{$saleqrcodetotalamount}}" readonly>
+                            <label>Cash</label>
+                            <input type="text" class="cash" name="cash" id="cash" required value="0" placeholder=" Cash">
                          </div>
                       </div>
                    </div>
                    <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12">
                          <div class="form-group">
-                            <label>QPAY</label>
-                            <input type="text" class="card" name="card" id="card" required value="{{$salegpaytotalamount}}" readonly>
+                            <label>Card</label>
+                            <input type="text" class="card" name="card" id="card" required value="0" placeholder="Card">
                          </div>
                       </div>
                    </div>
                    <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12">
                          <div class="form-group">
-                            <label>Cash In Hand</label>
-                            <input type="text" class="cash_in_hand" name="cash_in_hand" id="cash_in_hand" required value="{{$salecashtotalamount}}" readonly>
+                            <label>PAY TM BUSINESS</label>
+                            <input type="text" class="paytm_business" name="paytm_business" id="paytm_business" required value="0" placeholder="Enter Your ">
                          </div>
                       </div>
                    </div>
                    <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12">
                          <div class="form-group">
-                            <label>Expense</label>
-                            <input type="text" class="expense" name="expense" id="expense" required value="{{$expenseamount}}" readonly>
+                            <label>PAY TM</label>
+                            <input type="text" class="paytm" name="paytm" id="paytm" required value="0" placeholder="Paytm">
                          </div>
                       </div>
                    </div>
                    <div class="row">
                       <div class="col-lg-12 col-md-12 col-sm-12">
                          <div class="form-group">
-                            <label>Close Amount</label>
-                            <input type="text" class="close_amount" name="close_amount" id="close_amount" required value="{{$closeamounttotal}}" readonly>
+                            <label>PHONE PE BUISNESS</label>
+                            <input type="text" class="phonepe_business" name="phonepe_business" id="phonepe_business" required value="0" placeholder="Enter Your ">
                          </div>
                       </div>
                    </div>
+                   <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+                         <div class="form-group">
+                            <label>PHONEPE</label>
+                            <input type="text" class="phonepe" name="phonepe" id="phonepe" required value="0" placeholder="Phone Pay " >
+                         </div>
+                      </div>
+                   </div>
+                   <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+                         <div class="form-group">
+                            <label>GPAY BUISNESS</label>
+                            <input type="text" class="gpay_business" name="gpay_business" id="gpay_business" required value="0" placeholder="Enter Your ">
+                         </div>
+                      </div>
+                   </div>
+                   <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+                         <div class="form-group">
+                            <label>GPAY</label>
+                            <input type="text" class="gpay" name="gpay" id="gpay" required value="0" placeholder="Enter gpay ">
+                         </div>
+                      </div>
+                   </div>
+                
+
+                  
                    <div class="col-lg-12 button-align">
                         <button type="submit" class="btn btn-submit">Save</button>
                     </div>

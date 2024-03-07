@@ -7,6 +7,7 @@ use App\Models\Closeaccount;
 use App\Models\Sale;
 use App\Models\Expense;
 use App\Models\Openaccount;
+use App\Models\Bank;
 
 
 use Illuminate\Http\Request;
@@ -26,19 +27,22 @@ class CloseaccountController extends Controller
         $data = Closeaccount::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'desc')->get();
 
 
-        $openaccountamount = Openaccount::where('soft_delete', '!=', 1)->where('date', '=', $today)->sum('amount');
         $saletotalamount = Sale::where('soft_delete', '!=', 1)->where('date', '=', $today)->sum('grandtotal');
-        $salegpaytotalamount = Sale::where('soft_delete', '!=', 1)->where('date', '=', $today)->where('payment_method', '=', 'GPAY')->sum('grandtotal');
-        $salecashtotalamount = Sale::where('soft_delete', '!=', 1)->where('date', '=', $today)->where('payment_method', '=', 'Cash')->sum('grandtotal');
-        $saleqrcodetotalamount = Sale::where('soft_delete', '!=', 1)->where('date', '=', $today)->where('payment_method', '=', 'QR CODE')->sum('grandtotal');
-        $expenseamount = Expense::where('soft_delete', '!=', 1)->where('date', '=', $today)->sum('total_price');
-
-        $closeamount = $salegpaytotalamount + $salecashtotalamount + $saleqrcodetotalamount + $expenseamount;
-        $closeamounttotal = $closeamount - $openaccountamount;
 
         
-        return view('page.backend.closeaccount.index', compact('data', 'today', 'openaccountamount', 'saletotalamount', 'salegpaytotalamount', 'salecashtotalamount', 'saleqrcodetotalamount', 'expenseamount', 'closeamounttotal'));
+        return view('page.backend.closeaccount.index', compact('data', 'today', 'saletotalamount'));
         
+    }
+
+    public function datefilter(Request $request) {
+        $today = $request->get('from_date');
+        $data = Closeaccount::where('soft_delete', '!=', 1)->where('date', '=', $today)->orderBy('id', 'desc')->get();
+
+
+        $saletotalamount = Sale::where('soft_delete', '!=', 1)->where('date', '=', $today)->sum('grandtotal');
+
+        
+        return view('page.backend.closeaccount.index', compact('data', 'today', 'saletotalamount'));
     }
 
 
@@ -55,13 +59,15 @@ class CloseaccountController extends Controller
     
             $data->unique_key = $randomkey;
             $data->date = $request->get('date');
-            $data->opening_balance = $request->get('opening_balance');
             $data->sales = $request->get('sales');
-            $data->qrcode = $request->get('qrcode');
+            $data->cash = $request->get('cash');
             $data->card = $request->get('card');
-            $data->cash_in_hand = $request->get('cash_in_hand');
-            $data->expense = $request->get('expense');
-            $data->close_amount = $request->get('close_amount');
+            $data->paytm_business = $request->get('paytm_business');
+            $data->paytm = $request->get('paytm');
+            $data->phonepe_business = $request->get('phonepe_business');
+            $data->phonepe = $request->get('phonepe');
+            $data->gpay_business = $request->get('gpay_business');
+            $data->gpay = $request->get('gpay');
     
             $data->save();
     
@@ -76,18 +82,20 @@ class CloseaccountController extends Controller
 
     public function edit(Request $request, $unique_key)
     {
-        $CloseaccountData = Closeaccount::where('unique_key', '=', $unique_key)->first();
+        $data = Closeaccount::where('unique_key', '=', $unique_key)->first();
 
-            $CloseaccountData->date = $request->get('date');
-            $CloseaccountData->opening_balance = $request->get('opening_balance');
-            $CloseaccountData->sales = $request->get('sales');
-            $CloseaccountData->qrcode = $request->get('qrcode');
-            $CloseaccountData->card = $request->get('card');
-            $CloseaccountData->cash_in_hand = $request->get('cash_in_hand');
-            $CloseaccountData->expense = $request->get('expense');
-            $CloseaccountData->close_amount = $request->get('close_amount');
+        $data->date = $request->get('date');
+        $data->sales = $request->get('sales');
+        $data->cash = $request->get('cash');
+        $data->card = $request->get('card');
+        $data->paytm_business = $request->get('paytm_business');
+        $data->paytm = $request->get('paytm');
+        $data->phonepe_business = $request->get('phonepe_business');
+        $data->phonepe = $request->get('phonepe');
+        $data->gpay_business = $request->get('gpay_business');
+        $data->gpay = $request->get('gpay');
 
-            $CloseaccountData->update();
+            $data->update();
 
         return redirect()->route('closeaccount.index')->with('info', 'Updated !');
     }

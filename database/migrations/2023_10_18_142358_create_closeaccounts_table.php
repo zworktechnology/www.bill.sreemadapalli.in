@@ -19,13 +19,15 @@ return new class extends Migration
             $table->boolean('soft_delete')->default(0);
 
             $table->string('date')->nullable();
-            $table->string('opening_balance')->nullable();
             $table->string('sales')->nullable();
-            $table->string('qrcode')->nullable();
+            $table->string('cash')->nullable();
             $table->string('card')->nullable();
-            $table->string('cash_in_hand')->nullable();
-            $table->string('expense')->nullable();
-            $table->string('close_amount')->nullable();
+            $table->string('paytm_business')->nullable();
+            $table->string('paytm')->nullable();
+            $table->string('phonepe_business')->nullable();
+            $table->string('phonepe')->nullable();
+            $table->string('gpay_business')->nullable();
+            $table->string('gpay')->nullable();
             $table->timestamps();
         });
     }

@@ -480,6 +480,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/closeaccount/delete/{unique_key}', [CloseaccountController::class, 'delete'])->name('closeaccount.delete');
         // CHECK DUPLICATE
         Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/closeaccount/datefilter', [CloseaccountController::class, 'datefilter'])->name('closeaccount.datefilter');
+        //DATE FILTER 
+        Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/closeaccount/datefilter', [CloseaccountController::class, 'datefilter'])->name('closeaccount.datefilter');
     });
 
     //Route::get('/zworktechnology/sales/print/{sales_id}', function () {return view('page/backend/sales/print');});
