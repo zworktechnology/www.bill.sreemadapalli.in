@@ -99,25 +99,32 @@
                                                 @include('page.backend.home_deliveryboyview')
                                             </div>
          <div class="col-lg-3 col-sm-6 col-12 d-flex">
-            <div class="dash-count das2">
-               <div class="dash-counts">
-                  <h4 style="color: red;">{{$total_Customer}}</h4>
-                  <h5 style="color: #261b0a;">Customers</h5>
+            <div class="dash-count das2"><a href="{{ route('customer.index') }}">
+               <div class="row">
+                  <div class="col-8 dash-counts">
+                     <h4 style="color: red;">{{$total_Customer}}</h4>
+                     <h5 style="color: #261b0a;">Customers</h5>
+                  </div>
+                  <div class="col-4 dash-imgs" style="color:#751818">
+                     <i data-feather="user"></i>
+                  </div>
                </div>
-               <div class="dash-imgs" style="color:#751818">
-                  <i data-feather="user"></i>
-               </div>
+               
+            </a>
             </div>
          </div>
          <div class="col-lg-3 col-sm-6 col-12 d-flex">
-            <div class="dash-count das3">
-               <div class="dash-counts">
-                  <h4 style="color: red;">{{$total_Supplier}}</h4>
-                  <h5 style="color: #261b0a;">Suppliers</h5>
+            <div class="dash-count das3"><a href="{{ route('supplier.index') }}">
+               <div class="row">
+                  <div class="col-8 dash-counts">
+                     <h4 style="color: red;">{{$total_Supplier}}</h4>
+                     <h5 style="color: #261b0a;">Suppliers</h5>
+                  </div>
+                  <div class="col-4 dash-imgs" style="color:#751818">
+                     <i data-feather="user"></i>
+                  </div>
                </div>
-               <div class="dash-imgs" style="color:#751818">
-                  <i data-feather="user"></i>
-               </div>
+               </a>
             </div>
          </div>
          

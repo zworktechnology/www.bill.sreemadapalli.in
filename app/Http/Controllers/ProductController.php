@@ -225,30 +225,29 @@ class ProductController extends Controller
                     if($SaleProducts_productsession != ""){
                         $prodctsessionid = $SaleProducts_productsession->product_session_id;
 
-                        $checkbutton = '<input type="button" value="ADD"
-                                        class="btn btn-scanner-set clickquantity'. $CategoryProducts_arr->id .'  rise_quantity" onClick="increment_quantity('. $CategoryProducts_arr->id .')">';
+                        $checkbutton = '<input type="button" value="'. $CategoryProducts_arr->productname .'"
+                                        class="btn  clickquantity'. $CategoryProducts_arr->id .'  rise_quantity" onClick="increment_quantity('. $CategoryProducts_arr->id .')">';
 
 
 
                     }else {
                         $prodctsessionid = '';
-                        $checkbutton  = '<input type="button" name="add_to_cart" class="btn btn-scanner-set selectproduct addedproduct' . $CategoryProducts_arr->id .'" data-product_id="' . $CategoryProducts_arr->product_id .'"
+                        $checkbutton  = '<input type="button" name="add_to_cart" class="btn selectproduct addedproduct' . $CategoryProducts_arr->id .'" data-product_id="' . $CategoryProducts_arr->product_id .'"
                                     data-productsession_id="' . $CategoryProducts_arr->id .'"  data-session_id="' . $CategoryProducts_arr->session_id . '"  data-product_price="' . $CategoryProducts_arr->productprice .'" id="addedproduct' . $CategoryProducts_arr->id .'"
-                                    style="background: #7367f0;font-size: 14px;font-weight: 700;color: #fff;"value="ADD" />
+                                    style="background: #7367f0;font-size: 13px;font-weight: 700;color: #fff;"value="'. $CategoryProducts_arr->productname .'" />
                                     <input type="button" value="ADD" style="display:none;"
                                     class="btn btn-scanner-set clickquantity'. $CategoryProducts_arr->id .'  rise_quantity" onClick="increment_quantity('. $CategoryProducts_arr->id .')">';
                     }
                 }else {
                     $prodctsessionid = '';
-                    $checkbutton  = '<input type="button" name="add_to_cart" class="btn btn-scanner-set selectproduct addedproduct' . $CategoryProducts_arr->id .'" data-product_id="' . $CategoryProducts_arr->product_id .'"
+                    $checkbutton  = '<input type="button" name="add_to_cart" class="btn  selectproduct addedproduct' . $CategoryProducts_arr->id .'" data-product_id="' . $CategoryProducts_arr->product_id .'"
                                     data-productsession_id="' . $CategoryProducts_arr->id .'"  data-session_id="' . $CategoryProducts_arr->session_id . '"  data-product_price="' . $CategoryProducts_arr->productprice .'" id="addedproduct' . $CategoryProducts_arr->id .'"
-                                    style="background: #7367f0;font-size: 14px;font-weight: 700;color: #fff;"value="ADD" />
+                                    style="background: #7367f0;font-size: 13px;font-weight: 700;color: #fff;"value="'. $CategoryProducts_arr->productname .'" />
                                     <input type="button" value="ADD" style="display:none;"
                                     class="btn btn-scanner-set clickquantity'. $CategoryProducts_arr->id .'  rise_quantity" onClick="increment_quantity('. $CategoryProducts_arr->id .')">';
                 }
 
-
-
+                
 
                 $output[] = [
                     'productname' => $CategoryProducts_arr->productname,

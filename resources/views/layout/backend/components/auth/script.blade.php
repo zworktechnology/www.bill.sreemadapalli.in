@@ -399,11 +399,8 @@
                                                                         '<img src="'+ response[i].product_image +'" alt="img">' +
                                                                 '<h6 class="pos-price">₹ '+ response[i].productprice +'</h6>' +
                                                                     '</div>' +
-                                                                    '<div class="productsetcontent">' +
-                                                                        '<h4>'+ response[i].productname +'</h4>' +
-                                                                        '<div style="display: flex">' +
-                                                                            '<h6>'+ response[i].checkbutton +'</h6>' +
-                                                                        '</div>' +
+                                                                    '<div class="productsetcontent" style="display: block;background: #7367f0;">' +
+                                                                             response[i].checkbutton  +
                                                                     '</div>' +
                                                                 '</div>' +
                                                             '</div>');
@@ -440,11 +437,8 @@
                                                                                     '<img src="'+ response[i].product_image +'" alt="img">' +
                                                                                     '<h6 class="pos-price">₹ '+ response[i].productprice +'</h6>' +
                                                                                 '</div>' +
-                                                                                '<div class="productsetcontent">' +
-                                                                                    '<h4>'+ response[i].productname +'</h4>' +
-                                                                                    '<div style="display: flex">' +
-                                                                                        '<h6>'+ response[i].checkbutton +'</h6>' +
-                                                                                    '</div>' +
+                                                                                '<div class="productsetcontent" style="display: block;background: #7367f0;">' +
+                                                                             response[i].checkbutton  +
                                                                                 '</div>' +
                                                                             '</div>' +
                                                                         '</div>');
@@ -485,11 +479,8 @@
                                                                         '<img src="'+ response[i].product_image +'" alt="img">' +
                                                                         '<h6 class="pos-price">₹ '+ response[i].productprice +'</h6>' +
                                                                     '</div>' +
-                                                                    '<div class="productsetcontent">' +
-                                                                        '<h4>'+ response[i].productname +'</h4>' +
-                                                                        '<div style="display: flex">' +
-                                                                            '<h6>'+ response[i].checkbutton +'</h6>' +
-                                                                        '</div>' +
+                                                                    '<div class="productsetcontent" style="display: block;background: #7367f0;">' +
+                                                                             response[i].checkbutton  +
                                                                     '</div>' +
                                                                 '</div>' +
                                                             '</div>');
@@ -526,11 +517,8 @@
                                                                         '<img src="'+ response[i].product_image +'" alt="img">' +
                                                                         '<h6 class="pos-price">₹ '+ response[i].productprice +'</h6>' +
                                                                     '</div>' +
-                                                                    '<div class="productsetcontent">' +
-                                                                        '<h4>'+ response[i].productname +'</h4>' +
-                                                                        '<div style="display: flex">' +
-                                                                            '<h6>'+ response[i].checkbutton +'</h6>' +
-                                                                        '</div>' +
+                                                                    '<div class="productsetcontent" style="display: block;background: #7367f0;">' +
+                                                                             response[i].checkbutton  +
                                                                     '</div>' +
                                                                 '</div>' +
                                                             '</div>');

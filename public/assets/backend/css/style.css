@@ -10050,7 +10050,7 @@ span.select2-container.select2-container--default.select2-container--open {
     position: absolute;
     background: #751818;
     color: #fff;
-    font-size: 10px;
+    font-size: 12px;
     padding: 5px;
     border-radius: 5px;
     top: 0px;
@@ -10060,8 +10060,8 @@ span.select2-container.select2-container--default.select2-container--open {
 }
 
 .productset .productsetcontent {
-    padding: 13px;
-    text-align: center
+    /* padding: 13px; */
+    text-align: left
 }
 
 .productset .productsetcontent h4 {

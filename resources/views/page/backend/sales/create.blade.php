@@ -109,35 +109,19 @@
                                                                     alt="img">
                                                             </div>
 
-                                                            <div class="productsetcontent">
-                                                                <h4>{{ $produc_session_array['productname'] }}</h4>
-                                                                <div style="display: flex">
-                                                                    <h6 class="pos-price">₹ {{ $produc_session_array['productprice'] }}</h6>
-                                                                    <div class="increment-decrement"
-                                                                        style="margin-left:31%;margin-bottom:10px;" hidden>
-                                                                        <div class="input-groups">
-                                                                            <input type="button" value="-"
-                                                                                class="button-minus dec button">
-                                                                            <input type="text"
-                                                                                name="child{{ $produc_session_array['product_id'] }}" value="1"
-                                                                                class="quantity-field child{{ $produc_session_array['product_id'] }}">
-                                                                            <input type="button" value="+"
-                                                                                class="button-plus inc button ">
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <h6><input type="button" name="add_to_cart"
-                                                                            class="btn btn-scanner-set selectproduct addedproduct{{ $produc_session_array['id'] }}"
+                                                            <div class="productsetcontent" style="display: block;background: #7367f0;">
+                                                                   <input type="button" name="add_to_cart"
+                                                                            class="btn  selectproduct addedproduct{{ $produc_session_array['id'] }}"
                                                                             data-product_id="{{ $produc_session_array['product_id'] }}"
                                                                             data-productsession_id="{{ $produc_session_array['id'] }}"
                                                                             data-session_id="{{ $produc_session_array['session_id'] }}"
                                                                             data-product_price="{{ $produc_session_array['productprice'] }}"
                                                                             id="addedproduct{{ $produc_session_array['id'] }}"
-                                                                            style="background: #7367f0;font-size: 14px;font-weight: 700;color: #fff;"
-                                                                            value="ADD" />
-                                                                            <input type="button" value="ADD" style="display:none;" class="btn btn-scanner-set clickquantity{{ $produc_session_array['id'] }}  rise_quantity" onClick="increment_quantity({{ $produc_session_array['id'] }})"> </h6>
+                                                                            style="background: #7367f0;font-size: 13px;font-weight: 700;color: #fff;"
+                                                                            value="{{ $produc_session_array['productname'] }}" />
+                                                                            <input type="button" value="ADD" style="display:none;" class="btn btn-scanner-set clickquantity{{ $produc_session_array['id'] }}  rise_quantity" onClick="increment_quantity({{ $produc_session_array['id'] }})">
                                                                     <input type="hidden" name="singlequantity" id="singlequantity{{ $produc_session_array['product_id'] }}" class="form-control" value="1" />
-                                                                </div>
+                                                               
                                                             </div>
 
                                                         </div>
