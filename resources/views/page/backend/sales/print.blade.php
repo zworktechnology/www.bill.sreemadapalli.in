@@ -288,10 +288,10 @@
     </div>
     <script>
         //setTimeout(window.close, 7000);
-        window.onload=function(){self.print();}
-        window.onafterprint = function() {
-            history.go(-1);
-        };
+        // window.onload=function(){self.print();}
+        // window.onafterprint = function() {
+        //     history.go(-1);
+        // };
     </script>
 </body>
 
