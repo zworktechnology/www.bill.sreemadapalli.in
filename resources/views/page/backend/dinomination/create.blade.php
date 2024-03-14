@@ -22,39 +22,39 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="col-lg-4 col-md-4 col-sm-4" style="display: none">
                         <div class="form-group" style="margin-bottom: 10px;">
-                            <label>Rupee</label>
                             <input type="text" class="rupee" name="rupee[]" id="rupee1" Value="2000" readonly
                                 style="background: bisque;">
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-3 col-sm-3">
+                    <div class="col-lg-3 col-md-3 col-sm-3" style="display: none">
                         <div class="form-group" style="margin-bottom: 10px;">
-                            <label>Count</label>
-                            <input type="text" class="count" name="count[]" id="count1">
+                            <input type="text" class="count" name="count[]" id="count1" value="0">
                         </div>
                     </div>
-                    <div class="col-lg-5 col-md-5 col-sm-5">
+                    <div class="col-lg-5 col-md-5 col-sm-5" style="display: none">
                         <div class="form-group" style="margin-bottom: 10px;">
-                            <label>Amount</label>
-                            <input type="text" class="determinationamount" name="amount[]" id="amount1" readonly
+                            <input type="text" class="determinationamount" name="amount[]" id="amount1" value="0" readonly
                                 style="background: #97a2d236;">
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
                         <div class="form-group" style="margin-bottom: 10px;" style="margin-bottom: 10px;">
+                            <label>Rupee</label>
                             <input type="text" class="rupee" name="rupee[]" id="rupee2" Value="500" readonly
                                 style="background: bisque;">
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3">
                         <div class="form-group" style="margin-bottom: 10px;">
+                            <label>Count</label>
                             <input type="text" class="count" name="count[]" id="count2">
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-5 col-sm-5">
                         <div class="form-group" style="margin-bottom: 10px;">
+                            <label>Amount</label>
                             <input type="text" class="determinationamount" name="amount[]" id="amount2" readonly
                                 style="background: #97a2d236;">
                         </div>

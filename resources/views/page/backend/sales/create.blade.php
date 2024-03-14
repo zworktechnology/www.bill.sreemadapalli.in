@@ -8,45 +8,47 @@
                 <div class="row">
 
 
-                <style>
-                    .alert {
-  padding: 20px;
-  background-color: #f44336;
-  color: white;
-  opacity: 1;
-  transition: opacity 0.6s;
-  margin-bottom: 15px;
-}
+                    <style>
+                        .alert {
+                            padding: 20px;
+                            background-color: #f44336;
+                            color: white;
+                            opacity: 1;
+                            transition: opacity 0.6s;
+                            margin-bottom: 15px;
+                        }
 
-.alert.success {background-color: #04AA6D;}
+                        .alert.success {
+                            background-color: #04AA6D;
+                        }
 
-.closebtn {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+                        .closebtn {
+                            margin-left: 15px;
+                            color: white;
+                            font-weight: bold;
+                            float: right;
+                            font-size: 22px;
+                            line-height: 20px;
+                            cursor: pointer;
+                            transition: 0.3s;
+                        }
 
-.closebtn:hover {
-  color: black;
-}
-                </style>
-                <div class="col-lg-9 col-sm-12">
-                <div class="alert-success" style="display:none;">
-                    <span class="closebtn">&times;</span>
-                    <strong>Success!</strong> Indicates a successful or positive action.
-                </div>
-                </div>
-                <div class="col-lg-3 col-sm-12">
+                        .closebtn:hover {
+                            color: black;
+                        }
+                    </style>
+                    <div class="col-lg-9 col-sm-12">
+                        <div class="alert-success" style="display:none;">
+                            <span class="closebtn">&times;</span>
+                            <strong>Success!</strong> Indicates a successful or positive action.
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-12">
 
-                </div>
+                    </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-8 col-sm-12 tabs_wrapper">
+                    <div class="col-lg-8 col-sm-8 tabs_wrapper">
                         <div class="page-header ">
                             <div class="page-title">
                                 <h4>Categories</h4>
@@ -56,7 +58,8 @@
                         <div class="tabs-sets">
                             <ul class="nav nav-tabs " id="myTabs" role="tablist">
                                 @foreach ($session as $keydata => $sessions)
-                                    <li class="nav-item sessionclass" role="presentation" data-sesion_id="{{ $sessions->id }}">
+                                    <li class="nav-item sessionclass" role="presentation"
+                                        data-sesion_id="{{ $sessions->id }}">
                                         <button class="nav-link @if ($keydata == 0) active @endif"
                                             id="purchase{{ $sessions->id }}-tab" data-bs-toggle="tab"
                                             onclick="sessiontype({{ $sessions->id }})"
@@ -77,12 +80,15 @@
                                         @foreach ($cat_Productsession as $keydata => $cat_Productsessions)
                                             @if ($cat_Productsessions['session_id'] == $session_ss->id)
                                                 <li class="@if ($keydata == 0) active @endif  category_type "
-                                                    id="fruits{{ $cat_Productsessions['category_id'] }}" data-cat_id="{{ $cat_Productsessions['category_id'] }}" data-session_id="{{ $session_ss->id }}">
+                                                    id="fruits{{ $cat_Productsessions['category_id'] }}"
+                                                    data-cat_id="{{ $cat_Productsessions['category_id'] }}"
+                                                    data-session_id="{{ $session_ss->id }}">
                                                     <div class="product-details ">
                                                         <img src="{{ asset('assets/backend/img/product/product63.png') }}"
                                                             alt="img">
                                                         <h6>{{ $cat_Productsessions['category_name'] }}</h6>
-                                                        <input type="hidden" name="product_catid" id="product_catid" value="{{ $cat_Productsessions['category_id'] }}" />
+                                                        <input type="hidden" name="product_catid" id="product_catid"
+                                                            value="{{ $cat_Productsessions['category_id'] }}" />
                                                     </div>
                                                 </li>
                                             @endif
@@ -97,40 +103,41 @@
                                 <div class="tab_content @if ($index == 0) active @endif"
                                     data-tab="fruits{{ $categories->id }}">
 
-                                    <div class="row prodcttsdiv" >
+                                    <div class="row prodcttsdiv">
                                         @foreach ($produc_session_arr as $key => $produc_session_array)
-                                                @if ($produc_session_array['category_id'] == $categories->id)
+                                            @if ($produc_session_array['category_id'] == $categories->id)
+                                                <div class="col-lg-2 col-sm-2 col-2 d-flex">
+                                                    <div class="productset flex-fill" style="border: 1px solid #afbcc6;">
+                                                        <div class="productsetimg" style="height:110px;">
+                                                            <img src="{{ asset('assets/product/' . $produc_session_array['productimage']) }}"
+                                                                alt="img">
+                                                        </div>
 
-
-                                                    <div class="col-lg-2 col-sm-2 col-2 d-flex">
-                                                        <div class="productset flex-fill" style="border: 1px solid #afbcc6;">
-                                                            <div class="productsetimg" style="height:110px;">
-                                                                <img src="{{ asset('assets/product/' . $produc_session_array['productimage']) }}"
-                                                                    alt="img">
-                                                            </div>
-
-                                                            <div class="productsetcontent" style="display: block;background: #7367f0;">
-                                                                   <input type="button" name="add_to_cart"
-                                                                            class="btn  selectproduct addedproduct{{ $produc_session_array['id'] }}"
-                                                                            data-product_id="{{ $produc_session_array['product_id'] }}"
-                                                                            data-productsession_id="{{ $produc_session_array['id'] }}"
-                                                                            data-session_id="{{ $produc_session_array['session_id'] }}"
-                                                                            data-product_price="{{ $produc_session_array['productprice'] }}"
-                                                                            id="addedproduct{{ $produc_session_array['id'] }}"
-                                                                            style="background: #7367f0;font-size: 13px;font-weight: 700;color: #fff;"
-                                                                            value="{{ $produc_session_array['productname'] }}" />
-                                                                            <input type="button" value="ADD" style="display:none;" class="btn btn-scanner-set clickquantity{{ $produc_session_array['id'] }}  rise_quantity" onClick="increment_quantity({{ $produc_session_array['id'] }})">
-                                                                    <input type="hidden" name="singlequantity" id="singlequantity{{ $produc_session_array['product_id'] }}" class="form-control" value="1" />
-                                                               
-                                                            </div>
+                                                        <div class="productsetcontent"
+                                                            style="display: block;background: #7367f0;">
+                                                            <input type="button" name="add_to_cart"
+                                                                class="btn  selectproduct addedproduct{{ $produc_session_array['id'] }}"
+                                                                data-product_id="{{ $produc_session_array['product_id'] }}"
+                                                                data-productsession_id="{{ $produc_session_array['id'] }}"
+                                                                data-session_id="{{ $produc_session_array['session_id'] }}"
+                                                                data-product_price="{{ $produc_session_array['productprice'] }}"
+                                                                id="addedproduct{{ $produc_session_array['id'] }}"
+                                                                style="background: #7367f0;font-size: 13px;font-weight: 700;color: #fff;"
+                                                                value="{{ $produc_session_array['productname'] }}" />
+                                                            <input type="button" value="ADD" style="display:none;"
+                                                                class="btn btn-scanner-set clickquantity{{ $produc_session_array['id'] }}  rise_quantity"
+                                                                onClick="increment_quantity({{ $produc_session_array['id'] }})">
+                                                            <input type="hidden" name="singlequantity"
+                                                                id="singlequantity{{ $produc_session_array['product_id'] }}"
+                                                                class="form-control" value="1" />
 
                                                         </div>
+
                                                     </div>
-
-
-                                                @endif
-                                            @endforeach
-                                        </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    </div>
 
 
 
@@ -140,7 +147,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-sm-12 ">
+                    <div class="col-lg-4 col-sm-4 ">
                         <div class="order-list">
                             <div class="orderid">
                                 <h4>Order List</h4>
@@ -150,7 +157,8 @@
                                 <h5>
                                     <p class="current_time"></p>
                                 </h5>
-                                <input type="hidden" name="date" id="date" class="currentdate" value="{{ $today }}" />
+                                <input type="hidden" name="date" id="date" class="currentdate"
+                                    value="{{ $today }}" />
                                 <input type="hidden" name="time" id="time" class="currenttime" value="" />
                             </div>
                         </div>
@@ -171,11 +179,12 @@
                                                     </div> --}}
                                                     <div class="input-group" style="margin-right: 5px;">
                                                         <div class="input-group-text">
-                                                            <input class="form-check-input" type="radio" value="Delivery" id ="sales_type" name="sales_type"
+                                                            <input class="form-check-input" type="radio"
+                                                                value="Delivery" id ="sales_type" name="sales_type"
                                                                 aria-label="Radio button for following text input" checked>
                                                         </div>
-                                                        <input type="text" class="form-control" value="Delivery" disabled
-                                                            aria-label="Text input with radio button">
+                                                        <input type="text" class="form-control" value="Delivery"
+                                                            disabled aria-label="Text input with radio button">
                                                     </div>
                                                 </div>
                                             </div>
@@ -186,20 +195,25 @@
                                     <div class="col-lg-12">
                                         <div class="select-split ">
                                             <div class="select-group w-100 customertyp">
-                                                <select class="form-control js-example-basic-single select salepaymentpaid_customerid" name="customer_id" id="customer_id" required>
-                                                    <option value="" disabled selected hiddden>Select Customer</option>
+                                                <select
+                                                    class="form-control js-example-basic-single select salepaymentpaid_customerid"
+                                                    name="customer_id" id="customer_id" required>
+                                                    <option value="" disabled selected hiddden>Select Customer
+                                                    </option>
                                                     @foreach ($customer_rray as $customers)
-                                                        <option value="{{ $customers->id }}">{{ $customers->name }}</option>
+                                                        <option value="{{ $customers->id }}">{{ $customers->name }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                             </div>
 
-                                            
+
                                         </div>
                                     </div>
                                     <div class="form-group lastdatepurchasediv" style="display:none;">
-                                                <input type="text"  class="last_datepurchase" name="last_datepurchase" id="last_datepurchase"/>
-                                            </div>
+                                        <input type="text" class="last_datepurchase" name="last_datepurchase"
+                                            id="last_datepurchase" />
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-body pt-0">
@@ -229,7 +243,8 @@
                                         <li class="total-value">
                                             <h5>Total </h5>
                                             <h6 class="subtotalamount"></h6>
-                                            <input type="hidden" name="totalamount" id="totalamount" class="sales_totamount" value="" />
+                                            <input type="hidden" name="totalamount" id="totalamount"
+                                                class="sales_totamount" value="" />
                                         </li>
                                     </ul>
                                 </div>
@@ -241,14 +256,17 @@
                                                 <div class="select-group w-100">
                                                     <div style="display: flex">
                                                         @foreach ($Bank as $Banks)
-                                                        <div class="input-group" style="margin-right: 5px;">
-                                                            <div class="input-group-text">
-                                                                <input class="form-check-input" type="radio" value="{{ $Banks->name }}" id ="paymentmethod" name="paymentmethod"
-                                                                    aria-label="Radio button for following text input" >
+                                                            <div class="input-group" style="margin-right: 5px;">
+                                                                <div class="input-group-text">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        value="{{ $Banks->name }}" id ="paymentmethod"
+                                                                        name="paymentmethod"
+                                                                        aria-label="Radio button for following text input">
+                                                                </div>
+                                                                <input type="text" class="form-control"
+                                                                    value="{{ $Banks->name }}" disabled
+                                                                    aria-label="Text input with radio button">
                                                             </div>
-                                                            <input type="text" class="form-control" value="{{ $Banks->name }}" disabled
-                                                                aria-label="Text input with radio button">
-                                                        </div>
                                                         @endforeach
                                                     </div>
                                                 </div>
@@ -257,16 +275,21 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" placeholder="Enter Discount" class="sale_discount" name="sale_discount" id="sale_discount"/>
+                                    <input type="text" placeholder="Enter Discount" class="sale_discount"
+                                        name="sale_discount" id="sale_discount" />
                                 </div>
                                 <div class="form-group alreadypaidamount" style="display:none">
-                                    <input type="text" placeholder="Sale Payment Paid" class="salepayment_paidamt" readonly style="background: #32bb7c;color:white" name="salepayment_paid" id="salepayment_paid"/>
+                                    <input type="text" placeholder="Sale Payment Paid" class="salepayment_paidamt"
+                                        readonly style="background: #32bb7c;color:white" name="salepayment_paid"
+                                        id="salepayment_paid" />
                                 </div>
                                 <div class="btn-totallabel">
                                     <button type="submit" class="btn btn-sm " id="submit"
-                                        style="color:white; font-size:15px; display:contents;">Save<span class="grand_total"></span></button>
-                                        <input type="hidden" name="grandtotal" class="grandtotal" id="grandtotal"/>
-                                        <input type="hidden" name="saleid" class="saleid" id="saleid" value=""/>
+                                        style="color:white; font-size:15px; display:contents;">Save<span
+                                            class="grand_total"></span></button>
+                                    <input type="hidden" name="grandtotal" class="grandtotal" id="grandtotal" />
+                                    <input type="hidden" name="saleid" class="saleid" id="saleid"
+                                        value="" />
                                 </div>
                                 <div class="btn-pos">
                                     <ul>
@@ -337,11 +360,11 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($DineInoutput as $DineInoutputs)
-                                            <tr>
-                                                <td># {{ $DineInoutputs['bill_no'] }}</td>
-                                                <td>Walk-in Customer</td>
-                                                <td>₹ {{ $DineInoutputs['grandtotal'] }}</td>
-                                            </tr>
+                                                <tr>
+                                                    <td># {{ $DineInoutputs['bill_no'] }}</td>
+                                                    <td>Walk-in Customer</td>
+                                                    <td>₹ {{ $DineInoutputs['grandtotal'] }}</td>
+                                                </tr>
                                             @endforeach
 
                                         </tbody>
@@ -369,11 +392,11 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($TakeAwayInoutput as $TakeAwayInoutputs)
-                                            <tr>
-                                                <td># {{ $TakeAwayInoutputs['bill_no'] }}</td>
-                                                <td>Walk-out Customer</td>
-                                                <td>₹ {{ $TakeAwayInoutputs['grandtotal'] }}</td>
-                                            </tr>
+                                                <tr>
+                                                    <td># {{ $TakeAwayInoutputs['bill_no'] }}</td>
+                                                    <td>Walk-out Customer</td>
+                                                    <td>₹ {{ $TakeAwayInoutputs['grandtotal'] }}</td>
+                                                </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -400,11 +423,11 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($DeliveryInoutput as $DeliveryInoutputs)
-                                            <tr>
-                                                <td># {{ $DeliveryInoutputs['bill_no'] }}</td>
-                                                <td>{{ $DeliveryInoutputs['customer'] }}</td>
-                                                <td>₹ {{ $DeliveryInoutputs['grandtotal'] }}</td>
-                                            </tr>
+                                                <tr>
+                                                    <td># {{ $DeliveryInoutputs['bill_no'] }}</td>
+                                                    <td>{{ $DeliveryInoutputs['customer'] }}</td>
+                                                    <td>₹ {{ $DeliveryInoutputs['grandtotal'] }}</td>
+                                                </tr>
                                             @endforeach
                                         </tbody>
                                     </table>

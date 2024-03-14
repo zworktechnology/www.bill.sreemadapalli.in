@@ -1028,7 +1028,7 @@ class SaleController extends Controller
         }
         $customer = Customer::findOrFail($GetSale->customer_id);
         $phoneno = $customer->phone_number;
-        $address = $customer->address;
+        $name = $customer->name;
 
         $billno = $GetSale->bill_no;
         $sales_type = $GetSale->sales_type;
@@ -1044,7 +1044,7 @@ class SaleController extends Controller
 
         $grandtotal = $total + $balanceamount;
 
-        return view('page.backend.sales.print', compact('output', 'billno', 'sales_type', 'date', 'total', 'phoneno', 'address', 'balanceamount', 'grandtotal'));
+        return view('page.backend.sales.print', compact('output', 'billno', 'sales_type', 'date', 'total', 'phoneno', 'name', 'balanceamount', 'grandtotal'));
 
     }
 

@@ -4,8 +4,8 @@
     <div class="content">
          <div class="page-header">
                   <div class="page-title">
-                     <h4>Determination</h4>
-                     <p style="color:lightgray">( Determination Value )</p>
+                     <h4>Denomination</h4>
+                     <p style="color:lightgray">( Denomination Value )</p>
                   </div>
                   <div class="page-btn">
 
@@ -72,7 +72,7 @@
                                                 @include('page.backend.dinomination.delete')
                                           </div>
 
-                                    
+
                                  @endforeach
                               </tbody>
                         </table>
@@ -85,8 +85,8 @@
             @include('page.backend.dinomination.create')
             </div>
         </div>
-        
 
-       
+
+
     </div>
 @endsection

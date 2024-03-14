@@ -348,27 +348,27 @@
                 var sessionid = $('.category_type').first().data('session_id');
 
 
-                if (window.location.href.indexOf("http://127.0.0.1:8000/zworktechnology/sales/edit") > -1) {
-                    var url = $(location).attr('href');
-                    var parts = url.split("/");
-                    var last_part = parts[parts.length-1];
-
-
-                }else if (window.location.href.indexOf("http://127.0.0.1:8000/zworktechnology/sales/create") > -1) {
-                    var last_part = '';
-
-                }
-
-
-                // if (window.location.href.indexOf("https://bill.sreemadapalli.in/zworktechnology/sales/edit") > -1) {
+                // if (window.location.href.indexOf("http://127.0.0.1:8000/zworktechnology/sales/edit") > -1) {
                 //     var url = $(location).attr('href');
                 //     var parts = url.split("/");
                 //     var last_part = parts[parts.length-1];
 
 
-                // }else if (window.location.href.indexOf("https://bill.sreemadapalli.in/zworktechnology/sales/create") > -1) {
+                // }else if (window.location.href.indexOf("http://127.0.0.1:8000/zworktechnology/sales/create") > -1) {
                 //     var last_part = '';
+
                 // }
+
+
+                if (window.location.href.indexOf("https://bill.sreemadapalli.in/zworktechnology/sales/edit") > -1) {
+                    var url = $(location).attr('href');
+                    var parts = url.split("/");
+                    var last_part = parts[parts.length-1];
+
+
+                }else if (window.location.href.indexOf("https://bill.sreemadapalli.in/zworktechnology/sales/create") > -1) {
+                    var last_part = '';
+                }
 
 
 
@@ -893,8 +893,8 @@ $('#sales_store').submit(function(e){
                         var last_salesid = response.last_id;
 
 
-                      // window.location= "http://127.0.0.1:8000/zworktechnology/sales/print/" + last_salesid;
-                       window.location= "https://bill.sreemadapalli.in/zworktechnology/sales/print/" + last_salesid;
+                    //   window.location= "http://127.0.0.1:8000/zworktechnology/sales/print/" + last_salesid;
+                       window.location= "https://bill.sreemadapalli.in/zworktechnology/sales/?print/" + last_salesid;
 
                         $('button[type=submit], input[type=submit]').prop('disabled',false);
                         document.getElementById("sales_store").reset();
@@ -1027,7 +1027,7 @@ $('#sales_update').submit(function(e){
                         var last_salesid = response.last_id;
 
 
-                      //  window.location= "http://127.0.0.1:8000/zworktechnology/sales/";
+                    //    window.location= "http://127.0.0.1:8000/zworktechnology/sales/";
                         window.location= "https://bill.sreemadapalli.in/zworktechnology/sales";
 
 
@@ -1290,7 +1290,7 @@ function purchasesubmitForm(btn) {
         // submit the form
         btn.form.submit();
     }
-    
+
 
     $(document).ready(function() {
             $('.salespaymentcustomer_id').on('change', function() {
@@ -1321,7 +1321,7 @@ function purchasesubmitForm(btn) {
 
 
             $('.salepaymentpaid_customerid').on('change', function() {
-                var customerid = this.value;
+                    var customerid = this.value;
                 //alert(branch_id);
                 $('.salepayment_paidamt').val('');
                 $('.lastdatepurchasediv').hide();
@@ -1344,7 +1344,7 @@ function purchasesubmitForm(btn) {
                             }else {
                                 $('.lastdatepurchasediv').hide();
                             }
-                            
+
                         }
                     });
             });
@@ -1383,7 +1383,7 @@ function purchasesubmitForm(btn) {
                             supplierid: supplierid
                             },
                         dataType: 'json',
-                        success: function(response) {
+                                                    success: function(response) {
                             //
                             console.log(response);
                             var len = response.length;
@@ -1468,7 +1468,7 @@ $(document).ready(function() {
     });
 
 
-  
+
 
 });
 
@@ -1508,7 +1508,7 @@ $(document).ready(function() {
             $(".outdoor_fields").append(
                 '<tr>' +
                 '<td><input type="hidden"id="outdoor_detail_id"name="outdoor_detail_id[]" value=""/>' +
-                    '<input type="text" class="form-control outdoor_product" id="outdoor_product" name="outdoor_product[]" placeholder="Product Name" value="" required />' +
+                    '<input type="text" class="form-control outdoor_product" id=  "outdoor_product" name="outdoor_product[]" placeholder="Product Name" value="" required />' +
                     '</td>' +
                 '<td><textarea type="text" name="outdoornote[]" class="form-control" placeholder="Enter note" ></textarea></td>' +
                 '<td><input type="text" class="form-control outdoorquantity" id="outdoorquantity" name="outdoorquantity[]" placeholder="quantity" value="" required /></td>' +
@@ -1550,7 +1550,7 @@ $(document).on('click', '.remove-outdoortr', function() {
             var totsl = Number(outdoorsub_total) + Number(tax_amount);
             $('.outdoor_grandtotal').val(totsl.toFixed(2));
             $('.outdoorgrandtotal').text('₹ ' + totsl.toFixed(2));
-            
+
         }
 
 
@@ -1561,8 +1561,8 @@ $(document).on('click', '.remove-outdoortr', function() {
             $('.outdoorbalanceamount').val(balance_amount.toFixed(2));
 
 
-     
-       
+
+
 
 
 });
@@ -1600,7 +1600,7 @@ $(document).on('click', '.remove-outdoortr', function() {
             $('.outdoor_grandtotal').val(totsl.toFixed(2));
             $('.outdoorgrandtotal').text('₹ ' + totsl.toFixed(2));
 
-            var outdoor_payment_amount = $(".outdoor_payment_amount").val();
+            var outdoor_payment_amount =             $(".outdoor_payment_amount").val();
             var outdoor_grandtotal = $(".outdoor_grandtotal").val();
             //alert(bill_paid_amount);
             var balance_amount = Number(outdoor_grandtotal) - Number(outdoor_payment_amount);
@@ -1611,7 +1611,7 @@ $(document).on('click', '.remove-outdoortr', function() {
 
 
 
-    $(document).on("blur", "input[name*=outdoorpriceperquantity]", function() {
+    $(document).on("blur", "input[name*=     ou       tdoorpriceperquantity]", function() {
         var outdoorpriceperquantity = $(this).val();
         var outdoorquantity = $(this).parents('tr').find('.outdoorquantity').val();
         var total = outdoorpriceperquantity * outdoorquantity;
@@ -1855,10 +1855,10 @@ $(document).on('click', '.remove-outdoortr', function() {
         $(this).parents('div.produtseesiondiv').remove();
     });
 
-   
 
 
 
-   
+
+
 
 </script>
