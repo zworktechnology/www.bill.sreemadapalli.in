@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-8 col-sm-8 tabs_wrapper">
+                    <div class="col-lg-8 col-sm-8 col-8 tabs_wrapper">
                         <div class="page-header ">
                             <div class="page-title">
                                 <h4>Categories</h4>
@@ -147,7 +147,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-sm-4 ">
+                    <div class="col-lg-4 col-sm-4 col-4 ">
                         <div class="order-list">
                             <div class="orderid">
                                 <h4>Order List</h4>
