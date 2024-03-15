@@ -108,7 +108,7 @@
                                             @if ($produc_session_array['category_id'] == $categories->id)
                                                 <div class="col-lg-2 col-sm-2 col-2 d-flex">
                                                     <div class="productset flex-fill" style="border: 1px solid #afbcc6;">
-                                                        <div class="productsetimg" style="height:110px;">
+                                                        <div class="productsetimg" style="height:80px;">
                                                             <img src="{{ asset('assets/product/' . $produc_session_array['productimage']) }}"
                                                                 alt="img">
                                                         </div>
@@ -285,7 +285,7 @@
                                 </div>
                                 <div class="btn-totallabel">
                                     <button type="submit" class="btn btn-sm " id="submit"
-                                        style="color:white; font-size:15px; display:contents;">Save<span
+                                        style="color:white; font-size:15px; display:contents;">Print<span
                                             class="grand_total"></span></button>
                                     <input type="hidden" name="grandtotal" class="grandtotal" id="grandtotal" />
                                     <input type="hidden" name="saleid" class="saleid" id="saleid"
