@@ -272,6 +272,7 @@
                         {{-- <div class="tm_list_title">P.No :</div> --}}
                         <div class="tm_list_desc" style="font-weight:800;color:black;">{{ $phoneno }}</div>
                     </li>
+                    <li></li>
                     <li class="text-right">
                         {{-- <div class="tm_list_title">Address :</div> --}}
                         <div class="tm_list_desc" style="font-weight:800;font-size:15px;color:black;">{{ $name }}</div>
