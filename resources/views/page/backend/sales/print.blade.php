@@ -219,8 +219,8 @@
         <div class="tm_pos_invoice_wrap">
             <div class="tm_pos_sample_text"><img src="{{ asset('assets/backend/img/bill_logo.png') }}" alt="" width="150"
                                     height="150" ></div>
-            <div style="font-weight:500;color:black; text-align: center;">...Thanks for chossing Sree
-                Madapalli...</div>
+          {{--  <div style="font-weight:500;color:black; text-align: center;">...Thanks for chossing Sree
+                Madapalli...</div> --}}
             <table class="tm_pos_invoice_table">
                 <thead>
                     <tr>
@@ -270,17 +270,17 @@
                     </li>
                     <li>
                         {{-- <div class="tm_list_title">P.No :</div> --}}
-                        <div class="tm_list_desc" style="font-weight:500;color:black;">{{ $phoneno }}</div>
+                        <div class="tm_list_desc" style="font-weight:600;color:black;">{{ $phoneno }}</div>
                     </li>
                     <li class="text-right">
                         {{-- <div class="tm_list_title">Address :</div> --}}
-                        <div class="tm_list_desc" style="font-weight:500;color:black;">{{ $name }}</div>
+                        <div class="tm_list_desc" style="font-weight:600;color:black;">{{ $name }}</div>
                     </li>
                 </ul>
                 <div class="tm_pos_invoice_heading"><span style="font-weight:500;color:black;"></span>
                 </div>
-                    <div class="tm_pos_company_name">145, South Chitra St, Srirangam. +91 90251 66000</div>
-                    <div class="tm_pos_company_name"><img src="{{ asset('assets/backend/img/qr.jpg') }}" alt="" width="150"  height="150" ></div>
+                    <div class="tm_pos_company_name">Sree Madapalli, No. 145, South Chitra St, Srirangam.</div>
+                    <div class="tm_pos_company_name"><img src="{{ asset('assets/backend/img/qr.jpg') }}" alt="" width="180"  height="180" ></div>
                     
 
             </div>
