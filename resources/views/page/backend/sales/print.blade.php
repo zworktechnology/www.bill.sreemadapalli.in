@@ -279,8 +279,8 @@
                 </ul>
                 <div class="tm_pos_invoice_heading"><span style="font-weight:500;color:black;"></span>
                 </div>
-                    <div class="tm_pos_company_name">Sree Madapalli, No. 145, South Chitra St, Srirangam.</div>
-                    <div class="tm_pos_company_name"><img src="{{ asset('assets/backend/img/qr.jpg') }}" alt="" width="180"  height="180" ></div>
+                 {{--   <div class="tm_pos_company_name">Sree Madapalli, No. 145, South Chitra St, Srirangam.</div> --}}
+                    <div class="tm_pos_company_name"><img src="{{ asset('assets/backend/img/qr.jpg') }}" alt="" width="150"  height="150" ></div>
                     
 
             </div>
