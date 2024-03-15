@@ -270,12 +270,12 @@
                     </li>
                     <li>
                         {{-- <div class="tm_list_title">P.No :</div> --}}
-                        <div class="tm_list_desc" style="font-weight:800;color:black;">{{ $phoneno }}</div>
+                        {{-- <div class="tm_list_desc" style="font-weight:800;color:black;">{{ $phoneno }}</div> --}}
                     </li>
                     <li></li>
                     <li style="width:100%;">
                         {{-- <div class="tm_list_title">Address :</div> --}}
-                        <div class="tm_list_desc" style="font-weight:800;font-size:15px;color:black;">{{ $name }}</div>
+                        <div class="tm_list_desc" style="font-weight:800;font-size:15px;color:black;">{{ $name }} | {{ $phoneno }}</div>
                     </li>
                 </ul>
                 <div class="tm_pos_invoice_heading"><span style="font-weight:500;font-size:15px;color:black;"></span>
