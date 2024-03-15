@@ -108,7 +108,7 @@
                                             @if ($produc_session_array['category_id'] == $categories->id)
                                                 <div class="col-lg-2 col-sm-2 col-2 d-flex">
                                                     <div class="productset flex-fill" style="border: 1px solid #afbcc6;">
-                                                        <div class="productsetimg" style="height:50px;">
+                                                        <div class="productsetimg" style="height:80px;">
                                                             <img src="{{ asset('assets/product/' . $produc_session_array['productimage']) }}"
                                                                 alt="img">
                                                         </div>
