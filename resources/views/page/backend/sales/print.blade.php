@@ -208,7 +208,7 @@
         .tm_pos_company_name {
             font-weight: 500;
             color: #111;
-            font-size: 16px;
+            font-size: 13px;
             line-height: 1.4em;
             font-family: 'Inter', sans-serif;
         }
@@ -217,6 +217,8 @@
 
     <body>
         <div class="tm_pos_invoice_wrap">
+            <div class="tm_pos_sample_text"><img src="{{ asset('assets/backend/img/bill_logo.png') }}" alt="" width="150"
+                                    height="150" ></div>
             <div style="font-weight:500;color:black; text-align: center;">...Thanks for chossing Sree
                 Madapalli...</div>
             <table class="tm_pos_invoice_table">
@@ -277,19 +279,9 @@
                 </ul>
                 <div class="tm_pos_invoice_heading"><span style="font-weight:500;color:black;"></span>
                 </div>
-                <div class="" style="display: flex;">
-                    <ul class="tm_pos_company_name" style="width: 70%;">
-                        145, South Chitra St, Srirangam. +91 90251 66000
-                        <div class="tm_pos_invoice_top">
-                            <div class="tm_pos_company_logo">
-                                <img src="{{ asset('assets/backend/img/bill_logo.png') }}" alt="" width="150"
-                                    height="150" style="margin-right: 110px; margin-top: 15px;">
-                            </div>
-                        </div>
-                    </ul>
-                    <ul class="" style="width: 30%"><img src="{{ asset('assets/backend/img/qr.jpg') }}"
-                            alt=""></ul>
-                </div>
+                    <div class="tm_pos_company_name">145, South Chitra St, Srirangam. +91 90251 66000</div>
+                    <div class="tm_pos_company_name"><img src="{{ asset('assets/backend/img/qr.jpg') }}" alt="" width="150"  height="150" ></div>
+                    
 
             </div>
         </div>
