@@ -74,25 +74,25 @@
                         <form autocomplete="off" method="POST" action="{{ route('employee.store') }}">
                             @csrf
                             <div class="row">
-                                <div class="col-lg-12 col-sm-6 col-12">
+                                <div class="col-lg-12 col-sm-12 col-12">
                                     <div class="form-group">
                                         <label>Name <span style="color: red;">*</span></label>
                                         <input type="text" name="name" placeholder="Enter Employee name" required>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 col-sm-6 col-12">
+                                <div class="col-lg-12 col-sm-12 col-12">
                                     <div class="form-group">
                                         <label>Phone Number<span style="color: red;">*</span></label>
                                         <input type="text" name="phone_number" placeholder="Enter Phone Number" required>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 col-sm-6 col-12">
+                                <div class="col-lg-12 col-sm-12 col-12">
                                     <div class="form-group">
                                         <label>Address</label>
                                         <input type="text" name="address" placeholder="Enter Address">
                                     </div>
                                 </div>
-                                <div class="col-lg-12 col-sm-6 col-12">
+                                <div class="col-lg-12 col-sm-12 col-12">
                                     <div class="form-group">
                                         <label>One Day Salary<span style="color: red;">*</span></label>
                                         <input type="text" name="perdaysalary" placeholder="Per Day salary" required>
