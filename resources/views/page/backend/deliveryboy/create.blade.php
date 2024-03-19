@@ -37,12 +37,12 @@
                             <textarea type="text" name="address" placeholder="Enter address"></textarea>
                         </div>
                     </div>
-                    <div class="col-lg-12 col-sm-6 col-12" >
+                    {{-- <div class="col-lg-12 col-sm-6 col-12" >
                         <div class="form-group">
                             <label>Per Day Salary <span style="color: red;">*</span></label>
-                            <input type="text" name="perdaysalary" placeholder="Per Shift Salary ">
+                            <input type="text" name="perdaysalary" placeholder="Per Shift Salary " value="0">
                         </div>
-                    </div>
+                    </div> --}}
                     <hr>
                     <div class="col-lg-12 button-align">
                         <button type="submit" class="btn btn-submit me-2">Save</button>
