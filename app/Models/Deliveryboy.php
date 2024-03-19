@@ -15,6 +15,8 @@ class Deliveryboy extends Model
         'soft_delete',
         'name',
         'phone_number',
+        'email',
+        'password',
         'address',
         'delivery_area_id',
         'perdaysalary'

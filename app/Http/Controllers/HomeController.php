@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Purchase;
 use App\Models\Purchaseproduct;
@@ -45,7 +46,65 @@ class HomeController extends Controller
     public function index()
     {
 
-        $today = Carbon::now()->format('Y-m-d');
+
+
+          if(Auth::user()->role == 'DeliveryBoy'){
+            
+
+            $today = Carbon::now()->format('Y-m-d');
+
+
+            $deliverydata = Sale::where('date', '=', $today)->where('sales_type', '=', 'Delivery')->where('payment_method', '=', NULL)->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
+            $saledelivery_data = [];
+            $terms = [];
+            foreach ($deliverydata as $key => $datas) {
+
+                if($datas->customer_id != ""){
+                    $customer = Customer::findOrFail($datas->customer_id);
+                    $customername = $customer->name;
+                }else {
+                    $customername = '';
+                }
+
+                
+
+                if($datas->deliveryboy_id != ""){
+                    $Delivery_boy = Deliveryboy::findOrFail($datas->deliveryboy_id);
+                    $Delivery_boyname = $Delivery_boy->name;
+                }else {
+                    $Delivery_boyname = '';
+                }
+
+
+                $saledelivery_data[] = array(
+                    'date' => date('d-m-Y', strtotime($datas->date)),
+                    'bill_no' => $datas->bill_no,
+                    'time' => $datas->time,
+                    'sales_type' => $datas->sales_type,
+                    'customer_type' => $datas->customer_type,
+                    'customer' => $customername,
+                    'Delivery_boyname' => $Delivery_boyname,
+                    'sub_total' => $datas->sub_total,
+                    'tax' => $datas->tax,
+                    'total' => $datas->total,
+                    'sale_discount' => $datas->sale_discount,
+                    'grandtotal' => $datas->grandtotal,
+                    'payment_method' => $datas->payment_method,
+                    'id' => $datas->id,
+                    'unique_key' => $datas->unique_key,
+                );
+            }
+
+            $Bank = Bank::where('soft_delete', '!=', 1)->get();
+            $Deliveryboy = Deliveryboy::where('soft_delete', '!=', 1)->get();
+            
+            return view('home', compact('today', 'saledelivery_data', 'Bank', 'Deliveryboy'));
+
+
+
+          }else {
+
+            $today = Carbon::now()->format('Y-m-d');
 
 
             $total_purchase_amt_billing = Purchase::where('soft_delete', '!=', 1)->where('date', '=', $today)->sum('grandtotal');
@@ -207,33 +266,37 @@ class HomeController extends Controller
 
             $open_sales_exp = (($Openaccountdata + $Saledata) - $total_expense);
 
-           $cash = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('cash');
-           $card = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('card');
-           $paytm_business = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('paytm_business');
-           $paytm = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('paytm');
-           $phonepe_business = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('phonepe_business');
-           $phonepe = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('phonepe');
-           $gpay_business = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('gpay_business');
-           $gpay = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('gpay');
+            $cash = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('cash');
+            $card = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('card');
+            $paytm_business = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('paytm_business');
+            $paytm = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('paytm');
+            $phonepe_business = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('phonepe_business');
+            $phonepe = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('phonepe');
+            $gpay_business = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('gpay_business');
+            $gpay = Closeaccount::where('date', '=', $today)->where('soft_delete', '!=', 1)->sum('gpay');
 
-           $totalpayment_methods = $cash + $card + $paytm_business + $paytm + $paytm + $phonepe_business + $phonepe + $gpay_business + $gpay;
+            $totalpayment_methods = $cash + $card + $paytm_business + $paytm + $paytm + $phonepe_business + $phonepe + $gpay_business + $gpay;
 
-           $Salespaymentdata = Salespayment::where('date', '=', $today)->sum('paid_amount');
+            $Salespaymentdata = Salespayment::where('date', '=', $today)->sum('paid_amount');
 
 
-    $total_card_one = $Denominationdata + $totalpayment_methods + $Saledata + $Salespaymentdata;
+            $total_card_one = $Denominationdata + $totalpayment_methods + $Saledata + $Salespaymentdata;
 
-    if ($open_sales_exp < 0) {
-        $over_all = $total_card_one + $open_sales_exp;
-    } else {
-        $over_all = $total_card_one - $open_sales_exp;
-    }
+            if ($open_sales_exp < 0) {
+                $over_all = $total_card_one + $open_sales_exp;
+            } else {
+                $over_all = $total_card_one - $open_sales_exp;
+            }
             
 
-        return view('home', compact('today', 'tot_purchaseAmount', 'tot_saleAmount', 'tot_expenseAmount', 'salepaymentmode_table', 'total_Employee', 'total_Deliveryboy',
-         'total_Customer', 'total_Supplier', 'allemployee_attendance', 'alldeliveryboy_attendance', 'sessionarr', 'alldeliveryboy', 'Openaccountdata', 'Denominationdata',
-          'card', 'paytm_business', 'paytm', 'phonepe_business', 'phonepe', 'gpay_business', 'gpay', 'cash', 'totalpayment_methods', 'Saledata', 'open_sales', 
-          'total_expense', 'open_sales_exp', 'over_all'));
+            return view('home', compact('today', 'tot_purchaseAmount', 'tot_saleAmount', 'tot_expenseAmount', 'salepaymentmode_table', 'total_Employee', 'total_Deliveryboy',
+            'total_Customer', 'total_Supplier', 'allemployee_attendance', 'alldeliveryboy_attendance', 'sessionarr', 'alldeliveryboy', 'Openaccountdata', 'Denominationdata',
+            'card', 'paytm_business', 'paytm', 'phonepe_business', 'phonepe', 'gpay_business', 'gpay', 'cash', 'totalpayment_methods', 'Saledata', 'open_sales', 
+            'total_expense', 'open_sales_exp', 'over_all'));
+
+
+          }
+
     }
 
 

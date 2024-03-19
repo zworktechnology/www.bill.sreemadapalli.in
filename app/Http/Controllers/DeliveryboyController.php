@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Deliveryarea;
 use App\Models\Deliveryboy;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Hash;
 
 class DeliveryboyController extends Controller
 {
@@ -17,6 +19,8 @@ class DeliveryboyController extends Controller
 
         return view('page.backend.deliveryboy.index', compact('data', 'deliveryarea'));
     }
+
+    
 
     public function store(Request $request)
     {
@@ -29,10 +33,24 @@ class DeliveryboyController extends Controller
         $data->phone_number = $request->get('phone_number');
         $data->address = $request->get('address');
         $data->delivery_area_id = $request->get('delivery_area_id');
-       $data->perdaysalary = $request->get('perdaysalary');
+        $data->perdaysalary = $request->get('perdaysalary');
+        $data->email = $request->get('deliveryboy_email');
+        $data->password = $request->get('deliveryboy_password');
         $data->unique_key = $randomkey;
 
         $data->save();
+
+
+        $password = $request->get('deliveryboy_password');
+        $hashedPassword = Hash::make($password);
+
+        $Userdata = new User();
+        $Userdata->name = $request->get('name');
+        $Userdata->email = $request->get('deliveryboy_email');
+        $Userdata->role = 'DeliveryBoy';
+        $Userdata->deliveryboy_id = $data->id;
+        $Userdata->password = $hashedPassword;
+        $Userdata->save();
 
         return redirect()->route('delivery.boy.index')->with('message', 'Added !');
     }

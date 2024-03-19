@@ -101,6 +101,18 @@
                                         <input type="text" name="perdaysalary" placeholder="Per day Salary ">
                                     </div>
                                 </div>
+                                <div class="col-lg-12 col-sm-12 col-12" >
+                                    <div class="form-group">
+                                        <label>E-Mail  <span style="color: red;">*</span></label>
+                                        <input type="text" name="deliveryboy_email" placeholder="Enter E-Mail" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-12 col-12" >
+                                    <div class="form-group">
+                                        <label>Password <span style="color: red;">*</span></label>
+                                        <input type="text" name="deliveryboy_password" placeholder="Enter Password " required>
+                                    </div>
+                                </div>
                                 <div class="col-lg-12 button-align">
                                     <button type="submit" class="btn btn-submit me-2">Save</button>
                                 </div>

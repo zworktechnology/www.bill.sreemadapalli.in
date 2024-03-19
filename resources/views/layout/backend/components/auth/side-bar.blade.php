@@ -8,9 +8,15 @@
                         <li class="{{ Route::is('home', 'home.datefilter') ? 'active' : '' }} m-2">
                             <a href="{{ route('home') }}"><i data-feather="grid"></i><span>Dashboard</span></a>
                         </li>
+
+                        @if(Auth::user()->role == 'DeliveryBoy')
+                            <li class="{{ Route::is('sales.deliveryboy_history') ? 'active' : '' }}">
+                                    <a href="{{ route('sales.deliveryboy_history') }}"><i data-feather="layers"></i><span>History</span></a>
+                            </li>
+                        @endif
                     </ul>
                 </li>
-
+                @if(Auth::user()->role == 'Super-Admin')
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Sales</h6>
                     <ul>
@@ -109,6 +115,11 @@
                         </li>
                     </ul>
                 </li>
+
+                @endif
+
+
+                
             </ul>
         </div>
     </div>

@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone_number');
             $table->string('address');
+            $table->string('email')->nullable();
+            $table->string('password')->nullable();
             $table->unsignedBigInteger('delivery_area_id')->nullable();
             $table->foreign('delivery_area_id')->references('id')->on('deliveryareas');
             $table->string('perdaysalary')->nullable();

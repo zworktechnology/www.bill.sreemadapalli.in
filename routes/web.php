@@ -206,6 +206,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::middleware(['auth:sanctum', 'verified'])->put('/zworktechnology/sales/deliveryupdate/{unique_key}', [SaleController::class, 'deliveryupdate'])->name('sales.deliveryupdate');
         // EDIT
         Route::middleware(['auth:sanctum', 'verified'])->get('/zworktechnology/sales/edit/{unique_key}', [SaleController::class, 'edit'])->name('sales.edit');
+        // INDEX
+        Route::middleware(['auth:sanctum', 'verified'])->get('/zworktechnology/sales/deliveryboy_history', [SaleController::class, 'deliveryboy_history'])->name('sales.deliveryboy_history');
 
 
         // INDEX

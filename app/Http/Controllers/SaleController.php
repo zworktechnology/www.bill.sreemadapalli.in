@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Product;
 use App\Models\Session;
@@ -1004,9 +1005,18 @@ class SaleController extends Controller
         $updateSaledata->deliveryboy_id = $deliveryboy_id;
         $updateSaledata->update();
 
-        return redirect()->route('sales.index')->with('info', 'Updated !');
+
+        if(Auth::user()->role == 'DeliveryBoy'){
+            return redirect()->route('home')->with('info', 'Updated !');
+        }else{
+            return redirect()->route('sales.index')->with('info', 'Updated !');
+        }
+
+        
     }
 
+
+   
 
     public function getLastId($last_salesid)
     {
@@ -1586,6 +1596,71 @@ class SaleController extends Controller
 
 
         return redirect()->route('deliverysales.delivery_index')->with('warning', 'Deleted !');
+    }
+
+
+
+
+    public function deliveryboy_history()
+    {
+
+
+        $deliverydata = Sale::where('deliveryboy_id', '=', Auth::user()->deliveryboy_id)->where('sales_type', '=', 'Delivery')->where('soft_delete', '!=', 1)->orderBy('id', 'desc')->get();
+        $saled_data = [];
+        $terms = [];
+        foreach ($deliverydata as $key => $datas) {
+
+            if($datas->customer_id != ""){
+                $customer = Customer::findOrFail($datas->customer_id);
+                $customername = $customer->name;
+            }else {
+                $customername = '';
+            }
+
+
+            $SaleProducts = SaleProduct::where('sales_id', '=', $datas->id)->get();
+            foreach ($SaleProducts as $key => $SaleProducts_arr) {
+
+                $productid = Product::findOrFail($SaleProducts_arr->product_id);
+                $terms[] = array(
+                    'product_name' => $productid->name,
+                    'quantity' => $SaleProducts_arr->quantity,
+                    'price' => $SaleProducts_arr->price,
+                    'total_price' => $SaleProducts_arr->total_price,
+                    'sales_id' => $SaleProducts_arr->sales_id,
+                );
+            }
+
+            if($datas->deliveryboy_id != ""){
+                $Delivery_boy = Deliveryboy::findOrFail($datas->deliveryboy_id);
+                $Delivery_boyname = $Delivery_boy->name;
+            }else {
+                $Delivery_boyname = '';
+            }
+
+
+            $saled_data[] = array(
+                'date' => date('d-m-Y', strtotime($datas->date)),
+                'bill_no' => $datas->bill_no,
+                'time' => $datas->time,
+                'sales_type' => $datas->sales_type,
+                'customer_type' => $datas->customer_type,
+                'customer' => $customername,
+                'Delivery_boyname' => $Delivery_boyname,
+                'sub_total' => $datas->sub_total,
+                'tax' => $datas->tax,
+                'total' => $datas->total,
+                'sale_discount' => $datas->sale_discount,
+                'grandtotal' => $datas->grandtotal,
+                'payment_method' => $datas->payment_method,
+                'id' => $datas->id,
+                'unique_key' => $datas->unique_key,
+                'terms' => $terms,
+            );
+        }
+
+         return view('page.backend.sales.deliveryboy_history', compact('saled_data'));
+
     }
 
 
