@@ -20,7 +20,7 @@
                                         <th>Name</th>
                                         <th>Phone Number</th>
                                         {{-- <th>Delivery Area</th> --}}
-                                        <th>Per day Salary</th>
+                                        {{-- <th>Per day Salary</th> --}}
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -31,7 +31,7 @@
                                             <td>{{ $deliveryboydata->name }} <br> <span style="color: lightgray">{{ $deliveryboydata->address }}</span></td>
                                             <td>{{ $deliveryboydata->phone_number }}</td>
                                             {{-- <td>{{ $deliveryboydata->deliveryarea->name }}</td> --}}
-                                            <td>₹ {{ $deliveryboydata->perdaysalary }}</td>
+                                            {{-- <td>₹ {{ $deliveryboydata->perdaysalary }}</td> --}}
                                             <td>
                                                 <ul class="list-unstyled hstack gap-1 mb-0">
                                                     <li>
