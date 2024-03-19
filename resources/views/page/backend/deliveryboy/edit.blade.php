@@ -37,12 +37,12 @@
                             <textarea type="text" name="address" placeholder="Enter address">{{ $deliveryboydata->address }}</textarea>
                         </div>
                     </div>
-                    <div class="col-lg-12 col-sm-6 col-12" hidden>
+                    {{-- <div class="col-lg-12 col-sm-6 col-12" hidden>
                         <div class="form-group">
                             <label>Per Day Salary <span style="color: red;">*</span></label>
                             <input type="text" name="perdaysalary" placeholder="Per Day Salary " value="{{ $deliveryboydata->perdaysalary }}">
                         </div>
-                    </div>
+                    </div> --}}
                     <hr>
                     <div class="col-lg-12 button-align">
                         <button type="submit" class="btn btn-warning me-2">Update</button>
