@@ -95,12 +95,12 @@
                                         <textarea type="text" name="address" placeholder="Enter address"></textarea>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 col-sm-12 col-12" >
+                                {{-- <div class="col-lg-12 col-sm-12 col-12" >
                                     <div class="form-group">
                                         <label>Per Day Salary <span style="color: red;">*</span></label>
-                                        <input type="text" name="perdaysalary" placeholder="Per day Salary ">
+                                        <input type="text" name="perdaysalary" placeholder="Per day Salary " value=”0”>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-lg-12 col-sm-12 col-12" >
                                     <div class="form-group">
                                         <label>E-Mail  <span style="color: red;">*</span></label>
