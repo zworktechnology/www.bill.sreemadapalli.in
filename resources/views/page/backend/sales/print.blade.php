@@ -247,15 +247,15 @@
 
                 <div class="tm_bill_list_in">
                     <div class="tm_bill_title tm_bill_focus">Total :</div>
-                    <div class="tm_bill_value tm_bill_focus">{{ $total }}</div>
+                    <div class="tm_bill_value tm_bill_focus">{{ $total }}.00</div>
                 </div>
                 <div class="tm_bill_list_in">
                     <div class="tm_bill_title tm_bill_focus">Balance :</div>
-                    <div class="tm_bill_value tm_bill_focus">{{ $balanceamount }}</div>
+                    <div class="tm_bill_value tm_bill_focus">{{ $balanceamount }}.00</div>
                 </div>
                 <div class="tm_bill_list_in">
                     <div class="tm_bill_title tm_bill_focus">Grand Total :</div>
-                    <div class="tm_bill_value tm_bill_focus">{{ $grandtotal }}</div>
+                    <div class="tm_bill_value tm_bill_focus">{{ $grandtotal }}.00</div>
                 </div>
             </div>
             <div class="tm_pos_invoice_body">
@@ -280,9 +280,9 @@
                 </ul>
                 <div class="tm_pos_invoice_heading"><span style="font-weight:500;font-size:15px;color:black;"></span>
                 </div>
-                 {{--   <div class="tm_pos_company_name">Sree Madapalli, No. 145, South Chitra St, Srirangam.</div> --}}
-                    <div class="tm_pos_company_name"><img src="{{ asset('assets/backend/img/qr.jpg') }}" alt="" width="150"  height="150" ></div>
-                    
+                   {{-- <div class="tm_pos_company_name">Sree Madapalli, No. 145, South Chitra St, Srirangam.</div> --}}
+                    {{-- <div class="tm_pos_company_name"><img src="{{ asset('assets/backend/img/qr.jpg') }}" alt="" width="150"  height="150" ></div> --}}
+
 
             </div>
         </div>
